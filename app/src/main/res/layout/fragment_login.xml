@@ -9,11 +9,11 @@
     android:name="androidx.navigation.fragment.NavHostFragment">
 
     <ImageView
-        android:id="@+id/imageView"
+        android:id="@+id/header_logo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="240dp"
+        android:layout_marginTop="304dp"
         android:layout_marginEnd="16dp"
         android:contentDescription="title_logo"
         app:layout_constraintEnd_toEndOf="parent"
@@ -23,10 +23,10 @@
 
     <EditText
         android:id="@+id/login_email"
-        android:layout_width="wrap_content"
+        android:layout_width="@dimen/long_text_width"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="160dp"
+        android:layout_marginTop="32dp"
         android:layout_marginEnd="16dp"
         android:ems="10"
         android:hint="@string/email"
@@ -36,11 +36,11 @@
         android:textColorHint="#00BCD4"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView" />
+        app:layout_constraintTop_toBottomOf="@+id/header_logo" />
 
     <EditText
         android:id="@+id/editText2"
-        android:layout_width="wrap_content"
+        android:layout_width="@dimen/long_text_width"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
@@ -57,25 +57,52 @@
 
     <Button
         android:id="@+id/login_login_button"
-        android:layout_width="wrap_content"
+        android:layout_width="@dimen/login_button_width"
         android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
-        android:layout_marginBottom="32dp"
         android:background="#00BCD4"
         android:text="@string/login_button"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/login_checkBox" />
 
     <Button
         android:id="@+id/login_register_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginBottom="32dp"
+        android:layout_marginEnd="16dp"
         android:background="@android:color/transparent"
         android:text="@string/reg_button"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        android:textColor="#FFFFFF"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/login_login_button" />
+
+    <CheckBox
+        android:id="@+id/login_checkBox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:buttonTint="#00BCD4"
+        android:text="@string/login_checkBox"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editText2" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="213dp"
+        android:layout_height="362dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/duck_logo" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
