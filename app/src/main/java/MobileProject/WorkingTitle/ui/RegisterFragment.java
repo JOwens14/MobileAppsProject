@@ -24,6 +24,8 @@ import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import MobileProject.WorkingTitle.R;
 
@@ -59,11 +61,18 @@ public class RegisterFragment extends Fragment {
     private void register(View view) {
         AsyncTask<String, Void, String> task = null;
         //Construct a JSONObject to build a formatted message to send.
+        TextView errorText = (TextView)getActivity().findViewById(R.id.errorRegister);
         String firstName = ((EditText)getActivity().findViewById(R.id.editText_FirstName)).getText().toString();
         String lastName = ((EditText)(getActivity().findViewById(R.id.editText_LastName))).getText().toString();
         String userName = ((EditText)getActivity().findViewById(R.id.editText_Username)).getText().toString();
         String password = ((EditText)getActivity().findViewById(R.id.editText_Password)).getText().toString();
         String email = ((EditText)getActivity().findViewById(R.id.editText_Email)).getText().toString();
+
+        if (!emailValidation(email)) {
+            errorText.setText("Email is invalid!");
+            errorText.setVisibility(View.VISIBLE);
+            return;
+        }
 
         // TODO: validations
 
@@ -83,6 +92,13 @@ public class RegisterFragment extends Fragment {
         task.execute(getString(R.string.base_url),
                 getString(R.string.conn_register),
                 msg.toString());
+    }
+
+    private boolean emailValidation(String email) {
+        String regex = "^[A-Za-z0-9+_.-]+@(.+)$";
+        Pattern pattern = Pattern.compile(regex);
+        Matcher matcher = pattern.matcher(email);
+        return matcher.matches();
     }
 
     private class PostWebServiceTask extends AsyncTask<String, Void, String> {
