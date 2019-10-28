@@ -5,15 +5,15 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#3B4252"
-    tools:context=".LoginActivity"
-    android:name="androidx.navigation.fragment.NavHostFragment">
+    android:visibility="visible"
+    tools:context=".ui.RegisterFragment">
 
     <ImageView
         android:id="@+id/header_logo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="304dp"
+        android:layout_marginTop="124dp"
         android:layout_marginEnd="16dp"
         android:contentDescription="title_logo"
         app:layout_constraintEnd_toEndOf="parent"
@@ -26,7 +26,7 @@
         android:layout_width="@dimen/long_text_width"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
         android:ems="10"
         android:hint="@string/email"
@@ -35,11 +35,47 @@
         android:textColorHighlight="#00000000"
         android:textColorHint="#00BCD4"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editText_LastName" />
+
+    <EditText
+        android:id="@+id/editText_FirstName"
+        android:layout_width="@dimen/long_text_width"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="52dp"
+        android:layout_marginEnd="16dp"
+        android:ems="10"
+        android:hint="@string/firstName"
+        android:inputType="textEmailAddress"
+        android:textColor="#00BCD4"
+        android:textColorHighlight="#00000000"
+        android:textColorHint="#00BCD4"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/header_logo" />
 
     <EditText
-        android:id="@+id/editText2"
+        android:id="@+id/editText_LastName"
+        android:layout_width="@dimen/long_text_width"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:ems="10"
+        android:hint="@string/lastName"
+        android:textColor="#00BCD4"
+        android:textColorHighlight="#00000000"
+        android:textColorHint="#00BCD4"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.502"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editText_FirstName" />
+
+    <EditText
+        android:id="@+id/editText_Password"
         android:layout_width="@dimen/long_text_width"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -55,54 +91,51 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editText_Email" />
 
+    <EditText
+        android:id="@+id/editText_Username"
+        android:layout_width="@dimen/long_text_width"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:ems="10"
+        android:hint="@string/nickname"
+        android:textColor="#00BCD4"
+        android:textColorHighlight="#00000000"
+        android:textColorHint="#00BCD4"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editText_Password" />
+
     <Button
-        android:id="@+id/login_login_button"
+        android:id="@+id/buttonRegister"
         android:layout_width="@dimen/login_button_width"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
         android:background="#00BCD4"
-        android:text="@string/login_button"
+        android:text="@string/reg_button"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.504"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/login_checkBox" />
+        app:layout_constraintTop_toBottomOf="@+id/editText_Username" />
 
-    <Button
-        android:id="@+id/login_register_button"
+    <TextView
+        android:id="@+id/errorRegister"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="50dp"
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
-        android:background="@android:color/transparent"
-        android:text="@string/reg_button"
-        android:textColor="#FFFFFF"
+        android:text="TextView"
+        android:textColor="@color/colorAccent"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toTopOf="@+id/header_logo"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/login_login_button" />
-
-    <CheckBox
-        android:id="@+id/login_checkBox"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="8dp"
-        android:buttonTint="#00BCD4"
-        android:text="@string/login_checkBox"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText2" />
-
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="213dp"
-        android:layout_height="362dp"
-        android:layout_marginTop="16dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/duck_logo" />
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
+
