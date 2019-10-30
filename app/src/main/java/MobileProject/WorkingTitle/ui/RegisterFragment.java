@@ -57,6 +57,10 @@ public class RegisterFragment extends Fragment {
         return view;
     }
 
+    private void validations () {
+//        if ()
+    }
+
     private void register(View view) {
         AsyncTask<String, Void, String> task = null;
         //Construct a JSONObject to build a formatted message to send.
@@ -65,7 +69,13 @@ public class RegisterFragment extends Fragment {
         String lastName = ((EditText)(getActivity().findViewById(R.id.editText_LastName))).getText().toString();
         String userName = ((EditText)getActivity().findViewById(R.id.editText_Username)).getText().toString();
         String password = ((EditText)getActivity().findViewById(R.id.editText_Password)).getText().toString();
+        String repassword = ((EditText)getActivity().findViewById(R.id.editText_Password2)).getText().toString();
         String email = ((EditText)getActivity().findViewById(R.id.editText_Email)).getText().toString();
+
+        // TODO: use validation function
+        if (!password.equals(repassword)) {
+            ((TextView)getActivity().findViewById(R.id.textViewPasswordMatch)).setVisibility(View.VISIBLE);
+        }
 
         if (!emailValidation(email)) {
             errorText.setText("Email is invalid!");

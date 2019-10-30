@@ -8,6 +8,24 @@
     android:visibility="visible"
     tools:context=".ui.RegisterFragment">
 
+    <EditText
+        android:id="@+id/editText_Password2"
+        android:layout_width="@dimen/long_text_width"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:ems="10"
+        android:hint="@string/password"
+        android:inputType="textPassword"
+        android:textColor="#00BCD4"
+        android:textColorHighlight="#00000000"
+        android:textColorHint="#00BCD4"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editText_Password" />
+
     <ImageView
         android:id="@+id/header_logo"
         android:layout_width="wrap_content"
@@ -44,7 +62,7 @@
         android:layout_width="@dimen/long_text_width"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="52dp"
+        android:layout_marginTop="22dp"
         android:layout_marginEnd="16dp"
         android:ems="10"
         android:hint="@string/firstName"
@@ -104,8 +122,9 @@
         android:textColorHighlight="#00000000"
         android:textColorHint="#00BCD4"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText_Password" />
+        app:layout_constraintTop_toBottomOf="@+id/editText_Password2" />
 
     <Button
         android:id="@+id/button_back_to_Login"
@@ -137,6 +156,17 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editText_Username"
         app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
+        android:id="@+id/textViewPasswordMatch"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/passwordMatch"
+        android:textColor="@android:color/holo_red_light"
+        android:visibility="invisible"
+        app:layout_constraintBaseline_toBaselineOf="@+id/editText_Password2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/editText_Password2" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 
