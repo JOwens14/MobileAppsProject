@@ -7,20 +7,26 @@
 
     <fragment
         android:id="@+id/nav_home"
-        android:name="MobileProject.WorkingTitle.ui.home.HomeFragment"
+        android:name="MobileProject.WorkingTitle.ui.Conversations.ConversationListFragment"
         android:label="@string/menu_home"
         tools:layout="@layout/fragment_home" />
-
-    <fragment
-        android:id="@+id/nav_settings"
-        android:name="MobileProject.WorkingTitle.ui.Settings.SettingsFragment"
-        android:label="@string/menu_settings"
-        tools:layout="@layout/fragment_settings" />
 
     <fragment
         android:id="@+id/nav_connections"
         android:name="MobileProject.WorkingTitle.ui.Connections.ConnectionsFragment"
         android:label="@string/menu_connections"
         tools:layout="@layout/fragment_connections" />
+    <fragment
+        android:id="@+id/nav_conversationList"
+        android:name="MobileProject.WorkingTitle.ui.Conversations.ConversationListFragment"
+        android:label="ConversationListFragment" >
+        <action
+            android:id="@+id/action_conversationListFragment_to_conversationFragment"
+            app:destination="@id/nav_conversation" />
+    </fragment>
+    <fragment
+        android:id="@+id/nav_conversation"
+        android:name="MobileProject.WorkingTitle.ui.Conversations.ConversationFragment"
+        android:label="ConversationFragment" />
 
 </navigation>
