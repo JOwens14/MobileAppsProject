@@ -22,5 +22,10 @@
         android:name="MobileProject.WorkingTitle.ui.Connections.ConnectionsFragment"
         android:label="@string/menu_connections"
         tools:layout="@layout/fragment_connections" />
+    <fragment
+        android:id="@+id/nav_contacts"
+        android:name="MobileProject.WorkingTitle.ui.ContactFragment"
+        android:label="fragment_contact_list"
+        tools:layout="@layout/fragment_contact_list" />
 
 </navigation>
