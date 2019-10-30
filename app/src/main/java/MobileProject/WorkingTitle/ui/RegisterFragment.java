@@ -1,7 +1,6 @@
 package MobileProject.WorkingTitle.ui;
 
 
-import android.app.Activity;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -53,7 +52,7 @@ public class RegisterFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view =  inflater.inflate(R.layout.fragment_register, container, false);
-        view.findViewById(R.id.buttonRegister).setOnClickListener(this::register);
+        view.findViewById(R.id.button_back_to_Login).setOnClickListener(this::register);
 
         return view;
     }
@@ -164,6 +163,17 @@ public class RegisterFragment extends Fragment {
                 TextView resultShow = ((TextView) getActivity().findViewById(R.id.errorRegister));
                 if (ob.getBoolean("success")) {
                     resultShow.setText("Register success! Will implement verification later!");
+
+                    Register_Verification_Fragment nextFrag= new Register_Verification_Fragment();
+
+                    Bundle arguments = new Bundle();
+                    String email = ((EditText)getActivity().findViewById(R.id.editText_Email)).getText().toString();
+                    arguments.putString("email",email);
+                    nextFrag.setArguments(arguments);
+                    getActivity().getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.frame_resister_fragment_container, nextFrag, "findThisFragment")
+                        .addToBackStack(null)
+                        .commit();
                 } else {
                     resultShow.setText("Email or Nickname have taken!");
                 }
@@ -172,13 +182,6 @@ public class RegisterFragment extends Fragment {
             } catch (JSONException e) {
                 e.printStackTrace();
             }
-
-
-//            Register_Verification_Fragment nextFrag= new Register_Verification_Fragment();
-//            getActivity().getSupportFragmentManager().beginTransaction()
-//                    .replace(R.id.registerFragment, nextFrag, "findThisFragment")
-//                    .addToBackStack(null)
-//                    .commit();
         }
     }
 
