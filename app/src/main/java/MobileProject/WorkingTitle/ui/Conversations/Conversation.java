@@ -6,6 +6,9 @@ import android.os.Parcelable;
 import java.io.Serializable;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 
 public class Conversation implements Serializable, Parcelable {
@@ -13,6 +16,7 @@ public class Conversation implements Serializable, Parcelable {
     private final String mContact;
     private final String mlastMessage;
     private final ArrayList mMessages;
+
 
     protected Conversation(Parcel in) {
         mContact = in.readString();

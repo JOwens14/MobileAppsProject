@@ -14,6 +14,8 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import MobileProject.WorkingTitle.R;
@@ -30,7 +32,7 @@ public class ConversationListFragment extends Fragment {
     // TODO: Customize parameters
     private int mColumnCount = 1;
 
-    private List<Conversation> mBlogs;
+    private List<Conversation> mConversations;
 
     /**
      * Mandatory empty constructor for the fragment manager to instantiate the
@@ -52,8 +54,9 @@ public class ConversationListFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-//        blogFragmentArgs args = blogFragmentArgs.fromBundle(getArguments());
-//        mBlogs = new ArrayList<>(Arrays.asList(args.getBlogs()));
+//        ConversationFragment args = ConversationFragment.fromBundle(getArguments());
+//        mConversations = new ArrayList<>(Arrays.asList(args.getConversations()));
+        mConversations = ConversationBuilder.getConversations();
 
     }
 
@@ -74,7 +77,7 @@ public class ConversationListFragment extends Fragment {
             } else {
                 recyclerView.setLayoutManager(new GridLayoutManager(context, mColumnCount));
             }
-            //recyclerView.setAdapter(new ConversationsRecyclerViewAdapter(mBlogs, this::onClick));
+            recyclerView.setAdapter(new ConversationsRecyclerViewAdapter(mConversations, this::onClick));
 
         }
         return view;

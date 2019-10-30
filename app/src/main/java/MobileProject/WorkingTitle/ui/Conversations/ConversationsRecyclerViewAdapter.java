@@ -5,11 +5,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-
 import androidx.recyclerview.widget.RecyclerView;
-
 import java.util.List;
-
 import MobileProject.WorkingTitle.R;
 
 /**
@@ -38,9 +35,8 @@ public class ConversationsRecyclerViewAdapter extends RecyclerView.Adapter<Conve
     @Override
     public void onBindViewHolder(final ViewHolder holder, int position) {
         holder.mItem = mValues.get(position);
-        holder.mIdView.setText(mValues.get(position).getTitle());
-        holder.mIdPubDate.setText(mValues.get(position).getPubDate());
-        holder.mContentView.setText(stripHtml(mValues.get(position).getTeaser()));
+        holder.mIdContact.setText(mValues.get(position).getContact());
+        holder.mIdLastMessage.setText(mValues.get(position).getLastMessage());
 
         holder.mView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -61,25 +57,24 @@ public class ConversationsRecyclerViewAdapter extends RecyclerView.Adapter<Conve
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         public final View mView;
-        public final TextView mIdView;
-        public final TextView mIdPubDate;
-        public final TextView mContentView;
+        public final TextView mIdContact;
+        public final TextView mIdLastMessage;
         public Conversation mItem;
 
         public ViewHolder(View view) {
             super(view);
             mView = view;
-            mIdView = (TextView) view.findViewById(R.id.mIdView);
-            mIdPubDate = (TextView) view.findViewById(R.id.mIdPubDate);
-            mContentView = (TextView) view.findViewById(R.id.mContentView);
+            mIdContact = (TextView) view.findViewById(R.id.mIdContact);
+            mIdLastMessage = (TextView) view.findViewById(R.id.mIdLastMessage);
+
         }
 
-        @Override
-        public String toString() {
-            return super.toString() + " '" + mContentView.getText() + "'";
-        }
     }
 
+
+    /**
+     * Probably don't need this?
+     */
     public String stripHtml(String html) {
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N) {
             return Html.fromHtml(html, Html.FROM_HTML_MODE_LEGACY).toString();

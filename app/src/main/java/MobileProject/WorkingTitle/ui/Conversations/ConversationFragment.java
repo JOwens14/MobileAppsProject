@@ -62,6 +62,11 @@ public class ConversationFragment extends Fragment {
         }
     }
 
+    /**
+     * Probably not needed!?
+     * @param html html garb text
+     * @return no html
+     */
     public String stripHtml(String html) {
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N) {
             return Html.fromHtml(html, Html.FROM_HTML_MODE_LEGACY).toString();
