@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_register"
+    app:startDestination="@id/registerFragment">
+
+    <fragment
+        android:id="@+id/registerFragment"
+        android:name="MobileProject.WorkingTitle.UI.Register.RegisterFragment"
+        android:label="fragment_register"
+        tools:layout="@layout/fragment_register" >
+        <action
+            android:id="@+id/action_registerFragment_to_register_Verification_Fragment"
+            app:destination="@id/register_Verification_Fragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/register_Verification_Fragment"
+        android:name="MobileProject.WorkingTitle.UI.Register.Register_Verification_Fragment"
+        android:label="fragment_register__verification_"
+        tools:layout="@layout/fragment_register__verification_" >
+        <action
+            android:id="@+id/action_register_Verification_Fragment_to_loginActivity"
+            app:destination="@id/loginActivity" />
+    </fragment>
+    <activity
+        android:id="@+id/loginActivity"
+        android:name="MobileProject.WorkingTitle.UI.Login.LoginActivity"
+        android:label="fragment_login"
+        tools:layout="@layout/fragment_login" />
+</navigation>

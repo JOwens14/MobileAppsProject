@@ -9,6 +9,8 @@
         android:minSdkVersion="24"
         android:targetSdkVersion="29" />
 
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:appComponentFactory="androidx.core.app.CoreComponentFactory"
@@ -19,11 +21,12 @@
         android:supportsRtl="true"
         android:testOnly="true"
         android:theme="@style/AppTheme" >
+        <activity android:name="MobileProject.WorkingTitle.RegisterActivity" />
         <activity
             android:name="MobileProject.WorkingTitle.HomeActivity"
             android:label="@string/title_activity_home"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name="MobileProject.WorkingTitle.LoginActivity" >
+        <activity android:name="MobileProject.WorkingTitle.UI.Login.LoginActivity" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

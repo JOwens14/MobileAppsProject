@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources tools:ignore="ExtraTranslation" xmlns:tools="http://schemas.android.com/tools">
+    <string name="base_url">hopp-lab4-backend.herokuapp.com</string>
+    <string name="conn_register">register</string>
+    <string name="conn_login">login</string>
+</resources>

@@ -1,33 +1,31 @@
 package MobileProject.WorkingTitle;
 
+import android.content.Intent;
 import android.os.Bundle;
-
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
-
-import android.view.View;
-
+import androidx.annotation.NonNull;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
-
 import com.google.android.material.navigation.NavigationView;
-
 import androidx.drawerlayout.widget.DrawerLayout;
-
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import android.view.Menu;
+import android.view.MenuItem;
 
-public class HomeActivity extends AppCompatActivity {
+import MobileProject.WorkingTitle.UI.Login.LoginActivity;
+
+
+public class HomeActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     private AppBarConfiguration mAppBarConfiguration;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        //Log.d("start home", " you started the home activity");
         setContentView(R.layout.activity_home);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -36,13 +34,19 @@ public class HomeActivity extends AppCompatActivity {
         NavigationView navigationView = findViewById(R.id.nav_view);
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
+        //navs to stuff
         mAppBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.nav_home, R.id.nav_settings, R.id.nav_connections, R.id.nav_contacts)
+                R.id.nav_home, R.id.nav_connections)
                 .setDrawerLayout(drawer)
                 .build();
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
+        navController.setGraph(R.navigation.mobile_navigation, getIntent().getExtras());
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
+
+        //listener for the nav menu, needed for logout to work, (for other classes to use this, must use the implement)
+        navigationView.setNavigationItemSelectedListener(this);
+
     }
 
     @Override
@@ -57,5 +61,40 @@ public class HomeActivity extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         return NavigationUI.navigateUp(navController, mAppBarConfiguration)
                 || super.onSupportNavigateUp();
+    }
+
+
+    @Override
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+        NavController navController =
+                Navigation.findNavController(this, R.id.nav_host_fragment);
+        // Handle navigation view item clicks here.
+        switch (item.getItemId()) {
+            //Home selected
+            case R.id.nav_home: {
+                navController.navigate(R.id.nav_home, getIntent().getExtras());
+                break;
+            }
+            //Connections selected
+            case R.id.nav_connections: {
+                navController.navigate(R.id.nav_connections, getIntent().getExtras());
+                break;
+            }
+            //logout selected, log out
+            case R.id.nav_logout: {
+                logout();
+                break;
+            }
+        }
+        //Close the drawer
+        ((DrawerLayout) findViewById(R.id.drawer_layout)).closeDrawers();
+        return true;
+    }
+
+    //logs the user out
+    private void logout() {
+        Intent intent = new Intent(this, LoginActivity.class);
+        startActivity(intent);
+        //might need to null future credentials for security purposes
     }
 }
