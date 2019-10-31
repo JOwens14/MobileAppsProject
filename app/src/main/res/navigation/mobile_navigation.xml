@@ -21,12 +21,9 @@
         android:label="@string/menu_connections"
         tools:layout="@layout/fragment_connections" />
     <fragment
-        android:id="@+id/nav_conversationList"
-        android:name="MobileProject.WorkingTitle.ui.Conversations.ConversationListFragment"
-        android:label="ConversationListFragment" />
-    <fragment
-        android:id="@+id/nav_conversation"
-        android:name="MobileProject.WorkingTitle.ui.Conversations.ConversationFragment"
-        android:label="ConversationFragment" />
+        android:id="@+id/nav_contacts"
+        android:name="MobileProject.WorkingTitle.ui.ContactFragment"
+        android:label="fragment_contact_list"
+        tools:layout="@layout/fragment_contact_list" />
 
 </navigation>
