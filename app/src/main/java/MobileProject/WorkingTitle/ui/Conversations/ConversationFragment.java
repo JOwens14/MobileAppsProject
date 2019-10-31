@@ -11,6 +11,8 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
 import java.io.Serializable;
@@ -38,8 +40,13 @@ public class ConversationFragment extends Fragment {
     @Override
     public void onViewCreated(View view, Bundle args) {
         if (getArguments() != null) {
-            Serializable blogpost = getArguments().getSerializable("Conversation");
-            Conversation post = (Conversation) blogpost;
+            Serializable convo = getArguments().getSerializable("conversation");
+            Conversation conversation = (Conversation) convo;
+
+            //sets the actionbar title to the contact name
+            AppCompatActivity activity = (AppCompatActivity) getActivity();
+            ActionBar actionBar = activity.getSupportActionBar();
+            actionBar.setTitle(conversation.getContact());
 
 //            TextView title = view.findViewById(R.id.blog_title);
 //            TextView pubDate = view.findViewById(R.id.blog_pubDate);
@@ -49,15 +56,7 @@ public class ConversationFragment extends Fragment {
 //            pubDate.setText(post.getPubDate());
 //            postText.setText(stripHtml(post.getTeaser()));
 
-//            String url = post.getUrl();
-//            Button fullPostButton = view.findViewById(R.id.button_fullPost);
-//            fullPostButton.setOnClickListener(v -> {
-//                String url1 = post.getUrl();
-//
-//                Intent i = new Intent(Intent.ACTION_VIEW);
-//                i.setData(Uri.parse(url1));
-//                startActivity(i);
-//            });
+
 
         }
     }

@@ -1,5 +1,8 @@
 package MobileProject.WorkingTitle.ui.Conversations;
 
+import android.util.Log;
+
+import java.sql.Array;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -7,17 +10,8 @@ import java.util.Map;
 
 public class ConversationBuilder {
 
-    /**
-     * An array of sample (dummy) items.
-     */
-    public static final List<Conversation> CONVERSATIONS = new ArrayList<Conversation>();
-
-    /**
-     * A map of sample (dummy) items, by ID.
-     */
-    public static final Map<String, Conversation> CONVERSATIONS_MAP = new HashMap<String, Conversation>();
-
-    private static final int COUNT = 3;
+    private static final List<Conversation> CONVERSATIONS = new ArrayList<Conversation>();
+    private static final Map<String, Conversation> CONVERSATIONS_MAP = new HashMap<String, Conversation>();
 
 
     private static void addItem(Conversation item) {
@@ -30,11 +24,13 @@ public class ConversationBuilder {
     }
 
     public static List getConversations() {
+        //fake convos
+        String[] names = {"Luke", "Leia", "Han", "Chewy", "Bobba Fett", "R2-D2", "C3-P0"};
         // Add some sample items.
-        for (int i = 1; i <= COUNT; i++) {
-            addItem(createConversation("Jolene", "This is a test message"));
+        for (int i = 0; i < names.length; i++) {
+            addItem(createConversation(names[i], "This is a test message"));
         }
-
+        //Log.d("what", "why here");
         return CONVERSATIONS;
     }
 

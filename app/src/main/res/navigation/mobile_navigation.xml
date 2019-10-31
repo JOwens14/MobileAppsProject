@@ -9,7 +9,11 @@
         android:id="@+id/nav_home"
         android:name="MobileProject.WorkingTitle.ui.Conversations.ConversationListFragment"
         android:label="@string/menu_home"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_nav_home_to_nav_conversation"
+            app:destination="@id/nav_conversation" />
+    </fragment>
 
     <fragment
         android:id="@+id/nav_connections"
@@ -19,11 +23,7 @@
     <fragment
         android:id="@+id/nav_conversationList"
         android:name="MobileProject.WorkingTitle.ui.Conversations.ConversationListFragment"
-        android:label="ConversationListFragment" >
-        <action
-            android:id="@+id/action_conversationListFragment_to_conversationFragment"
-            app:destination="@id/nav_conversation" />
-    </fragment>
+        android:label="ConversationListFragment" />
     <fragment
         android:id="@+id/nav_conversation"
         android:name="MobileProject.WorkingTitle.ui.Conversations.ConversationFragment"

@@ -6,16 +6,12 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
 import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import MobileProject.WorkingTitle.R;
@@ -56,7 +52,9 @@ public class ConversationListFragment extends Fragment {
         super.onCreate(savedInstanceState);
 //        ConversationFragment args = ConversationFragment.fromBundle(getArguments());
 //        mConversations = new ArrayList<>(Arrays.asList(args.getConversations()));
+
         mConversations = ConversationBuilder.getConversations();
+
 
     }
 
@@ -66,7 +64,7 @@ public class ConversationListFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_conversations_list, container, false);
 
-        Log.d("ARRIVAL", "hit the list layout");
+        Log.d("ARRIVAL", String.valueOf(mConversations.size()));
 
         // Set the adapter
         if (view instanceof RecyclerView) {
@@ -85,14 +83,16 @@ public class ConversationListFragment extends Fragment {
 
     private void onClick(final Conversation convo) {
         final Bundle args = new Bundle();
-
         args.putSerializable("conversation", convo);
 
         NavController nc = Navigation.findNavController(getView());
         if (nc.getCurrentDestination().getId() != R.id.nav_conversationList) {
             nc.navigateUp();
         }
-        nc.navigate(R.id.action_conversationListFragment_to_conversationFragment, args);
+        //Log.d("current location" , String.valueOf(nc.getCurrentDestination().getLabel()));
+        if(convo.getContact() != null) {
+            nc.navigate(R.id.action_nav_home_to_nav_conversation, args);
+        }
     }
 
     /**
