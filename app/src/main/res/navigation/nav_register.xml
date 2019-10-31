@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/registerFragment"
-        android:name="MobileProject.WorkingTitle.ui.RegisterFragment"
+        android:name="MobileProject.WorkingTitle.UI.Register.RegisterFragment"
         android:label="fragment_register"
         tools:layout="@layout/fragment_register" >
         <action
@@ -16,7 +16,7 @@
     </fragment>
     <fragment
         android:id="@+id/register_Verification_Fragment"
-        android:name="MobileProject.WorkingTitle.ui.Register_Verification_Fragment"
+        android:name="MobileProject.WorkingTitle.UI.Register.Register_Verification_Fragment"
         android:label="fragment_register__verification_"
         tools:layout="@layout/fragment_register__verification_" >
         <action
@@ -25,7 +25,7 @@
     </fragment>
     <activity
         android:id="@+id/loginActivity"
-        android:name="MobileProject.WorkingTitle.LoginActivity"
+        android:name="MobileProject.WorkingTitle.UI.Login.LoginActivity"
         android:label="fragment_login"
         tools:layout="@layout/fragment_login" />
 </navigation>

@@ -26,7 +26,7 @@
             android:name="MobileProject.WorkingTitle.HomeActivity"
             android:label="@string/title_activity_home"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name="MobileProject.WorkingTitle.LoginActivity" >
+        <activity android:name="MobileProject.WorkingTitle.UI.Login.LoginActivity" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

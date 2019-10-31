@@ -1,13 +1,12 @@
-package MobileProject.WorkingTitle.ui;
+package MobileProject.WorkingTitle.UI.Login;
 
-import android.content.Context;
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 
 import MobileProject.WorkingTitle.RegisterActivity;
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -74,6 +73,7 @@ public class LoginFragment extends Fragment {
 
         Button loginButton = view.findViewById(R.id.login_login_button);
         Button registerButton = view.findViewById(R.id.login_register_button);
+
         loginButton.setOnClickListener(this::login);
         registerButton.setOnClickListener(this::register);
 
@@ -84,6 +84,7 @@ public class LoginFragment extends Fragment {
     public void login(View view) {
         Intent intent = new Intent(this.getContext(), HomeActivity.class);
         startActivity(intent);
+        Log.d("login", "clicked");
 
     }
 

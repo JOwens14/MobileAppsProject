@@ -6,7 +6,7 @@ android:layout_width="match_parent"
 android:layout_height="match_parent"
 android:background="#3B4252"
 android:visibility="visible"
-tools:context=".ui.Register_Verification_Fragment">
+tools:context=".UI.Register.Register_Verification_Fragment">
 
 <ImageView
     android:id="@+id/header_logo"

@@ -1,4 +1,4 @@
-package MobileProject.WorkingTitle.ui.Connections;
+package MobileProject.WorkingTitle.UI.Connections;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;

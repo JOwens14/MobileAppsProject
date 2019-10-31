@@ -1,8 +1,5 @@
-package MobileProject.WorkingTitle.ui.Conversations;
+package MobileProject.WorkingTitle.UI.Conversations;
 
-import android.util.Log;
-
-import java.sql.Array;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;

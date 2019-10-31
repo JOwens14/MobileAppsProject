@@ -6,61 +6,68 @@
 6
 7    <uses-sdk
 8        android:minSdkVersion="24"
-8-->C:\Users\Paul\AndroidStudioProjects\MobileAppsProject\app\src\main\AndroidManifest.xml
+8-->C:\Users\abcjk\WorkingTitle\app\src\main\AndroidManifest.xml
 9        android:targetSdkVersion="29" />
-9-->C:\Users\Paul\AndroidStudioProjects\MobileAppsProject\app\src\main\AndroidManifest.xml
+9-->C:\Users\abcjk\WorkingTitle\app\src\main\AndroidManifest.xml
 10
-11    <application
-11-->C:\Users\Paul\AndroidStudioProjects\MobileAppsProject\app\src\main\AndroidManifest.xml:5:5-23:19
-12        android:allowBackup="true"
-12-->C:\Users\Paul\AndroidStudioProjects\MobileAppsProject\app\src\main\AndroidManifest.xml:6:9-35
-13        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
-13-->[androidx.core:core:1.1.0] C:\Users\Paul\.gradle\caches\transforms-2\files-2.1\7f6c41cc2a14c0fbaa8d0166c17dc544\core-1.1.0\AndroidManifest.xml:24:18-86
-14        android:debuggable="true"
-15        android:icon="@mipmap/ic_launcher"
-15-->C:\Users\Paul\AndroidStudioProjects\MobileAppsProject\app\src\main\AndroidManifest.xml:7:9-43
-16        android:label="@string/app_name"
-16-->C:\Users\Paul\AndroidStudioProjects\MobileAppsProject\app\src\main\AndroidManifest.xml:8:9-41
-17        android:roundIcon="@mipmap/ic_launcher_round"
-17-->C:\Users\Paul\AndroidStudioProjects\MobileAppsProject\app\src\main\AndroidManifest.xml:9:9-54
-18        android:supportsRtl="true"
-18-->C:\Users\Paul\AndroidStudioProjects\MobileAppsProject\app\src\main\AndroidManifest.xml:10:9-35
-19        android:testOnly="true"
-20        android:theme="@style/AppTheme" >
-20-->C:\Users\Paul\AndroidStudioProjects\MobileAppsProject\app\src\main\AndroidManifest.xml:11:9-40
-21        <activity
-21-->C:\Users\Paul\AndroidStudioProjects\MobileAppsProject\app\src\main\AndroidManifest.xml:12:9-15:68
-22            android:name="MobileProject.WorkingTitle.HomeActivity"
-22-->C:\Users\Paul\AndroidStudioProjects\MobileAppsProject\app\src\main\AndroidManifest.xml:13:13-41
-23            android:label="@string/title_activity_home"
-23-->C:\Users\Paul\AndroidStudioProjects\MobileAppsProject\app\src\main\AndroidManifest.xml:14:13-56
-24            android:theme="@style/AppTheme.NoActionBar" />
-24-->C:\Users\Paul\AndroidStudioProjects\MobileAppsProject\app\src\main\AndroidManifest.xml:15:13-56
-25        <activity android:name="MobileProject.WorkingTitle.LoginActivity" >
-25-->C:\Users\Paul\AndroidStudioProjects\MobileAppsProject\app\src\main\AndroidManifest.xml:16:9-22:20
-25-->C:\Users\Paul\AndroidStudioProjects\MobileAppsProject\app\src\main\AndroidManifest.xml:16:19-48
-26            <intent-filter>
-26-->C:\Users\Paul\AndroidStudioProjects\MobileAppsProject\app\src\main\AndroidManifest.xml:17:13-21:29
-27                <action android:name="android.intent.action.MAIN" />
-27-->C:\Users\Paul\AndroidStudioProjects\MobileAppsProject\app\src\main\AndroidManifest.xml:18:17-69
-27-->C:\Users\Paul\AndroidStudioProjects\MobileAppsProject\app\src\main\AndroidManifest.xml:18:25-66
-28
-29                <category android:name="android.intent.category.LAUNCHER" />
-29-->C:\Users\Paul\AndroidStudioProjects\MobileAppsProject\app\src\main\AndroidManifest.xml:20:17-77
-29-->C:\Users\Paul\AndroidStudioProjects\MobileAppsProject\app\src\main\AndroidManifest.xml:20:27-74
-30            </intent-filter>
-31        </activity>
-32
-33        <provider
-33-->[androidx.lifecycle:lifecycle-process:2.1.0] C:\Users\Paul\.gradle\caches\transforms-2\files-2.1\e50b3f7edd4f9041d2755ee263c7c860\lifecycle-process-2.1.0\AndroidManifest.xml:23:9-27:43
-34            android:name="androidx.lifecycle.ProcessLifecycleOwnerInitializer"
-34-->[androidx.lifecycle:lifecycle-process:2.1.0] C:\Users\Paul\.gradle\caches\transforms-2\files-2.1\e50b3f7edd4f9041d2755ee263c7c860\lifecycle-process-2.1.0\AndroidManifest.xml:24:13-79
-35            android:authorities="MobileProject.WorkingTitle.lifecycle-process"
-35-->[androidx.lifecycle:lifecycle-process:2.1.0] C:\Users\Paul\.gradle\caches\transforms-2\files-2.1\e50b3f7edd4f9041d2755ee263c7c860\lifecycle-process-2.1.0\AndroidManifest.xml:25:13-69
-36            android:exported="false"
-36-->[androidx.lifecycle:lifecycle-process:2.1.0] C:\Users\Paul\.gradle\caches\transforms-2\files-2.1\e50b3f7edd4f9041d2755ee263c7c860\lifecycle-process-2.1.0\AndroidManifest.xml:26:13-37
-37            android:multiprocess="true" />
-37-->[androidx.lifecycle:lifecycle-process:2.1.0] C:\Users\Paul\.gradle\caches\transforms-2\files-2.1\e50b3f7edd4f9041d2755ee263c7c860\lifecycle-process-2.1.0\AndroidManifest.xml:27:13-40
-38    </application>
-39
-40</manifest>
+11    <uses-permission android:name="android.permission.INTERNET" />
+11-->C:\Users\abcjk\WorkingTitle\app\src\main\AndroidManifest.xml:33:5-83
+11-->C:\Users\abcjk\WorkingTitle\app\src\main\AndroidManifest.xml:33:22-64
+12
+13    <application
+13-->C:\Users\abcjk\WorkingTitle\app\src\main\AndroidManifest.xml:6:5-32:19
+14        android:allowBackup="true"
+14-->C:\Users\abcjk\WorkingTitle\app\src\main\AndroidManifest.xml:7:9-35
+15        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
+15-->[androidx.core:core:1.1.0] C:\Users\abcjk\.gradle\caches\transforms-2\files-2.1\5db5ccd571846797c828736ab35d3548\core-1.1.0\AndroidManifest.xml:24:18-86
+16        android:debuggable="true"
+17        android:icon="@mipmap/ic_launcher"
+17-->C:\Users\abcjk\WorkingTitle\app\src\main\AndroidManifest.xml:8:9-43
+18        android:label="@string/app_name"
+18-->C:\Users\abcjk\WorkingTitle\app\src\main\AndroidManifest.xml:9:9-41
+19        android:roundIcon="@mipmap/ic_launcher_round"
+19-->C:\Users\abcjk\WorkingTitle\app\src\main\AndroidManifest.xml:10:9-54
+20        android:supportsRtl="true"
+20-->C:\Users\abcjk\WorkingTitle\app\src\main\AndroidManifest.xml:11:9-35
+21        android:testOnly="true"
+22        android:theme="@style/AppTheme" >
+22-->C:\Users\abcjk\WorkingTitle\app\src\main\AndroidManifest.xml:12:9-40
+23        <activity android:name="MobileProject.WorkingTitle.RegisterActivity" />
+23-->C:\Users\abcjk\WorkingTitle\app\src\main\AndroidManifest.xml:13:9-63
+23-->C:\Users\abcjk\WorkingTitle\app\src\main\AndroidManifest.xml:13:19-51
+24        <activity
+24-->C:\Users\abcjk\WorkingTitle\app\src\main\AndroidManifest.xml:14:9-17:59
+25            android:name="MobileProject.WorkingTitle.HomeActivity"
+25-->C:\Users\abcjk\WorkingTitle\app\src\main\AndroidManifest.xml:15:13-41
+26            android:label="@string/title_activity_home"
+26-->C:\Users\abcjk\WorkingTitle\app\src\main\AndroidManifest.xml:16:13-56
+27            android:theme="@style/AppTheme.NoActionBar" />
+27-->C:\Users\abcjk\WorkingTitle\app\src\main\AndroidManifest.xml:17:13-56
+28        <activity android:name="MobileProject.WorkingTitle.UI.Login.LoginActivity" >
+28-->C:\Users\abcjk\WorkingTitle\app\src\main\AndroidManifest.xml:18:9-24:20
+28-->C:\Users\abcjk\WorkingTitle\app\src\main\AndroidManifest.xml:18:19-57
+29            <intent-filter>
+29-->C:\Users\abcjk\WorkingTitle\app\src\main\AndroidManifest.xml:19:13-23:29
+30                <action android:name="android.intent.action.MAIN" />
+30-->C:\Users\abcjk\WorkingTitle\app\src\main\AndroidManifest.xml:20:17-69
+30-->C:\Users\abcjk\WorkingTitle\app\src\main\AndroidManifest.xml:20:25-66
+31
+32                <category android:name="android.intent.category.LAUNCHER" />
+32-->C:\Users\abcjk\WorkingTitle\app\src\main\AndroidManifest.xml:22:17-77
+32-->C:\Users\abcjk\WorkingTitle\app\src\main\AndroidManifest.xml:22:27-74
+33            </intent-filter>
+34        </activity>
+35
+36        <provider
+36-->C:\Users\abcjk\WorkingTitle\app\src\main\AndroidManifest.xml:26:9-30:43
+37            android:name="androidx.lifecycle.ProcessLifecycleOwnerInitializer"
+37-->C:\Users\abcjk\WorkingTitle\app\src\main\AndroidManifest.xml:27:13-79
+38            android:authorities="MobileProject.WorkingTitle.lifecycle-process"
+38-->C:\Users\abcjk\WorkingTitle\app\src\main\AndroidManifest.xml:28:13-79
+39            android:exported="false"
+39-->C:\Users\abcjk\WorkingTitle\app\src\main\AndroidManifest.xml:29:13-37
+40            android:multiprocess="true" />
+40-->C:\Users\abcjk\WorkingTitle\app\src\main\AndroidManifest.xml:30:13-40
+41    </application>
+42
+43</manifest>

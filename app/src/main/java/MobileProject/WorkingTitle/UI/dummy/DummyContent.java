@@ -1,4 +1,4 @@
-package MobileProject.WorkingTitle.ui.dummy;
+package MobileProject.WorkingTitle.UI.dummy;
 
 import java.io.Serializable;
 import java.util.ArrayList;

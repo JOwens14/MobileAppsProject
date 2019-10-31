@@ -9,6 +9,7 @@
     android:background="#3B4252"
     tools:openDrawer="start">
 
+
     <include
         layout="@layout/app_bar_home"
         android:layout_width="match_parent"

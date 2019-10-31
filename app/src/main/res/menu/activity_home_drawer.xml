@@ -10,16 +10,13 @@
             android:title="@string/menu_home" />
         <item
             android:id="@+id/nav_connections"
-            android:icon="@drawable/ic_menu_gallery"
+            android:icon="@drawable/ic_menu_contacts"
             android:title="@string/menu_connections" />
         <item
             android:id="@+id/nav_logout"
             android:icon="@drawable/ic_menu_manage"
             android:title="@string/menu_logout" />
-        <item
-            android:id="@+id/nav_contacts"
-            android:icon="@drawable/ic_menu_contacts"
-            android:title="Contacts" />
+
     </group>
 
 

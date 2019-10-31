@@ -1,4 +1,4 @@
-package MobileProject.WorkingTitle.ui.Connections;
+package MobileProject.WorkingTitle.UI.Connections;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
