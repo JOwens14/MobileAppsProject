@@ -22,7 +22,7 @@
         app:srcCompat="@drawable/workingtitlelogo" />
 
     <EditText
-        android:id="@+id/editText_Email"
+        android:id="@+id/editText_EmailLogin"
         android:layout_width="@dimen/long_text_width"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -39,7 +39,7 @@
         app:layout_constraintTop_toBottomOf="@+id/header_logo" />
 
     <EditText
-        android:id="@+id/editText2"
+        android:id="@+id/editText_PasswordLogin"
         android:layout_width="@dimen/long_text_width"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -53,19 +53,20 @@
         android:textColorHint="#00BCD4"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText_Email" />
+        app:layout_constraintTop_toBottomOf="@+id/editText_EmailLogin" />
 
     <Button
         android:id="@+id/login_login_button"
         android:layout_width="@dimen/login_button_width"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="32dp"
         android:layout_marginEnd="16dp"
         android:background="#00BCD4"
         android:text="@string/login_button"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/login_checkBox" />
 
@@ -93,7 +94,7 @@
         android:text="@string/login_checkBox"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText2" />
+        app:layout_constraintTop_toBottomOf="@+id/editText_PasswordLogin" />
 
     <ImageView
         android:id="@+id/imageView"
@@ -104,5 +105,19 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/duck_logo" />
+
+    <TextView
+        android:id="@+id/textViewLoginError"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="6dp"
+        android:layout_marginBottom="7dp"
+        android:text="TextView"
+        android:textColor="@android:color/holo_red_light"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toTopOf="@+id/login_login_button"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/login_checkBox" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
