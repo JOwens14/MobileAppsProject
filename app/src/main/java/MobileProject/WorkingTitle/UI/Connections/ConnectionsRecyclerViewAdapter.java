@@ -1,4 +1,4 @@
-package MobileProject.WorkingTitle.ui;
+package MobileProject.WorkingTitle.UI.Connections;
 
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -8,8 +8,8 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import MobileProject.WorkingTitle.R;
-import MobileProject.WorkingTitle.ui.ContactFragment.OnListFragmentInteractionListener;
-import MobileProject.WorkingTitle.ui.dummy.DummyContent.Contact;
+import MobileProject.WorkingTitle.UI.Connections.ContactFragment.OnListFragmentInteractionListener;
+import MobileProject.WorkingTitle.UI.dummy.DummyContent.Contact;
 
 import java.util.List;
 
@@ -18,12 +18,12 @@ import java.util.List;
  * specified {@link OnListFragmentInteractionListener}.
  * TODO: Replace the implementation with code for your data type.
  */
-public class MyContactRecyclerViewAdapter extends RecyclerView.Adapter<MyContactRecyclerViewAdapter.ViewHolder> {
+public class ConnectionsRecyclerViewAdapter extends RecyclerView.Adapter<ConnectionsRecyclerViewAdapter.ViewHolder> {
 
     private final List<Contact> mValues;
     private final OnListFragmentInteractionListener mListener;
 
-    public MyContactRecyclerViewAdapter(List<Contact> items, OnListFragmentInteractionListener listener) {
+    public ConnectionsRecyclerViewAdapter(List<Contact> items, OnListFragmentInteractionListener listener) {
         mValues = items;
         mListener = listener;
     }

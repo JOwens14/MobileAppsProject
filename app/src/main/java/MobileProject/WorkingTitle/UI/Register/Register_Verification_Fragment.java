@@ -1,4 +1,4 @@
-package MobileProject.WorkingTitle.ui;
+package MobileProject.WorkingTitle.UI.Register;
 
 
 import android.os.Bundle;
@@ -8,10 +8,10 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.EditText;
 import android.widget.TextView;
 
 import MobileProject.WorkingTitle.R;
+import MobileProject.WorkingTitle.UI.Login.LoginFragment;
 
 /**
  * A simple {@link Fragment} subclass.

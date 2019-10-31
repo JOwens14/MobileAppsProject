@@ -1,4 +1,4 @@
-package MobileProject.WorkingTitle.ui.Conversations;
+package MobileProject.WorkingTitle.UI.Conversations;
 
 import android.text.Html;
 import android.view.LayoutInflater;

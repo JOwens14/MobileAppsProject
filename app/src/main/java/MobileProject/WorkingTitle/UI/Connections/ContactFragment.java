@@ -1,4 +1,4 @@
-package MobileProject.WorkingTitle.ui;
+package MobileProject.WorkingTitle.UI.Connections;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -13,8 +13,8 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import MobileProject.WorkingTitle.R;
-import MobileProject.WorkingTitle.ui.dummy.DummyContent;
-import MobileProject.WorkingTitle.ui.dummy.DummyContent.Contact;
+import MobileProject.WorkingTitle.UI.dummy.DummyContent;
+import MobileProject.WorkingTitle.UI.dummy.DummyContent.Contact;
 
 /**
  * A fragment representing a list of Items.
@@ -70,7 +70,7 @@ public class ContactFragment extends Fragment {
             } else {
                 recyclerView.setLayoutManager(new GridLayoutManager(context, mColumnCount));
             }
-            recyclerView.setAdapter(new MyContactRecyclerViewAdapter(DummyContent.STUDENTS, mListener));
+            recyclerView.setAdapter(new ConnectionsRecyclerViewAdapter(DummyContent.STUDENTS, mListener));
         }
         return view;
     }

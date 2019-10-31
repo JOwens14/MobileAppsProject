@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#3B4252"
-    tools:context=".LoginActivity"
+    tools:context=".UI.Login.LoginActivity"
     android:name="androidx.navigation.fragment.NavHostFragment">
 
     <ImageView

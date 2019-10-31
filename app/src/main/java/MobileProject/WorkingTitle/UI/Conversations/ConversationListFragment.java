@@ -1,4 +1,4 @@
-package MobileProject.WorkingTitle.ui.Conversations;
+package MobileProject.WorkingTitle.UI.Conversations;
 
 import android.content.Context;
 import android.os.Bundle;

@@ -1,4 +1,4 @@
-package MobileProject.WorkingTitle.ui;
+package MobileProject.WorkingTitle.UI.Register;
 
 
 import android.net.Uri;

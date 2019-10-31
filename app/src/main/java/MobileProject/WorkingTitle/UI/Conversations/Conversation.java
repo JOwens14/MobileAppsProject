@@ -1,14 +1,10 @@
-package MobileProject.WorkingTitle.ui.Conversations;
+package MobileProject.WorkingTitle.UI.Conversations;
 
 import android.os.Parcel;
 import android.os.Parcelable;
 
 import java.io.Serializable;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 
 public class Conversation implements Serializable, Parcelable {

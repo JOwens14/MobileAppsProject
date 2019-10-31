@@ -1,6 +1,5 @@
 package MobileProject.WorkingTitle;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import androidx.annotation.NonNull;
@@ -13,9 +12,10 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+
+import MobileProject.WorkingTitle.UI.Login.LoginActivity;
 
 
 public class HomeActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
@@ -40,6 +40,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
                 .setDrawerLayout(drawer)
                 .build();
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
+        navController.setGraph(R.navigation.mobile_navigation, getIntent().getExtras());
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
 
@@ -66,15 +67,28 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+        NavController navController =
+                Navigation.findNavController(this, R.id.nav_host_fragment);
         // Handle navigation view item clicks here.
         switch (item.getItemId()) {
-
+            //Home selected
+            case R.id.nav_home: {
+                navController.navigate(R.id.nav_home, getIntent().getExtras());
+                break;
+            }
+            //Connections selected
+            case R.id.nav_connections: {
+                navController.navigate(R.id.nav_connections, getIntent().getExtras());
+                break;
+            }
             //logout selected, log out
             case R.id.nav_logout: {
                 logout();
                 break;
             }
         }
+        //Close the drawer
+        ((DrawerLayout) findViewById(R.id.drawer_layout)).closeDrawers();
         return true;
     }
 
