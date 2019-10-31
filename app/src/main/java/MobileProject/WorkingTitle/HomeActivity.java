@@ -1,5 +1,6 @@
 package MobileProject.WorkingTitle;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import androidx.annotation.NonNull;
@@ -15,6 +16,7 @@ import androidx.appcompat.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+
 
 public class HomeActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -43,8 +45,6 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
 
         //listener for the nav menu, needed for logout to work, (for other classes to use this, must use the implement)
         navigationView.setNavigationItemSelectedListener(this);
-
-
 
 
     }

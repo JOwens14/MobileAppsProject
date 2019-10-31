@@ -52,7 +52,6 @@ public class ConversationListFragment extends Fragment {
         super.onCreate(savedInstanceState);
 //        ConversationFragment args = ConversationFragment.fromBundle(getArguments());
 //        mConversations = new ArrayList<>(Arrays.asList(args.getConversations()));
-
         mConversations = ConversationBuilder.getConversations();
 
 
@@ -65,11 +64,12 @@ public class ConversationListFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_conversations_list, container, false);
 
         Log.d("ARRIVAL", String.valueOf(mConversations.size()));
-
         // Set the adapter
         if (view instanceof RecyclerView) {
             Context context = view.getContext();
             RecyclerView recyclerView = (RecyclerView) view;
+
+
             if (mColumnCount <= 1) {
                 recyclerView.setLayoutManager(new LinearLayoutManager(context));
             } else {
@@ -94,6 +94,11 @@ public class ConversationListFragment extends Fragment {
             nc.navigate(R.id.action_nav_home_to_nav_conversation, args);
         }
     }
+
+    public void clearData() {
+        mConversations.clear(); // clear list
+    }
+
 
     /**
      * This interface must be implemented by activities that contain this

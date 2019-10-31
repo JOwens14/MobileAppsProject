@@ -27,8 +27,17 @@ public class ConversationBuilder {
         //fake convos
         String[] names = {"Luke", "Leia", "Han", "Chewy", "Bobba Fett", "R2-D2", "C3-P0"};
         // Add some sample items.
+
+        //makes sure the list is clear
+        if (CONVERSATIONS != null) {
+            CONVERSATIONS.clear();
+        }
         for (int i = 0; i < names.length; i++) {
-            addItem(createConversation(names[i], "This is a test message"));
+            //checks for duplicates
+            if (!CONVERSATIONS.contains(names[i])) {
+                addItem(createConversation(names[i], "This is a test message"));
+            }
+
         }
         //Log.d("what", "why here");
         return CONVERSATIONS;
