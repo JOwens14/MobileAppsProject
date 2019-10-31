@@ -47,7 +47,6 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         //listener for the nav menu, needed for logout to work, (for other classes to use this, must use the implement)
         navigationView.setNavigationItemSelectedListener(this);
 
-
     }
 
     @Override

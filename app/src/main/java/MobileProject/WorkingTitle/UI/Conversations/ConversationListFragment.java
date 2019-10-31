@@ -86,7 +86,7 @@ public class ConversationListFragment extends Fragment {
         args.putSerializable("conversation", convo);
 
         NavController nc = Navigation.findNavController(getView());
-        if (nc.getCurrentDestination().getId() != R.id.nav_conversationList) {
+        if (nc.getCurrentDestination().getId() != R.id.nav_home) {
             nc.navigateUp();
         }
         //Log.d("current location" , String.valueOf(nc.getCurrentDestination().getLabel()));
