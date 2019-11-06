@@ -5,8 +5,8 @@ import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 
-import MobileProject.WorkingTitle.RegisterActivity;
-import MobileProject.WorkingTitle.UI.Register.Register_Verification_Fragment;
+import MobileProject.WorkingTitle.UI.Register.RegisterActivity;
+
 import androidx.fragment.app.Fragment;
 
 import android.util.Log;
@@ -94,6 +94,11 @@ public class LoginFragment extends Fragment {
         loginButton.setOnClickListener(this::login);
         registerButton.setOnClickListener(this::register);
 
+        TextView login = view.findViewById(R.id.editText_EmailLogin);
+        TextView password = view.findViewById(R.id.editText_PasswordLogin);
+
+        login.setText("jowens@uw.edu");
+        password.setText("test");
 
         return view;
     }

@@ -8,7 +8,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import MobileProject.WorkingTitle.R;
-import MobileProject.WorkingTitle.UI.Connections.ContactFragment.OnListFragmentInteractionListener;
+import MobileProject.WorkingTitle.UI.Connections.ConnectionsListFragment.OnListFragmentInteractionListener;
 import MobileProject.WorkingTitle.UI.dummy.DummyContent.Contact;
 
 import java.util.List;

@@ -20,12 +20,13 @@
         android:supportsRtl="true"
         android:testOnly="true"
         android:theme="@style/AppTheme" >
-        <activity android:name="MobileProject.WorkingTitle.RegisterActivity" />
+        <activity android:name="MobileProject.WorkingTitle.UI.Register.RegisterActivity" />
         <activity
             android:name="MobileProject.WorkingTitle.HomeActivity"
-            android:label="@string/title_activity_home"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name="MobileProject.WorkingTitle.UI.Login.LoginActivity" >
+            android:label="@string/title_activity_home" />
+        <activity
+            android:name="MobileProject.WorkingTitle.UI.Login.LoginActivity"
+            android:theme="@style/AppTheme.NoActionBar" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
