@@ -30,5 +30,15 @@
         android:name="MobileProject.WorkingTitle.UI.Connections.ConnectionsListFragment"
         android:label="fragment_contact_list"
         tools:layout="@layout/fragment_contact_list" />
+    <fragment
+        android:id="@+id/nav_settings"
+        android:name="MobileProject.WorkingTitle.UI.SettingsFragment"
+        android:label="fragment_settings"
+        tools:layout="@layout/fragment_settings" />
+    <fragment
+        android:id="@+id/nav_weather"
+        android:name="MobileProject.WorkingTitle.UI.Weather.WeatherFragment"
+        android:label="fragment_weather"
+        tools:layout="@layout/fragment_weather" />
 
 </navigation>

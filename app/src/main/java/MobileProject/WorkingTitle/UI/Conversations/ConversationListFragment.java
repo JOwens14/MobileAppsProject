@@ -71,7 +71,7 @@ public class ConversationListFragment extends Fragment {
 
         View view = inflater.inflate(R.layout.fragment_conversations_list, container, false);
 
-        Log.d("ARRIVAL", String.valueOf(mConversations.size()));
+        //Log.d("ARRIVAL", String.valueOf(mConversations.size()));
         // Set the adapter
         if (view instanceof RecyclerView) {
             Context context = view.getContext();
