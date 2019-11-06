@@ -2,6 +2,7 @@ package MobileProject.WorkingTitle;
 
 import android.app.Fragment;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.navigation.NavController;
@@ -42,7 +43,7 @@ public class HomeActivity extends AppCompatActivity implements BottomNavigationV
         // menu should be considered as top level destinations.
         //navs to stuff
         AppBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.nav_conversationList, R.id.nav_connections, R.id.nav_logout)
+                R.id.nav_conversationList, R.id.nav_connections, R.id.nav_weather)
                 .build();
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         navController.setGraph(R.navigation.mobile_navigation, getIntent().getExtras());
@@ -60,10 +61,11 @@ public class HomeActivity extends AppCompatActivity implements BottomNavigationV
 
     @Override
     public void onBackPressed() {
-        //if in a conversation fragment pressing back will return you to the conversation list, otherwise nothing will happen
-        if (Navigation.findNavController(this, R.id.nav_host_fragment).getCurrentDestination().getId() == R.id.nav_conversation) {
-            NavController navController =
-                    Navigation.findNavController(this, R.id.nav_host_fragment);
+        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
+
+        //if in a conversation fragment or settings fragment pressing back will return you to the conversation list, otherwise nothing will happen
+        if (Navigation.findNavController(this, R.id.nav_host_fragment).getCurrentDestination().getId() == R.id.nav_conversation ||
+                Navigation.findNavController(this, R.id.nav_host_fragment).getCurrentDestination().getId() == R.id.nav_settings) {
                     navController.navigate(R.id.nav_conversationList, getIntent().getExtras());
         }
     }
@@ -74,6 +76,36 @@ public class HomeActivity extends AppCompatActivity implements BottomNavigationV
         getMenuInflater().inflate(R.menu.home, menu);
 
         return true;
+    }
+
+
+    //TOP RIGHT ACTION BAR MENU
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        NavController navController =
+                Navigation.findNavController(this, R.id.nav_host_fragment);
+        switch (item.getItemId()) {
+            case R.id.action_settings:
+                // User chose the "Settings" item, show the app settings UI...
+                navController.navigate(R.id.nav_settings, getIntent().getExtras());
+                return true;
+
+            case R.id.action_logout:
+                // logout
+                logout();
+                return true;
+
+            case android.R.id.home:
+                //action bar back pressed
+                navController.navigate(R.id.nav_conversationList, getIntent().getExtras());
+                return true;
+
+            default:
+                // If we got here, the user's action was not recognized.
+                // Invoke the superclass to handle it.
+                return super.onOptionsItemSelected(item);
+
+        }
     }
 
     @Override
@@ -101,8 +133,8 @@ public class HomeActivity extends AppCompatActivity implements BottomNavigationV
                 break;
             }
             //logout selected, log out
-            case R.id.nav_logout: {
-                logout();
+            case R.id.nav_weather: {
+                navController.navigate(R.id.nav_weather, getIntent().getExtras());
                 break;
             }
         }
@@ -117,4 +149,5 @@ public class HomeActivity extends AppCompatActivity implements BottomNavigationV
 
         return 1;
     }
+
 }

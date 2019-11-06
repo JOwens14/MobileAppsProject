@@ -12,6 +12,7 @@
         android:layout_height="wrap_content"
         android:background="@color/colorPrimary"
         android:visibility="visible"
+        app:itemIconTint="@color/colorBRIGHTBLUE"
         app:itemTextColor="#FFFFFF"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
