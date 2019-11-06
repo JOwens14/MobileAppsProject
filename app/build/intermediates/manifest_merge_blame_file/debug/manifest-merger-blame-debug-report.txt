@@ -11,11 +11,11 @@
 9-->I:\AndroidStudioProjects\MobileAppsProject\app\src\main\AndroidManifest.xml
 10
 11    <uses-permission android:name="android.permission.INTERNET" />
-11-->I:\AndroidStudioProjects\MobileAppsProject\app\src\main\AndroidManifest.xml:35:5-83
-11-->I:\AndroidStudioProjects\MobileAppsProject\app\src\main\AndroidManifest.xml:35:22-64
+11-->I:\AndroidStudioProjects\MobileAppsProject\app\src\main\AndroidManifest.xml:36:5-83
+11-->I:\AndroidStudioProjects\MobileAppsProject\app\src\main\AndroidManifest.xml:36:22-64
 12
 13    <application
-13-->I:\AndroidStudioProjects\MobileAppsProject\app\src\main\AndroidManifest.xml:6:5-34:19
+13-->I:\AndroidStudioProjects\MobileAppsProject\app\src\main\AndroidManifest.xml:6:5-35:19
 14        android:allowBackup="true"
 14-->I:\AndroidStudioProjects\MobileAppsProject\app\src\main\AndroidManifest.xml:7:9-35
 15        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
@@ -36,39 +36,41 @@
 23-->I:\AndroidStudioProjects\MobileAppsProject\app\src\main\AndroidManifest.xml:13:9-75
 23-->I:\AndroidStudioProjects\MobileAppsProject\app\src\main\AndroidManifest.xml:13:19-63
 24        <activity
-24-->I:\AndroidStudioProjects\MobileAppsProject\app\src\main\AndroidManifest.xml:14:9-17:16
+24-->I:\AndroidStudioProjects\MobileAppsProject\app\src\main\AndroidManifest.xml:14:9-18:16
 25            android:name="MobileProject.WorkingTitle.HomeActivity"
 25-->I:\AndroidStudioProjects\MobileAppsProject\app\src\main\AndroidManifest.xml:15:13-41
-26            android:label="@string/title_activity_home" />
+26            android:label="@string/title_activity_home"
 26-->I:\AndroidStudioProjects\MobileAppsProject\app\src\main\AndroidManifest.xml:16:13-56
-27        <activity
-27-->I:\AndroidStudioProjects\MobileAppsProject\app\src\main\AndroidManifest.xml:18:9-26:20
-28            android:name="MobileProject.WorkingTitle.UI.Login.LoginActivity"
-28-->I:\AndroidStudioProjects\MobileAppsProject\app\src\main\AndroidManifest.xml:19:13-51
-29            android:theme="@style/AppTheme.NoActionBar" >
-29-->I:\AndroidStudioProjects\MobileAppsProject\app\src\main\AndroidManifest.xml:20:13-56
-30            <intent-filter>
-30-->I:\AndroidStudioProjects\MobileAppsProject\app\src\main\AndroidManifest.xml:21:13-25:29
-31                <action android:name="android.intent.action.MAIN" />
-31-->I:\AndroidStudioProjects\MobileAppsProject\app\src\main\AndroidManifest.xml:22:17-69
-31-->I:\AndroidStudioProjects\MobileAppsProject\app\src\main\AndroidManifest.xml:22:25-66
-32
-33                <category android:name="android.intent.category.LAUNCHER" />
-33-->I:\AndroidStudioProjects\MobileAppsProject\app\src\main\AndroidManifest.xml:24:17-77
-33-->I:\AndroidStudioProjects\MobileAppsProject\app\src\main\AndroidManifest.xml:24:27-74
-34            </intent-filter>
-35        </activity>
-36
-37        <provider
-37-->I:\AndroidStudioProjects\MobileAppsProject\app\src\main\AndroidManifest.xml:28:9-32:43
-38            android:name="androidx.lifecycle.ProcessLifecycleOwnerInitializer"
-38-->I:\AndroidStudioProjects\MobileAppsProject\app\src\main\AndroidManifest.xml:29:13-79
-39            android:authorities="MobileProject.WorkingTitle.lifecycle-process"
+27            android:theme="@style/AppTheme" />
+27-->I:\AndroidStudioProjects\MobileAppsProject\app\src\main\AndroidManifest.xml:17:13-44
+28        <activity
+28-->I:\AndroidStudioProjects\MobileAppsProject\app\src\main\AndroidManifest.xml:19:9-27:20
+29            android:name="MobileProject.WorkingTitle.UI.Login.LoginActivity"
+29-->I:\AndroidStudioProjects\MobileAppsProject\app\src\main\AndroidManifest.xml:20:13-51
+30            android:theme="@style/AppTheme.NoActionBar" >
+30-->I:\AndroidStudioProjects\MobileAppsProject\app\src\main\AndroidManifest.xml:21:13-56
+31            <intent-filter>
+31-->I:\AndroidStudioProjects\MobileAppsProject\app\src\main\AndroidManifest.xml:22:13-26:29
+32                <action android:name="android.intent.action.MAIN" />
+32-->I:\AndroidStudioProjects\MobileAppsProject\app\src\main\AndroidManifest.xml:23:17-69
+32-->I:\AndroidStudioProjects\MobileAppsProject\app\src\main\AndroidManifest.xml:23:25-66
+33
+34                <category android:name="android.intent.category.LAUNCHER" />
+34-->I:\AndroidStudioProjects\MobileAppsProject\app\src\main\AndroidManifest.xml:25:17-77
+34-->I:\AndroidStudioProjects\MobileAppsProject\app\src\main\AndroidManifest.xml:25:27-74
+35            </intent-filter>
+36        </activity>
+37
+38        <provider
+38-->I:\AndroidStudioProjects\MobileAppsProject\app\src\main\AndroidManifest.xml:29:9-33:43
+39            android:name="androidx.lifecycle.ProcessLifecycleOwnerInitializer"
 39-->I:\AndroidStudioProjects\MobileAppsProject\app\src\main\AndroidManifest.xml:30:13-79
-40            android:exported="false"
-40-->I:\AndroidStudioProjects\MobileAppsProject\app\src\main\AndroidManifest.xml:31:13-37
-41            android:multiprocess="true" />
-41-->I:\AndroidStudioProjects\MobileAppsProject\app\src\main\AndroidManifest.xml:32:13-40
-42    </application>
-43
-44</manifest>
+40            android:authorities="MobileProject.WorkingTitle.lifecycle-process"
+40-->I:\AndroidStudioProjects\MobileAppsProject\app\src\main\AndroidManifest.xml:31:13-79
+41            android:exported="false"
+41-->I:\AndroidStudioProjects\MobileAppsProject\app\src\main\AndroidManifest.xml:32:13-37
+42            android:multiprocess="true" />
+42-->I:\AndroidStudioProjects\MobileAppsProject\app\src\main\AndroidManifest.xml:33:13-40
+43    </application>
+44
+45</manifest>

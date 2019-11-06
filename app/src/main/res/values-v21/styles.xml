@@ -4,4 +4,12 @@
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
     </style>
+
+    <style name="AppTheme.mActionBarTheme">
+        <item name="android:actionBarStyle">@style/AppTheme.mActionBarBackground</item>
+    </style>
+
+    <style name="AppTheme.mActionBarBackground">
+        <item name="android:background">#3B4252</item>
+    </style>
 </resources>

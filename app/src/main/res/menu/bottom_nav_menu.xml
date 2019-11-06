@@ -3,17 +3,17 @@
 
     <item
         android:id="@+id/nav_conversationList"
-        android:icon="@drawable/duck_logo"
+        android:icon="@drawable/duck_logo_blue"
         android:title="@string/menu_home" />
 
     <item
         android:id="@+id/nav_connections"
-        android:icon="@drawable/duck_logo"
+        android:icon="@drawable/duck_logo_blue"
         android:title="@string/menu_connections" />
 
     <item
         android:id="@+id/nav_logout"
-        android:icon="@drawable/duck_logo"
+        android:icon="@drawable/duck_logo_blue"
         android:title="@string/menu_logout" />
 
 </menu>

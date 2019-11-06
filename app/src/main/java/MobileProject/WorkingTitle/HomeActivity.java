@@ -36,6 +36,7 @@ public class HomeActivity extends AppCompatActivity implements BottomNavigationV
         getSupportActionBar().setDisplayHomeAsUpEnabled(false);
 
 
+
         BottomNavigationView navView = findViewById(R.id.nav_view);
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
@@ -86,7 +87,7 @@ public class HomeActivity extends AppCompatActivity implements BottomNavigationV
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         NavController navController =
                 Navigation.findNavController(this, R.id.nav_host_fragment);
-        Log.d("SELECTED", String.valueOf(item.getItemId()));
+        //Log.d("SELECTED", String.valueOf(item.getItemId()));
         // Handle navigation view item clicks here.
         switch (item.getItemId()) {
             //Home selected
