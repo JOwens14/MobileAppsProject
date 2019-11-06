@@ -3,6 +3,7 @@ package MobileProject.WorkingTitle.UI.Conversations;
 
 import android.os.Bundle;
 import android.text.Html;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,6 +11,10 @@ import android.view.ViewGroup;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
+
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.io.Serializable;
 
@@ -43,19 +48,16 @@ public class ConversationFragment extends Fragment {
             AppCompatActivity activity = (AppCompatActivity) getActivity();
             ActionBar actionBar = activity.getSupportActionBar();
             actionBar.setTitle(conversation.getContact());
+            actionBar.setDisplayHomeAsUpEnabled(false);
 
-//            TextView title = view.findViewById(R.id.blog_title);
-//            TextView pubDate = view.findViewById(R.id.blog_pubDate);
-//            TextView postText = view.findViewById(R.id.blog_postText);
-
-//            title.setText(post.getTitle());
-//            pubDate.setText(post.getPubDate());
-//            postText.setText(stripHtml(post.getTeaser()));
-
+            //disables the bottom nav bar while in conversation
+            BottomNavigationView navView = activity.findViewById(R.id.nav_view);
+            navView.setVisibility(view.GONE);
 
 
         }
     }
+
 
     /**
      * Probably not needed!?

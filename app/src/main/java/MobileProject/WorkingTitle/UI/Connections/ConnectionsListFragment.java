@@ -3,6 +3,8 @@ package MobileProject.WorkingTitle.UI.Connections;
 import android.content.Context;
 import android.os.Bundle;
 
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -22,7 +24,7 @@ import MobileProject.WorkingTitle.UI.dummy.DummyContent.Contact;
  * Activities containing this fragment MUST implement the {@link OnListFragmentInteractionListener}
  * interface.
  */
-public class ContactFragment extends Fragment {
+public class ConnectionsListFragment extends Fragment {
 
     // TODO: Customize parameter argument names
     private static final String ARG_COLUMN_COUNT = "column-count";
@@ -34,13 +36,13 @@ public class ContactFragment extends Fragment {
      * Mandatory empty constructor for the fragment manager to instantiate the
      * fragment (e.g. upon screen orientation changes).
      */
-    public ContactFragment() {
+    public ConnectionsListFragment() {
     }
 
     // TODO: Customize parameter initialization
     @SuppressWarnings("unused")
-    public static ContactFragment newInstance(int columnCount) {
-        ContactFragment fragment = new ContactFragment();
+    public static ConnectionsListFragment newInstance(int columnCount) {
+        ConnectionsListFragment fragment = new ConnectionsListFragment();
         Bundle args = new Bundle();
         args.putInt(ARG_COLUMN_COUNT, columnCount);
         fragment.setArguments(args);
@@ -72,6 +74,10 @@ public class ContactFragment extends Fragment {
             }
             recyclerView.setAdapter(new ConnectionsRecyclerViewAdapter(DummyContent.STUDENTS, mListener));
         }
+
+        AppCompatActivity activity = (AppCompatActivity) getActivity();
+        ActionBar actionBar = activity.getSupportActionBar();
+        actionBar.setTitle("Connections");
         return view;
     }
 

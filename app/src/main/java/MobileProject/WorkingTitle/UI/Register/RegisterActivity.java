@@ -1,8 +1,10 @@
-package MobileProject.WorkingTitle;
+package MobileProject.WorkingTitle.UI.Register;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+
+import MobileProject.WorkingTitle.R;
 
 public class RegisterActivity extends AppCompatActivity {
 
