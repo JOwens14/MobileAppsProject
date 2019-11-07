@@ -57,10 +57,6 @@ public class RegisterFragment extends Fragment {
         return view;
     }
 
-    private void validations () {
-//        if ()
-    }
-
     private void register(View view) {
         AsyncTask<String, Void, String> task = null;
         //Construct a JSONObject to build a formatted message to send.
@@ -69,16 +65,34 @@ public class RegisterFragment extends Fragment {
         String lastName = ((EditText)(getActivity().findViewById(R.id.editText_LastName))).getText().toString();
         String userName = ((EditText)getActivity().findViewById(R.id.editText_Username)).getText().toString();
         String password = ((EditText)getActivity().findViewById(R.id.editText_Password)).getText().toString();
-        String repassword = ((EditText)getActivity().findViewById(R.id.editText_Password2)).getText().toString();
+        String re_password = ((EditText)getActivity().findViewById(R.id.editText_Password2)).getText().toString();
         String email = ((EditText)getActivity().findViewById(R.id.editText_Email)).getText().toString();
 
         // TODO: use validation function
-        if (!password.equals(repassword)) {
+        if (!password.equals(re_password)) {
             ((TextView)getActivity().findViewById(R.id.textViewPasswordMatch)).setVisibility(View.VISIBLE);
+            return;
+        }
+
+        if (!isNameValid(firstName) || !isNameValid(lastName)) {
+            errorText.setText("First name and Last name invalid!");
+            errorText.setVisibility(View.VISIBLE);
+            return;
+        }
+        if (!isUsernameValid(userName)) {
+            errorText.setText("Username must at least 4 characters!");
+            errorText.setVisibility(View.VISIBLE);
+            return;
         }
 
         if (!emailValidation(email)) {
             errorText.setText("Email is invalid!");
+            errorText.setVisibility(View.VISIBLE);
+            return;
+        }
+
+        if (!passwordValidations(password)) {
+            errorText.setText("Password must eight characters, at least one letter and number!");
             errorText.setVisibility(View.VISIBLE);
             return;
         }
@@ -103,10 +117,31 @@ public class RegisterFragment extends Fragment {
                 msg.toString());
     }
 
+    private boolean isNameValid(String name) {
+        String regex = "^[A-Za-z]{3,}$";
+        Pattern pattern = Pattern.compile(regex);
+        Matcher matcher = pattern.matcher(name);
+        return matcher.matches();
+    }
+
     private boolean emailValidation(String email) {
         String regex = "^[A-Za-z0-9+_.-]+@(.+)$";
         Pattern pattern = Pattern.compile(regex);
         Matcher matcher = pattern.matcher(email);
+        return matcher.matches();
+    }
+
+    private Boolean passwordValidations (String password) {
+        String regex = "^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{8,}$";
+        Pattern pattern = Pattern.compile(regex);
+        Matcher matcher = pattern.matcher(password);
+        return matcher.matches();
+    }
+
+    private Boolean isUsernameValid(String username) {
+        String regex = "^[A-Za-z0-9+_.-]{4,}$";
+        Pattern pattern = Pattern.compile(regex);
+        Matcher matcher = pattern.matcher(username);
         return matcher.matches();
     }
 
