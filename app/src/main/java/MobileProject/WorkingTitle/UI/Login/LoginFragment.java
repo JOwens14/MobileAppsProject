@@ -1,12 +1,16 @@
 package MobileProject.WorkingTitle.UI.Login;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 
 import MobileProject.WorkingTitle.UI.Register.RegisterActivity;
 
+import MobileProject.WorkingTitle.model.Credentials;
+import MobileProject.WorkingTitle.utils.SendPostAsyncTask;
 import androidx.fragment.app.Fragment;
 
 import android.util.Log;
@@ -14,6 +18,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -71,6 +76,32 @@ public class LoginFragment extends Fragment {
         args.putString(ARG_PARAM2, param2);
         fragment.setArguments(args);
         return fragment;
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+
+        SharedPreferences prefs =
+                getActivity().getSharedPreferences(
+                        getString(R.string.keys_shared_prefs),
+                        Context.MODE_PRIVATE);
+        //retrieve the stored credentials from SharedPrefs
+        if (prefs.contains(getString(R.string.keys_prefs_email)) &&
+                prefs.contains(getString(R.string.keys_prefs_password))) {
+
+            final String email = prefs.getString(getString(R.string.keys_prefs_email), "");
+            final String password = prefs.getString(getString(R.string.keys_prefs_password), "");
+            //Load the two login EditTexts with the credentials found in SharedPrefs
+            EditText emailEdit = getActivity().findViewById(R.id.editText_EmailLogin);
+            emailEdit.setText(email);
+            EditText passwordEdit = getActivity().findViewById(R.id.editText_PasswordLogin);
+            passwordEdit.setText(password);
+            doLogin(new Credentials.Builder(
+                    emailEdit.getText().toString(),
+                    passwordEdit.getText().toString())
+                    .build());
+        }
     }
 
     @Override
@@ -209,7 +240,8 @@ public class LoginFragment extends Fragment {
                 TextView resultShow = ((TextView) getActivity().findViewById(R.id.textViewLoginError));
                 if (ob.getBoolean("success")) {
                     resultShow.setText("");
-                    loginSuccessHelper();
+                    loginSuccessHelper(ob.getString("firstname"),ob.getString("lastname"),
+                            ob.getString("username"));
                 } else {
                     resultShow.setText("Email or Password not correct!");
                 }
@@ -221,9 +253,50 @@ public class LoginFragment extends Fragment {
         }
     }
 
-    private void loginSuccessHelper () {
-        Intent intent = new Intent(this.getContext(), HomeActivity.class);
-        startActivity(intent);
+    private void loginSuccessHelper (String firstname, String lastname, String username) {
+        String email = ((EditText)getActivity().findViewById(R.id.editText_EmailLogin)).getText().toString();
+        String password = ((EditText)getActivity().findViewById(R.id.editText_PasswordLogin)).getText().toString();
+        Credentials cr = new Credentials.Builder(email, password)
+                .addFirstName(firstname)
+                .addLastName(lastname)
+                .addUsername(username)
+                .build();
+        if (((CheckBox)getActivity().findViewById(R.id.login_checkBox)).isChecked()) {
+            saveCredentials(cr);
+        }
+        Intent mIntent = new Intent(this.getContext(), HomeActivity.class);
+        mIntent.putExtra("userCr", cr);
+        startActivity(mIntent);
         Log.d("login", "clicked");
     }
+
+    private void saveCredentials(final Credentials credentials) {
+        SharedPreferences prefs =
+                getActivity().getSharedPreferences(
+                        getString(R.string.keys_shared_prefs),
+                        Context.MODE_PRIVATE);
+        //Store the credentials in SharedPrefs
+        prefs.edit().putString(getString(R.string.keys_prefs_email), credentials.getEmail()).apply();
+        prefs.edit().putString(getString(R.string.keys_prefs_password), credentials.getPassword()).apply();
+    }
+
+    private void doLogin(Credentials credentials) {
+        //build the web service URL
+        Uri uri = new Uri.Builder()
+                .scheme("https")
+                .appendPath(getString(R.string.base_url))
+                .appendPath(getString(R.string.conn_login))
+                .build();
+
+        //build the JSONObject
+        JSONObject msg = credentials.asJSONObject();
+
+        AsyncTask<String, Void, String> task = null;
+
+        task = new PostWebServiceTask();
+        task.execute(getString(R.string.base_url),
+                getString(R.string.conn_login),
+                msg.toString());
+    }
+
 }

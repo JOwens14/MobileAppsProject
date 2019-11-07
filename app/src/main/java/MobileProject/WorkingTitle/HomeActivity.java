@@ -1,7 +1,9 @@
 package MobileProject.WorkingTitle;
 
 import android.app.Fragment;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import androidx.annotation.NonNull;
@@ -143,10 +145,20 @@ public class HomeActivity extends AppCompatActivity implements BottomNavigationV
 
     //logs the user out
     private int logout() {
+        SharedPreferences prefs =
+                getSharedPreferences(
+                        getString(R.string.keys_shared_prefs),
+                        Context.MODE_PRIVATE);
+        //remove the saved credentials from StoredPrefs
+        prefs.edit().remove(getString(R.string.keys_prefs_password)).apply();
+        prefs.edit().remove(getString(R.string.keys_prefs_email)).apply();
+
+        //close the app
+        finishAndRemoveTask();
+
         Intent intent = new Intent(this, LoginActivity.class);
         startActivity(intent);
         //might need to null future credentials for security purposes
-
         return 1;
     }
 
