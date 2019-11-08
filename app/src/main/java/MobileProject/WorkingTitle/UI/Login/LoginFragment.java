@@ -10,7 +10,6 @@ import android.os.Bundle;
 import MobileProject.WorkingTitle.UI.Register.RegisterActivity;
 
 import MobileProject.WorkingTitle.model.Credentials;
-import MobileProject.WorkingTitle.utils.SendPostAsyncTask;
 import androidx.fragment.app.Fragment;
 
 import android.util.Log;
@@ -36,6 +35,7 @@ import java.util.regex.Pattern;
 
 import MobileProject.WorkingTitle.HomeActivity;
 import MobileProject.WorkingTitle.R;
+import me.pushy.sdk.Pushy;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -54,6 +54,7 @@ public class LoginFragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+    private int attamped;
 
 
     public LoginFragment() {
@@ -81,7 +82,7 @@ public class LoginFragment extends Fragment {
     @Override
     public void onStart() {
         super.onStart();
-
+        attamped = 0;
         SharedPreferences prefs =
                 getActivity().getSharedPreferences(
                         getString(R.string.keys_shared_prefs),
@@ -128,8 +129,8 @@ public class LoginFragment extends Fragment {
         TextView login = view.findViewById(R.id.editText_EmailLogin);
         TextView password = view.findViewById(R.id.editText_PasswordLogin);
 
-        login.setText("jowens@uw.edu");
-        password.setText("test");
+        login.setText("fakeemail@gmail.com");
+        password.setText("logintest123");
 
         return view;
     }
@@ -149,9 +150,15 @@ public class LoginFragment extends Fragment {
         String email = ((EditText)getActivity().findViewById(R.id.editText_EmailLogin)).getText().toString();
         String password = ((EditText)getActivity().findViewById(R.id.editText_PasswordLogin)).getText().toString();
 
-        if (email.trim().length() <= 5 && !emailValidation(email)) {
+        if (!emailValidation(email)) {
             errorText.setText("Email is invalid!");
             errorText.setVisibility(View.VISIBLE);
+            return;
+        }
+
+        if (!passwordValidations(password)) {
+            ((EditText)getActivity().findViewById(R.id.editText_PasswordLogin))
+                    .setError("Password must at least eight characters, at least one letter and number!");
             return;
         }
 
@@ -166,21 +173,37 @@ public class LoginFragment extends Fragment {
         }
         task = new PostWebServiceTask();
         task.execute(getString(R.string.base_url),
-                getString(R.string.conn_login),
+                getString(R.string.ep_pushy),
                 msg.toString());
     }
 
-    private boolean emailValidation(String email) {
-        String regex = "^[A-Za-z0-9+_.-]+@(.+)$";
-        Pattern pattern = Pattern.compile(regex);
-        Matcher matcher = pattern.matcher(email);
-        return matcher.matches();
-    }
+
 
     private class PostWebServiceTask extends AsyncTask<String, Void, String> {
 
         @Override
         protected String doInBackground(String... strings) {
+            //get pushy token
+            String deviceToken;
+
+
+            try {
+                // Assign a unique token to this device
+                deviceToken = Pushy.register(getActivity().getApplicationContext());
+
+                //subscribe to a topic (this is a Blocking call)
+                Pushy.subscribe("all", getActivity().getApplicationContext());
+            }
+            catch (Exception exc) {
+
+                cancel(true);
+                // Return exc to onCancelled
+                return exc.getMessage();
+            }
+
+            //feel free to remove later.
+            Log.d("LOGIN", "Pushy Token: " + deviceToken);
+
             if (strings.length != 3) {
                 throw new IllegalArgumentException("Three String arguments required.");
             }
@@ -188,10 +211,19 @@ public class LoginFragment extends Fragment {
             HttpURLConnection urlConnection = null;
             String url = strings[0];
             String endPoint = strings[1];
+            JSONObject ob = new JSONObject();
+            try {
+                JSONObject jsonObj = new JSONObject(strings[2]);
+                jsonObj.put("token", deviceToken);
+                ob = jsonObj;
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
             //build the url
             Uri uri = new Uri.Builder()
                     .scheme("https")
                     .appendPath(url)
+                    .appendPath("login")
                     .appendPath(endPoint)
                     .build();
             try {
@@ -203,7 +235,7 @@ public class LoginFragment extends Fragment {
                 OutputStreamWriter wr =
                         new OutputStreamWriter(urlConnection.getOutputStream());
 
-                wr.write(strings[2]);
+                wr.write(ob.toString());
                 wr.flush();
                 wr.close();
 
@@ -240,10 +272,18 @@ public class LoginFragment extends Fragment {
                 TextView resultShow = ((TextView) getActivity().findViewById(R.id.textViewLoginError));
                 if (ob.getBoolean("success")) {
                     resultShow.setText("");
+                    //feel free to remove later.
+                    Log.d("LOGIN_PUSHY", "Pushy Token: " + ob.getString("token"));
                     loginSuccessHelper(ob.getString("firstname"),ob.getString("lastname"),
                             ob.getString("username"));
                 } else {
-                    resultShow.setText("Email or Password not correct!");
+                    attamped++;
+                    if (attamped <= 3)
+                        resultShow.setText("Email or Password not correct!");
+                    else {
+                        resultShow.setText("Forgot password? Please Click here!");
+                        forgotPassword();
+                    }
                 }
 
                 resultShow.setVisibility(View.VISIBLE);
@@ -252,6 +292,11 @@ public class LoginFragment extends Fragment {
             }
         }
     }
+
+    private void forgotPassword() {
+        //TODO: implement forgot password fragment.
+    }
+
 
     private void loginSuccessHelper (String firstname, String lastname, String username) {
         String email = ((EditText)getActivity().findViewById(R.id.editText_EmailLogin)).getText().toString();
@@ -280,22 +325,29 @@ public class LoginFragment extends Fragment {
         prefs.edit().putString(getString(R.string.keys_prefs_password), credentials.getPassword()).apply();
     }
 
-    private void doLogin(Credentials credentials) {
-        //build the web service URL
-        Uri uri = new Uri.Builder()
-                .scheme("https")
-                .appendPath(getString(R.string.base_url))
-                .appendPath(getString(R.string.conn_login))
-                .build();
+    private Boolean passwordValidations (String password) {
+        String regex = "^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{8,}$";
+        Pattern pattern = Pattern.compile(regex);
+        Matcher matcher = pattern.matcher(password);
+        return matcher.matches();
+    }
 
+    private boolean emailValidation(String email) {
+        String regex = "^[A-Za-z0-9+_.-]+@(.+)$";
+        Pattern pattern = Pattern.compile(regex);
+        Matcher matcher = pattern.matcher(email);
+        return matcher.matches();
+    }
+
+    private void doLogin(Credentials credentials) {
         //build the JSONObject
         JSONObject msg = credentials.asJSONObject();
 
-        AsyncTask<String, Void, String> task = null;
+        AsyncTask<String, Void, String> task;
 
         task = new PostWebServiceTask();
         task.execute(getString(R.string.base_url),
-                getString(R.string.conn_login),
+                getString(R.string.ep_pushy),
                 msg.toString());
     }
 
