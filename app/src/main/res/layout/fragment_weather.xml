@@ -10,8 +10,14 @@
 
     <RelativeLayout android:id="@+id/mainContainer" android:layout_width="match_parent"
         android:layout_height="match_parent" android:visibility="visible">
-        <LinearLayout android:id="@+id/addressContainer" android:layout_width="match_parent"
-            android:layout_height="wrap_content" android:orientation="vertical"
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/addressContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="0dp"
+            android:foregroundTint="@color/colorBRIGHTBLUE"
             android:gravity="center">
 
             <TextView
@@ -19,11 +25,35 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Tacoma,WA"
-                android:textSize="24dp" />
-            <TextView android:id="@+id/updated_at" android:layout_width="wrap_content"
-                android:layout_height="wrap_content" android:textSize="14dp"
-                android:text="20 April 2012, 20:08 PM"/>
-        </LinearLayout>
+                android:textSize="24dp"
+                app:layout_constraintBottom_toTopOf="@+id/city_add_button"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_chainStyle="packed" />
+
+            <ImageButton
+                android:id="@+id/city_add_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@color/colorPrimary"
+                android:scaleX="1"
+                android:scaleY="1"
+                android:src="@android:drawable/ic_input_add"
+                app:layout_constraintStart_toEndOf="@+id/address" />
+
+            <TextView
+                android:id="@+id/updated_at"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="20 April 2012, 20:08 PM"
+                android:textSize="14dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/city_add_button" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
 
         <LinearLayout android:id="@+id/overviewContainer" android:layout_width="match_parent"

@@ -70,7 +70,11 @@ public class HomeActivity extends AppCompatActivity implements BottomNavigationV
                 Navigation.findNavController(this, R.id.nav_host_fragment).getCurrentDestination().getId() == R.id.nav_settings) {
                     navController.navigate(R.id.nav_conversationList, getIntent().getExtras());
         }
+        if (Navigation.findNavController(this, R.id.nav_host_fragment).getCurrentDestination().getId() == R.id.nav_locations) {
+            navController.navigate(R.id.nav_weather, getIntent().getExtras());
+        }
     }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -99,7 +103,11 @@ public class HomeActivity extends AppCompatActivity implements BottomNavigationV
 
             case android.R.id.home:
                 //action bar back pressed
-                navController.navigate(R.id.nav_conversationList, getIntent().getExtras());
+                if (Navigation.findNavController(this, R.id.nav_host_fragment).getCurrentDestination().getId() == R.id.nav_conversation) {
+                    navController.navigate(R.id.nav_conversationList, getIntent().getExtras());
+                } else {
+                    return super.onOptionsItemSelected(item);
+                    }
                 return true;
 
             default:
