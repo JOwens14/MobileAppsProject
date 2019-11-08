@@ -23,9 +23,13 @@ import MobileProject.WorkingTitle.UI.Conversations.Conversation;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
 
 import com.androdocs.httprequest.HttpRequest;
 
@@ -114,8 +118,17 @@ public class WeatherFragment extends Fragment {
         Weather.setView(view);
         Weather.execute();
 
+        ImageButton cityAddButton = (ImageButton) view.findViewById(R.id.city_add_button);
+        cityAddButton.setOnClickListener(this::addCity);
+
         // Inflate the layout for this fragment
         return view;
+    }
+
+    private void addCity(View view){
+        NavController navController =
+                Navigation.findNavController(getActivity(), R.id.nav_host_fragment);
+                navController.navigate(R.id.nav_locations);
     }
 
 

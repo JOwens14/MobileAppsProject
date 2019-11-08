@@ -128,8 +128,8 @@ public class LoginFragment extends Fragment {
         TextView login = view.findViewById(R.id.editText_EmailLogin);
         TextView password = view.findViewById(R.id.editText_PasswordLogin);
 
-        login.setText("jowens@uw.edu");
-        password.setText("test");
+        login.setText("fakeemail@gmail.com");
+        password.setText("logintest123");
 
         return view;
     }
@@ -229,7 +229,7 @@ public class LoginFragment extends Fragment {
         @Override
         protected void onCancelled(String result) {
             super.onCancelled(result);
-            ((TextView) getActivity().findViewById(R.id.errorRegister)).setError(result);
+            ((TextView) getActivity().findViewById(R.id.textViewLoginError)).setError(result);
         }
 
         @Override

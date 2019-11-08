@@ -48,7 +48,7 @@ public class ConversationFragment extends Fragment {
             AppCompatActivity activity = (AppCompatActivity) getActivity();
             ActionBar actionBar = activity.getSupportActionBar();
             actionBar.setTitle(conversation.getContact());
-            actionBar.setDisplayHomeAsUpEnabled(false);
+            //actionBar.setDisplayHomeAsUpEnabled(false);
 
             //disables the bottom nav bar while in conversation
             BottomNavigationView navView = activity.findViewById(R.id.nav_view);
