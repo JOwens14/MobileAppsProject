@@ -56,7 +56,7 @@ public class WeatherFragment extends Fragment {
     private String mParam2;
 
 
-    String CITY = "TACOMA,WA,US";
+    static String CITY = "TACOMA,WA,US";
     String API = "9898def6c58ff9d8ce98771cd6ef8065";
     String UNITS = "imperial";
     String UNIT = "°F";
@@ -222,6 +222,10 @@ public class WeatherFragment extends Fragment {
             }
 
         }
+    }
+
+    public static void setCity(String location) {
+        CITY = location;
     }
 
 
