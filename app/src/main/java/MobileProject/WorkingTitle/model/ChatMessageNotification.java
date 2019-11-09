@@ -1,4 +1,4 @@
-package MobileProject.WorkingTitle.utils;
+package MobileProject.WorkingTitle.model;
 
 import java.io.Serializable;
 

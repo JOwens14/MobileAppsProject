@@ -9,6 +9,7 @@ import android.os.Bundle;
 
 import MobileProject.WorkingTitle.UI.Register.RegisterActivity;
 
+import MobileProject.WorkingTitle.model.ChatMessageNotification;
 import MobileProject.WorkingTitle.model.Credentials;
 import androidx.fragment.app.Fragment;
 
@@ -261,7 +262,7 @@ public class LoginFragment extends Fragment {
         @Override
         protected void onCancelled(String result) {
             super.onCancelled(result);
-            ((TextView) getActivity().findViewById(R.id.errorRegister)).setError(result);
+            ((TextView) getActivity().findViewById(R.id.textViewLoginError)).setError(result);
         }
 
         @Override
@@ -274,8 +275,9 @@ public class LoginFragment extends Fragment {
                     resultShow.setText("");
                     //feel free to remove later.
                     Log.d("LOGIN_PUSHY", "Pushy Token: " + ob.getString("token"));
+                    Log.d("LOGIN_PUSHY", "JWT Token: " + ob.getString("jwtToken"));
                     loginSuccessHelper(ob.getString("firstname"),ob.getString("lastname"),
-                            ob.getString("username"));
+                            ob.getString("username"), ob.getString("jwtToken"));
                 } else {
                     attamped++;
                     if (attamped <= 3)
@@ -298,19 +300,38 @@ public class LoginFragment extends Fragment {
     }
 
 
-    private void loginSuccessHelper (String firstname, String lastname, String username) {
+    private void loginSuccessHelper (String firstname, String lastname, String username, String jwtToken) {
         String email = ((EditText)getActivity().findViewById(R.id.editText_EmailLogin)).getText().toString();
         String password = ((EditText)getActivity().findViewById(R.id.editText_PasswordLogin)).getText().toString();
         Credentials cr = new Credentials.Builder(email, password)
                 .addFirstName(firstname)
                 .addLastName(lastname)
                 .addUsername(username)
+                .addJwtToken(jwtToken)
                 .build();
         if (((CheckBox)getActivity().findViewById(R.id.login_checkBox)).isChecked()) {
             saveCredentials(cr);
         }
+
         Intent mIntent = new Intent(this.getContext(), HomeActivity.class);
         mIntent.putExtra("userCr", cr);
+
+
+        if (getArguments() != null) {
+
+            if (getArguments().containsKey("type")) {
+                if (getArguments().getString("type").equals("msg")) {
+                    String msg = getArguments().getString("message");
+                    String sender = getArguments().getString("sender");
+
+                    ChatMessageNotification chat =
+                            new ChatMessageNotification.Builder(sender, msg).build();
+                    mIntent.putExtra("chatMessage", chat);
+                }
+            }
+        }
+
+
         startActivity(mIntent);
         Log.d("login", "clicked");
     }
