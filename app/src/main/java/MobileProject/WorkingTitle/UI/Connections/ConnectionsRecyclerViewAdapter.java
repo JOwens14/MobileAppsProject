@@ -8,7 +8,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import MobileProject.WorkingTitle.R;
-import MobileProject.WorkingTitle.UI.Connections.ContactFragment.OnListFragmentInteractionListener;
+import MobileProject.WorkingTitle.UI.Connections.ConnectionsListFragment.OnListFragmentInteractionListener;
 import MobileProject.WorkingTitle.UI.dummy.DummyContent.Contact;
 
 import java.util.List;
@@ -67,7 +67,7 @@ public class ConnectionsRecyclerViewAdapter extends RecyclerView.Adapter<Connect
         public ViewHolder(View view) {
             super(view);
             mView = view;
-            mIdView = (TextView) view.findViewById(R.id.item_number);
+            mIdView = (TextView) view.findViewById(R.id.item_location);
             mContentView = (TextView) view.findViewById(R.id.content);
         }
 
