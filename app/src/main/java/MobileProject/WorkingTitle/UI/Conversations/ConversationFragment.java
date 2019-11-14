@@ -193,16 +193,16 @@ public class ConversationFragment extends Fragment {
         @Override
         public void onReceive(Context context, Intent intent) {
             if(intent.hasExtra("SENDER") && intent.hasExtra("MESSAGE")) {
+                if (!mEmail.equals(intent.getStringExtra("SENDER"))) {
+                    String sender = "<font color=#cc0029>" + intent.getStringExtra("SENDER") + "</font>";
+                    String messageText = intent.getStringExtra("MESSAGE");
+                    mMessageOutputTextView.append(Html.fromHtml(sender + ":" + messageText));
+                    mMessageOutputTextView.append(System.lineSeparator());
+                    mMessageOutputTextView.append(System.lineSeparator());
 
-                String sender = "<font color=#cc0029>" + intent.getStringExtra("SENDER") +"</font>";
-                String messageText = intent.getStringExtra("MESSAGE");
-
-                mMessageOutputTextView.append(Html.fromHtml(sender + ":" + messageText));
-                mMessageOutputTextView.append(System.lineSeparator());
-                mMessageOutputTextView.append(System.lineSeparator());
-
-                //String text = "<font color=#cc0029>First Color</font> <font color=#ffcc00>Second Color</font>";
-                //mMessageOutputTextView.setText(Html.fromHtml(text));
+                    //String text = "<font color=#cc0029>First Color</font> <font color=#ffcc00>Second Color</font>";
+                    //mMessageOutputTextView.setText(Html.fromHtml(text));
+                }
             }
         }
     }
