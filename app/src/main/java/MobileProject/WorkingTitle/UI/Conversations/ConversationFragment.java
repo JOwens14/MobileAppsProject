@@ -15,6 +15,7 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import MobileProject.WorkingTitle.UI.Conversations.ConversationList.ConversationsListRecyclerViewAdapter;
 import MobileProject.WorkingTitle.utils.PushReceiver;
 import MobileProject.WorkingTitle.utils.SendPostAsyncTask;
 import androidx.appcompat.app.ActionBar;
@@ -22,6 +23,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -29,6 +33,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.Serializable;
+import java.util.List;
 
 import MobileProject.WorkingTitle.R;
 
@@ -49,6 +54,8 @@ public class ConversationFragment extends Fragment {
     private String mEmail;
     private String mJwToken;
     private String mSendUrl;
+
+    private int mColumnCount = 1;
 
 
     public ConversationFragment() {
@@ -85,12 +92,34 @@ public class ConversationFragment extends Fragment {
     public void onViewCreated(View view, Bundle args) {
         if (getArguments() != null) {
             // TODO: Get mEmail and jwtToken here
-            mMessageOutputTextView = view.findViewById(R.id.text_chat_message_display);
+            mMessageOutputTextView = view.findViewById(R.id.conversation_message);
             mMessageInputEditText = view.findViewById(R.id.edittext_chatbox);
             view.findViewById(R.id.button_chatbox_send).setOnClickListener(this::handleSendClick);
 
             Serializable convo = getArguments().getSerializable("conversation");
             Conversation conversation = (Conversation) convo;
+
+            List<String> mMessages = ((Conversation) convo).getMessages();
+
+
+            if (view instanceof RecyclerView) {
+                Context context = view.getContext();
+                RecyclerView recyclerView = (RecyclerView) view;
+
+
+                if (mColumnCount <= 1) {
+                    recyclerView.setLayoutManager(new LinearLayoutManager(context));
+                } else {
+                    recyclerView.setLayoutManager(new GridLayoutManager(context, mColumnCount));
+                }
+                recyclerView.setAdapter(new ConversationRecyclerViewAdapter(mMessages, this::messageClicked));
+
+            }
+
+
+
+
+
 
             //sets the actionbar title to the contact name
             AppCompatActivity activity = (AppCompatActivity) getActivity();
@@ -103,6 +132,14 @@ public class ConversationFragment extends Fragment {
             navView.setVisibility(view.GONE);
         }
     }
+
+
+
+    public void messageClicked(String message) {
+        //todo maybe
+    }
+
+
 
     @Override
     public void onResume() {
@@ -193,6 +230,23 @@ public class ConversationFragment extends Fragment {
                 //mMessageOutputTextView.setText(Html.fromHtml(text));
             }
         }
+    }
+
+
+
+    /**
+     * This interface must be implemented by activities that contain this
+     * fragment to allow an interaction in this fragment to be communicated
+     * to the activity and potentially other fragments contained in that
+     * activity.
+     * <p/>
+     * See the Android Training lesson <a href=
+     * "http://developer.android.com/training/basics/fragments/communicating.html"
+     * >Communicating with Other Fragments</a> for more information.
+     */
+    public interface OnListFragmentInteractionListener {
+        // TODO: Update argument type and name
+        void onListFragmentInteraction(String message);
     }
 
 

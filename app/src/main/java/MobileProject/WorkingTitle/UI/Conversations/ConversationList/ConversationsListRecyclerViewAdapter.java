@@ -1,4 +1,4 @@
-package MobileProject.WorkingTitle.UI.Conversations;
+package MobileProject.WorkingTitle.UI.Conversations.ConversationList;
 
 import android.text.Html;
 import android.view.LayoutInflater;
@@ -8,18 +8,19 @@ import android.widget.TextView;
 import androidx.recyclerview.widget.RecyclerView;
 import java.util.List;
 import MobileProject.WorkingTitle.R;
+import MobileProject.WorkingTitle.UI.Conversations.Conversation;
 
 /**
  * {@link RecyclerView.Adapter} that can display a {@link Conversation} and makes a call to the
  * TODO: Replace the implementation with code for your data type.
  */
-public class ConversationsRecyclerViewAdapter extends RecyclerView.Adapter<ConversationsRecyclerViewAdapter.ViewHolder> {
+public class ConversationsListRecyclerViewAdapter extends RecyclerView.Adapter<ConversationsListRecyclerViewAdapter.ViewHolder> {
 
     private final List<Conversation> mValues;
     private final ConversationListFragment.OnListFragmentInteractionListener mListener;
 
 
-    public ConversationsRecyclerViewAdapter(List<Conversation> items, ConversationListFragment.OnListFragmentInteractionListener listener) {
+    public ConversationsListRecyclerViewAdapter(List<Conversation> items, ConversationListFragment.OnListFragmentInteractionListener listener) {
         mValues = items;
         mListener = listener;
 
@@ -37,6 +38,7 @@ public class ConversationsRecyclerViewAdapter extends RecyclerView.Adapter<Conve
         holder.mItem = mValues.get(position);
         holder.mIdContact.setText(mValues.get(position).getContact());
         holder.mIdLastMessage.setText(mValues.get(position).getLastMessage());
+
 
         holder.mView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -59,6 +61,7 @@ public class ConversationsRecyclerViewAdapter extends RecyclerView.Adapter<Conve
         public final View mView;
         public final TextView mIdContact;
         public final TextView mIdLastMessage;
+
         public Conversation mItem;
 
         public ViewHolder(View view) {
@@ -66,7 +69,6 @@ public class ConversationsRecyclerViewAdapter extends RecyclerView.Adapter<Conve
             mView = view;
             mIdContact = (TextView) view.findViewById(R.id.mIdContact);
             mIdLastMessage = (TextView) view.findViewById(R.id.mIdLastMessage);
-
         }
 
     }

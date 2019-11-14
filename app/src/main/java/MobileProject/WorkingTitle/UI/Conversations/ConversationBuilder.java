@@ -17,7 +17,10 @@ public class ConversationBuilder {
     }
 
     public static Conversation createConversation(String Contact, String lastMessage) {
-        return new Conversation.Builder(Contact, lastMessage, null).build();
+        ArrayList<String> testMessages = new ArrayList<String>();
+        testMessages.add("Test Message1");
+        testMessages.add("Test Message2");
+        return new Conversation.Builder(Contact, lastMessage, testMessages).build();
     }
 
     public static List getConversations() {
