@@ -1,9 +1,11 @@
 package MobileProject.WorkingTitle.UI.Weather;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.os.Bundle;
 
 import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
@@ -16,9 +18,12 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
+import MobileProject.WorkingTitle.HomeActivity;
 import MobileProject.WorkingTitle.R;
 
 
@@ -75,16 +80,20 @@ public class LocationFragment extends Fragment {
         actionBar.setTitle("Locations");
 
 
-        //disables the bottom nav bar while in conversation
+        //disables the bottom nav bar
         BottomNavigationView navView = activity.findViewById(R.id.nav_view);
         navView.setVisibility(view.GONE);
 
 
+        FloatingActionButton fab = view.findViewById(R.id.fab);
+        fab.setOnClickListener(this::showAddItemDialog);
+
+
 
         // Set the adapter
-        if (view instanceof RecyclerView) {
+        if (view.findViewById(R.id.list) != null) {
             Context context = view.getContext();
-            RecyclerView recyclerView = (RecyclerView) view;
+            RecyclerView recyclerView = view.findViewById(R.id.list);
             if (mColumnCount <= 1) {
                 recyclerView.setLayoutManager(new LinearLayoutManager(context));
             } else {
@@ -103,6 +112,29 @@ public class LocationFragment extends Fragment {
                 Navigation.findNavController(getActivity(), R.id.nav_host_fragment);
         navController.navigate(R.id.nav_weather);
 
+    }
+
+
+    private void showAddItemDialog(View view) {
+        Context c = view.getContext();
+        final EditText taskEditText = new EditText(c);
+        AlertDialog dialog = new AlertDialog.Builder(c, R.style.AlertDialog)
+                .setTitle("New Location")
+                .setView(taskEditText)
+                .setPositiveButton("Add", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        String task = String.valueOf(taskEditText.getText());
+
+                        //adds item to the location list.
+                        //ONLY WORKS FOR WA CITIES SO FAR
+                        Locations.addLocation(new Locations.Location(task + ",WA,US"));
+
+                    }
+                })
+                .setNegativeButton("Cancel", null)
+                .create();
+        dialog.show();
     }
 
     /**

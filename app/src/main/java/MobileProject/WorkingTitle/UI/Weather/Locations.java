@@ -10,7 +10,7 @@ public class Locations {
     public static final List<Location> LOCATIONS = new ArrayList<Location>();
     public static final Map<String, Location> LOCATIONS_MAP = new HashMap<String, Location>();
 
-    private static final String[] locos = {"TACOMA,WA,US", "SEATTLE,WA,US","LAKEWOOD,WA,US"};
+    private static String[] locos = {"TACOMA,WA,US", "SEATTLE,WA,US","LAKEWOOD,WA,US"};
 
     static {
         // Add some sample items.
@@ -19,12 +19,12 @@ public class Locations {
         }
     }
 
-    private static void addLocation(Location loco) {
+    public static void addLocation(Location loco) {
         LOCATIONS.add(loco);
         LOCATIONS_MAP.put(loco.location, loco);
     }
 
-    private static Location createLocation(String location) {
+    public static Location createLocation(String location) {
         return new Location(location);
     }
 
