@@ -86,6 +86,8 @@ public class Conversation implements Serializable, Parcelable {
         return mMessages;
     }
 
-
+    public void addMessage(String message) {
+        mMessages.add(message);
+    }
 
 }

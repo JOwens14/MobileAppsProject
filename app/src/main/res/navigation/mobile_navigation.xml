@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/nav_home"
-        android:name="MobileProject.WorkingTitle.UI.Conversations.ConversationListFragment"
+        android:name="MobileProject.WorkingTitle.UI.Conversations.ConversationList.ConversationListFragment"
         android:label="@string/menu_home"
         tools:layout="@layout/fragment_home" >
         <action

@@ -1,8 +1,7 @@
-package MobileProject.WorkingTitle.UI.Conversations;
+package MobileProject.WorkingTitle.UI.Conversations.ConversationList;
 
 import android.content.Context;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,6 +17,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.List;
 
 import MobileProject.WorkingTitle.R;
+import MobileProject.WorkingTitle.UI.Conversations.Conversation;
+import MobileProject.WorkingTitle.UI.Conversations.ConversationBuilder;
 
 /**
  * A fragment representing a list of Items.
@@ -83,7 +84,7 @@ public class ConversationListFragment extends Fragment {
             } else {
                 recyclerView.setLayoutManager(new GridLayoutManager(context, mColumnCount));
             }
-            recyclerView.setAdapter(new ConversationsRecyclerViewAdapter(mConversations, this::onClick));
+            recyclerView.setAdapter(new ConversationsListRecyclerViewAdapter(mConversations, this::onClick));
 
         }
         return view;
