@@ -9,6 +9,7 @@ import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.ColorFilter;
 import android.graphics.PorterDuff;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -16,11 +17,14 @@ import android.os.Bundle;
 import MobileProject.WorkingTitle.model.Credentials;
 import MobileProject.WorkingTitle.utils.PushReceiver;
 import androidx.annotation.NonNull;
+import androidx.core.content.ContextCompat;
 import androidx.navigation.NavController;
 import androidx.navigation.NavDestination;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
+
+import com.google.android.material.bottomnavigation.BottomNavigationMenu;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import androidx.appcompat.app.AppCompatActivity;
 import com.google.android.material.navigation.NavigationView;
@@ -51,6 +55,9 @@ public class HomeActivity extends AppCompatActivity implements BottomNavigationV
         //Log.d("start home", " you started the home activity");
         setContentView(R.layout.activity_home);
 
+        //Hide the notification icon whenever home activity loaded..
+        ((BottomNavigationView)findViewById(R.id.nav_view)).getMenu().getItem(3).setVisible(false);
+        ((BottomNavigationView)findViewById(R.id.nav_view)).setItemIconTintList(null);
         if (getIntent().getExtras() != null) {
             if (getIntent().getExtras().containsKey("userCr")) {
                 Credentials cr = (Credentials) getIntent().getExtras().get("userCr");
@@ -104,23 +111,23 @@ public class HomeActivity extends AppCompatActivity implements BottomNavigationV
 
     }
 
-//    @Override
-//    public void onResume() {
-//        super.onResume();
-//        if (mPushMessageReciever == null) {
-//            mPushMessageReciever = new HomePushMessageReceiver();
-//        }
-//        IntentFilter iFilter = new IntentFilter(PushReceiver.RECEIVED_NEW_MESSAGE);
-//        registerReceiver(mPushMessageReciever, iFilter);
-//    }
-//
-//    @Override
-//    public void onPause() {
-//        super.onPause();
-//        if (mPushMessageReciever != null){
-//            unregisterReceiver(mPushMessageReciever);
-//        }
-//    }
+    @Override
+    public void onResume() {
+        super.onResume();
+        if (mPushMessageReciever == null) {
+            mPushMessageReciever = new HomePushMessageReceiver();
+        }
+        IntentFilter iFilter = new IntentFilter(PushReceiver.RECEIVED_NEW_MESSAGE);
+        registerReceiver(mPushMessageReciever, iFilter);
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        if (mPushMessageReciever != null){
+            unregisterReceiver(mPushMessageReciever);
+        }
+    }
 
 
 
@@ -288,12 +295,27 @@ public class HomeActivity extends AppCompatActivity implements BottomNavigationV
                     String sender = intent.getStringExtra("SENDER");
                     String messageText = intent.getStringExtra("MESSAGE");
 
-                    //change the hamburger icon to red alerting the user of the notification
-                    ((Toolbar) findViewById(R.id.toolbar)).getNavigationIcon()
-                            .setColorFilter(Color.RED, PorterDuff.Mode.SRC_IN);
-
-
+                    // TODO: Update/display notification icon when received messages.
+                    BottomNavigationView navView = findViewById(R.id.nav_view);
+                    navView.getMenu().getItem(3).setVisible(true);
                     Log.d("HOME", sender + ": " + messageText);
+                    navView.setItemIconTintList(null);
+                }
+            }
+        }
+        /** Update the color of a specific menu item to the given color. */
+        private void updateMenuItemIconColor(Menu menu, int itemId, int color) {
+            MenuItem menuItem = menu.findItem(itemId);
+            if (menuItem != null) {
+                Drawable menuItemIcon = menuItem.getIcon();
+                if (menuItemIcon != null) {
+                    try {
+                        menuItemIcon.mutate();
+                        menuItemIcon.setColorFilter(color, PorterDuff.Mode.SRC_IN);
+                        menuItem.setIcon(menuItemIcon);
+                    } catch (Exception e) {
+                        Log.w("AIC", "Failed to update menu item color", e);
+                    }
                 }
             }
         }

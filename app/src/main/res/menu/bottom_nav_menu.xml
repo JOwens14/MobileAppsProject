@@ -18,5 +18,11 @@
         android:icon="@drawable/duck_logo_blue"
         android:title="@string/menu_weather"
         android:visible="true" />
+    <item
+        android:id="@+id/nav_notification"
+        android:icon="@drawable/ic_chat_red_24dp"
+        android:title="Notification"
+        android:visible="false"/>
+
 
 </menu>
