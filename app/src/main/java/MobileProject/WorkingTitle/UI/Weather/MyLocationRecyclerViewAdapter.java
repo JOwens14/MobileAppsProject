@@ -1,4 +1,4 @@
-package MobileProject.WorkingTitle.UI.Connections;
+package MobileProject.WorkingTitle.UI.Weather;
 
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -8,22 +8,16 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import MobileProject.WorkingTitle.R;
-import MobileProject.WorkingTitle.UI.Connections.ConnectionsListFragment.OnListFragmentInteractionListener;
-import MobileProject.WorkingTitle.UI.dummy.DummyContent.Contact;
+import MobileProject.WorkingTitle.UI.Weather.LocationFragment.OnListFragmentInteractionListener;
 
 import java.util.List;
 
-/**
- * {@link RecyclerView.Adapter} that can display a {@link Contact} and makes a call to the
- * specified {@link OnListFragmentInteractionListener}.
- * TODO: Replace the implementation with code for your data type.
- */
-public class ConnectionsRecyclerViewAdapter extends RecyclerView.Adapter<ConnectionsRecyclerViewAdapter.ViewHolder> {
+public class MyLocationRecyclerViewAdapter extends RecyclerView.Adapter<MyLocationRecyclerViewAdapter.ViewHolder> {
 
-    private final List<Contact> mValues;
+    private final List<Locations.Location> mValues;
     private final OnListFragmentInteractionListener mListener;
 
-    public ConnectionsRecyclerViewAdapter(List<Contact> items, OnListFragmentInteractionListener listener) {
+    public MyLocationRecyclerViewAdapter(List<Locations.Location> items, OnListFragmentInteractionListener listener) {
         mValues = items;
         mListener = listener;
     }
@@ -31,15 +25,15 @@ public class ConnectionsRecyclerViewAdapter extends RecyclerView.Adapter<Connect
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.fragment_contact, parent, false);
+                .inflate(R.layout.fragment_location, parent, false);
         return new ViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(final ViewHolder holder, int position) {
         holder.mItem = mValues.get(position);
-        holder.mIdView.setText(mValues.get(position).id);
-        holder.mContentView.setText(mValues.get(position).contact);
+        holder.mLocationView.setText(mValues.get(position).toString());
+
 
         holder.mView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -60,20 +54,20 @@ public class ConnectionsRecyclerViewAdapter extends RecyclerView.Adapter<Connect
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         public final View mView;
-        public final TextView mIdView;
-        public final TextView mContentView;
-        public Contact mItem;
+        public final TextView mLocationView;
+        public Locations.Location mItem;
 
         public ViewHolder(View view) {
             super(view);
             mView = view;
-            mIdView = (TextView) view.findViewById(R.id.item_location);
-            mContentView = (TextView) view.findViewById(R.id.content);
+            mLocationView = (TextView) view.findViewById(R.id.item_location);
+
+
         }
 
         @Override
         public String toString() {
-            return super.toString() + " '" + mContentView.getText() + "'";
+            return super.toString() + " '" + mLocationView.getText() + "'";
         }
     }
 }

@@ -12,6 +12,273 @@
         android:layout_height="match_parent" android:visibility="visible">
 
         <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/forecastContainer"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="0dp"
+            android:layout_marginTop="64dp"
+            android:layout_marginEnd="0dp"
+            android:layout_marginBottom="390dp">
+
+            <HorizontalScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="8dp"
+                android:fillViewport="true"
+                android:scrollbars="none"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+
+                    <Space
+                        android:layout_width="32dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="0" />
+
+                    <LinearLayout
+                        android:id="@+id/day1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:id="@+id/day1Image"
+                            android:layout_width="96dp"
+                            android:layout_height="64dp"
+                            android:src="@drawable/sunrise" />
+
+                        <TextView
+                            android:id="@+id/day1Desc"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:text="Cloudy" />
+
+                        <TextView
+                            android:id="@+id/day1Max"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Max: 71 F"
+                            android:gravity="center"/>
+
+                        <TextView
+                            android:id="@+id/day1Min"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Min: 60 F"
+                            android:gravity="center"/>
+
+                        <TextView
+                            android:id="@+id/day1Date"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="11/13/2019"
+                            android:gravity="center"/>
+                    </LinearLayout>
+
+                    <Space
+                        android:layout_width="32dp"
+                        android:layout_height="200dp"
+                        android:layout_weight="0" />
+
+                    <LinearLayout
+                        android:id="@+id/day2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:id="@+id/day2Image"
+                            android:layout_width="96dp"
+                            android:layout_height="64dp"
+                            android:src="@drawable/sunrise" />
+
+                        <TextView
+                            android:id="@+id/day2Desc"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:text="TESTER" />
+
+                        <TextView
+                            android:id="@+id/day2Max"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="TESTER"
+                            android:gravity="center"/>
+
+                        <TextView
+                            android:id="@+id/day2Min"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="TESTER"
+                            android:gravity="center"/>
+
+                        <TextView
+                            android:id="@+id/day2Date"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="TESTER"
+                            android:gravity="center"/>
+                    </LinearLayout>
+
+                    <Space
+                        android:layout_width="32dp"
+                        android:layout_height="200dp"
+                        android:layout_weight="0" />
+
+                    <LinearLayout
+                        android:id="@+id/day3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:id="@+id/day3Image"
+                            android:layout_width="96dp"
+                            android:layout_height="64dp"
+                            android:src="@drawable/sunrise" />
+
+                        <TextView
+                            android:id="@+id/day3Desc"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:text="TESTER" />
+
+                        <TextView
+                            android:id="@+id/day3Max"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="TESTER"
+                            android:gravity="center"/>
+
+                        <TextView
+                            android:id="@+id/day3Min"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="TESTER"
+                            android:gravity="center"/>
+
+                        <TextView
+                            android:id="@+id/day3Date"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="TESTER"
+                            android:gravity="center"/>
+                    </LinearLayout>
+
+                    <Space
+                        android:layout_width="32dp"
+                        android:layout_height="200dp"
+                        android:layout_weight="0" />
+
+                    <LinearLayout
+                        android:id="@+id/day4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:id="@+id/day4Image"
+                            android:layout_width="96dp"
+                            android:layout_height="64dp"
+                            android:src="@drawable/sunrise" />
+
+                        <TextView
+                            android:id="@+id/day4Desc"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:text="TESTER" />
+
+                        <TextView
+                            android:id="@+id/day4Max"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="TESTER"
+                            android:gravity="center"/>
+
+                        <TextView
+                            android:id="@+id/day4Min"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="TESTER"
+                            android:gravity="center"/>
+
+                        <TextView
+                            android:id="@+id/day4Date"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="TESTER"
+                            android:gravity="center"/>
+                    </LinearLayout>
+
+                    <Space
+                        android:layout_width="32dp"
+                        android:layout_height="200dp"
+                        android:layout_weight="0" />
+
+                    <LinearLayout
+                        android:id="@+id/day5"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:id="@+id/day5Image"
+                            android:layout_width="96dp"
+                            android:layout_height="64dp"
+                            android:src="@drawable/sunrise" />
+
+                        <TextView
+                            android:id="@+id/day5Desc"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:text="TESTER" />
+
+                        <TextView
+                            android:id="@+id/day5Max"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="TESTER"
+                            android:gravity="center"/>
+
+                        <TextView
+                            android:id="@+id/day5Min"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="TESTER"
+                            android:gravity="center"/>
+
+                        <TextView
+                            android:id="@+id/day5Date"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="TESTER"
+                            android:gravity="center"/>
+
+                    </LinearLayout>
+
+                    <Space
+                        android:layout_width="32dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="0" />
+                </LinearLayout>
+            </HorizontalScrollView>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/addressContainer"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
