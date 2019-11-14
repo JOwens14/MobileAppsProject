@@ -15,6 +15,7 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import MobileProject.WorkingTitle.model.Credentials;
 import MobileProject.WorkingTitle.utils.PushReceiver;
 import MobileProject.WorkingTitle.utils.SendPostAsyncTask;
 import androidx.appcompat.app.ActionBar;
@@ -60,9 +61,12 @@ public class ConversationFragment extends Fragment {
         super.onStart();
 
         //ChatFragmentArgs args = ChatFragmentArgs.fromBundle(getArguments());
-        mEmail = "fakeemail@gmail.com";
-        mJwToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImZha2VlbWFpbEBnbWFpbC5jb20iLCJpYXQiOjE1NzMyNzk2ODMsImV4cCI6MTU3MzM2NjA4M30.qjeu5u6BOQZ-ust2lipufjrRXp5pWUV0twxK49El0d4";
+//        mEmail = "";//"fakeemail@gmail.com";
+//        mJwToken = "";//"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImZha2VlbWFpbEBnbWFpbC5jb20iLCJpYXQiOjE1NzM3NTgxMjgsImV4cCI6MTU3Mzg0NDUyOH0.pf3PF6N2o6xiWEfwNMg5q521I1zaM_mMpVryhUuDELo";
 
+            Credentials userCr = (Credentials)getActivity().getIntent().getExtras().get("userCr");
+            mEmail = userCr.getEmail();
+            mJwToken = userCr.getJwtToken();
         //We will use this url every time the user hits send. Let's only build it once, ya?
         mSendUrl = new Uri.Builder()
                 .scheme("https")
@@ -84,6 +88,8 @@ public class ConversationFragment extends Fragment {
     @Override
     public void onViewCreated(View view, Bundle args) {
         if (getArguments() != null) {
+
+
             // TODO: Get mEmail and jwtToken here
             mMessageOutputTextView = view.findViewById(R.id.text_chat_message_display);
             mMessageInputEditText = view.findViewById(R.id.edittext_chatbox);
@@ -147,6 +153,12 @@ public class ConversationFragment extends Fragment {
         } catch (JSONException e) {
             e.printStackTrace();
         }
+
+        String sender = "<font color=#cc0029>" + mEmail +"</font>";
+
+        mMessageOutputTextView.append(Html.fromHtml(sender + ":" + msg));
+        mMessageOutputTextView.append(System.lineSeparator());
+        mMessageOutputTextView.append(System.lineSeparator());
 
         new SendPostAsyncTask.Builder(mSendUrl, messageJson)
                 .onPostExecute(this::endOfSendMsgTask)

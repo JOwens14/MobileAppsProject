@@ -56,7 +56,7 @@ public class HomeActivity extends AppCompatActivity implements BottomNavigationV
         setContentView(R.layout.activity_home);
 
         //Hide the notification icon whenever home activity loaded..
-        ((BottomNavigationView)findViewById(R.id.nav_view)).getMenu().getItem(3).setVisible(false);
+        //((BottomNavigationView)findViewById(R.id.nav_view)).getMenu().getItem(3).setVisible(false);
         ((BottomNavigationView)findViewById(R.id.nav_view)).setItemIconTintList(null);
         if (getIntent().getExtras() != null) {
             if (getIntent().getExtras().containsKey("userCr")) {
