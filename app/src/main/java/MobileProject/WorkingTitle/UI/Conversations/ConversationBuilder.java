@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Random;
 
 public class ConversationBuilder {
 
@@ -17,12 +18,17 @@ public class ConversationBuilder {
     }
 
     public static Conversation createConversation(String Contact, String lastMessage) {
-        return new Conversation.Builder(Contact, lastMessage, null).build();
+        Random rand = new Random();
+        int id = rand.nextInt(10000);
+
+        ArrayList messageList = new ArrayList();
+        messageList.add(lastMessage);
+        return new Conversation.Builder(Contact, lastMessage, messageList, id).build();
     }
 
     public static List getConversations() {
         //fake convos
-        String[] names = {"Luke", "Leia", "Han", "Chewy", "Bobba Fett", "R2-D2", "C3-P0", "Jango Fett", "Jyn Erso"};
+        String[] names = {"Luke", "Leia", "Han", "Chewy"};
         // Add some sample items.
 
         //makes sure the list is clear

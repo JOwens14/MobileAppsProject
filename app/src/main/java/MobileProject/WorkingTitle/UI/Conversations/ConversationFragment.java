@@ -51,6 +51,8 @@ public class ConversationFragment extends Fragment {
     private String mJwToken;
     private String mSendUrl;
 
+    private Conversation conversation;
+
 
     public ConversationFragment() {
         // Required empty public constructor
@@ -96,7 +98,7 @@ public class ConversationFragment extends Fragment {
             view.findViewById(R.id.button_chatbox_send).setOnClickListener(this::handleSendClick);
 
             Serializable convo = getArguments().getSerializable("conversation");
-            Conversation conversation = (Conversation) convo;
+            conversation = (Conversation) convo;
 
             //sets the actionbar title to the contact name
             AppCompatActivity activity = (AppCompatActivity) getActivity();
@@ -196,9 +198,11 @@ public class ConversationFragment extends Fragment {
                 if (!mEmail.equals(intent.getStringExtra("SENDER"))) {
                     String sender = "<font color=#cc0029>" + intent.getStringExtra("SENDER") + "</font>";
                     String messageText = intent.getStringExtra("MESSAGE");
-                    mMessageOutputTextView.append(Html.fromHtml(sender + ":" + messageText));
+                    mMessageOutputTextView.append(Html.fromHtml(sender + ": " + messageText));
                     mMessageOutputTextView.append(System.lineSeparator());
                     mMessageOutputTextView.append(System.lineSeparator());
+
+
 
                     //String text = "<font color=#cc0029>First Color</font> <font color=#ffcc00>Second Color</font>";
                     //mMessageOutputTextView.setText(Html.fromHtml(text));

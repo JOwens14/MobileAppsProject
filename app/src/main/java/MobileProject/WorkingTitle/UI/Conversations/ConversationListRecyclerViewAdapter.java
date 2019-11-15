@@ -13,13 +13,13 @@ import MobileProject.WorkingTitle.R;
  * {@link RecyclerView.Adapter} that can display a {@link Conversation} and makes a call to the
  * TODO: Replace the implementation with code for your data type.
  */
-public class ConversationsRecyclerViewAdapter extends RecyclerView.Adapter<ConversationsRecyclerViewAdapter.ViewHolder> {
+public class ConversationListRecyclerViewAdapter extends RecyclerView.Adapter<ConversationListRecyclerViewAdapter.ViewHolder> {
 
     private final List<Conversation> mValues;
     private final ConversationListFragment.OnListFragmentInteractionListener mListener;
 
 
-    public ConversationsRecyclerViewAdapter(List<Conversation> items, ConversationListFragment.OnListFragmentInteractionListener listener) {
+    public ConversationListRecyclerViewAdapter(List<Conversation> items, ConversationListFragment.OnListFragmentInteractionListener listener) {
         mValues = items;
         mListener = listener;
 

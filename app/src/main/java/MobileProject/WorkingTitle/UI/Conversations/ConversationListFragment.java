@@ -2,7 +2,6 @@ package MobileProject.WorkingTitle.UI.Conversations;
 
 import android.content.Context;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -83,7 +82,7 @@ public class ConversationListFragment extends Fragment {
             } else {
                 recyclerView.setLayoutManager(new GridLayoutManager(context, mColumnCount));
             }
-            recyclerView.setAdapter(new ConversationsRecyclerViewAdapter(mConversations, this::onClick));
+            recyclerView.setAdapter(new ConversationListRecyclerViewAdapter(mConversations, this::onClick));
 
         }
         return view;

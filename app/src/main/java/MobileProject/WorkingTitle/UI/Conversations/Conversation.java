@@ -12,12 +12,14 @@ public class Conversation implements Serializable, Parcelable {
     private final String mContact;
     private final String mlastMessage;
     private final ArrayList mMessages;
+    private final int mChatID;
 
 
     protected Conversation(Parcel in) {
         mContact = in.readString();
         mlastMessage = in.readString();
         mMessages = in.createBinderArrayList();
+        mChatID = in.readInt();
     }
 
     public static final Creator<Conversation> CREATOR = new Creator<Conversation>() {
@@ -42,6 +44,7 @@ public class Conversation implements Serializable, Parcelable {
         dest.writeString(mContact);
         dest.writeString(mlastMessage);
         dest.writeBinderList(mMessages);
+        dest.writeInt(mChatID);
     }
 
     /**
@@ -52,14 +55,16 @@ public class Conversation implements Serializable, Parcelable {
         private final String mContact;
         private  String mlastMessage;
         private ArrayList mMessages;
+        private int mChatId;
 
         /**
          * Constructs a new Builder.
          */
-        public Builder(String mContact, String lastMessage, ArrayList messages) {
+        public Builder(String mContact, String lastMessage, ArrayList messages, int id) {
             this.mContact = mContact;
             this.mlastMessage = lastMessage;
             this.mMessages = messages;
+            this.mChatId = id;
         }
 
         public Conversation build() {
@@ -72,7 +77,10 @@ public class Conversation implements Serializable, Parcelable {
         this.mContact = builder.mContact;
         this.mlastMessage = builder.mlastMessage;
         this.mMessages = builder.mMessages;
+        this.mChatID = builder.mChatId;
     }
+
+
 
     public String getContact() {
         return mContact;
@@ -84,6 +92,10 @@ public class Conversation implements Serializable, Parcelable {
 
     public ArrayList getMessages() {
         return mMessages;
+    }
+
+    public void addMessage(String message) {
+        this.mMessages.add(message);
     }
 
 
