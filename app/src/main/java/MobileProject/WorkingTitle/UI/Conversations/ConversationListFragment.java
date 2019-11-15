@@ -6,6 +6,9 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
@@ -61,9 +64,14 @@ public class ConversationListFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
+        AppCompatActivity activity = (AppCompatActivity) getActivity();
+        ActionBar actionBar = activity.getSupportActionBar();
+        actionBar.setDisplayHomeAsUpEnabled(false);
+
         View view = inflater.inflate(R.layout.fragment_conversations_list, container, false);
 
-        Log.d("ARRIVAL", String.valueOf(mConversations.size()));
+        //Log.d("ARRIVAL", String.valueOf(mConversations.size()));
         // Set the adapter
         if (view instanceof RecyclerView) {
             Context context = view.getContext();

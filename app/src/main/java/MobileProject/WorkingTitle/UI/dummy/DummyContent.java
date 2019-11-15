@@ -24,7 +24,7 @@ public class DummyContent implements Serializable {
      */
     public static final Map<String, Contact> CONTACT_MAP = new HashMap<String, Contact>();
 
-    private static final int COUNT = 25;
+    private static final int COUNT = 15;
 
     static {
         // Add some sample items.

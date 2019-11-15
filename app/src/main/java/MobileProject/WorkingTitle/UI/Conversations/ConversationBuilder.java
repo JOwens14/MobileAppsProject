@@ -22,7 +22,7 @@ public class ConversationBuilder {
 
     public static List getConversations() {
         //fake convos
-        String[] names = {"Luke", "Leia", "Han", "Chewy", "Bobba Fett", "R2-D2", "C3-P0"};
+        String[] names = {"Luke", "Leia", "Han", "Chewy", "Bobba Fett", "R2-D2", "C3-P0", "Jango Fett", "Jyn Erso"};
         // Add some sample items.
 
         //makes sure the list is clear

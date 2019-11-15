@@ -8,13 +8,15 @@ import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
 import MobileProject.WorkingTitle.R;
 
-public class ConnectionsFragment extends Fragment {
+public class ConnectionFragment extends Fragment {
 
     private ConnectionsViewModel shareViewModel;
 
@@ -30,6 +32,9 @@ public class ConnectionsFragment extends Fragment {
                 textView.setText(s);
             }
         });
+
+
+
         return root;
     }
 }
