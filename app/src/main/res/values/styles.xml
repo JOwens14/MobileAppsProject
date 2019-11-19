@@ -20,6 +20,12 @@
         <item name="android:colorAccent">#1b5e20</item>
     </style>
 
+    <style name="WhiteText" parent="@style/Theme.AppCompat.Light">
+        ...
+        <item name="android:textColor">#FFFFFF</item>
+        ...
+    </style>
+
 
 
 
