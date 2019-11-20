@@ -60,6 +60,7 @@ public class ConversationFragment extends Fragment {
     private String mJwToken;
     private String mSendUrl;
 
+    private RecyclerView recyclerView;
     private Conversation conversation;
 
     private int mColumnCount = 1;
@@ -119,7 +120,7 @@ public class ConversationFragment extends Fragment {
 
             if (view.findViewById(R.id.reyclerview_message_list) != null) {
                 Context context = view.getContext();
-                RecyclerView recyclerView = view.findViewById(R.id.reyclerview_message_list);
+                recyclerView = view.findViewById(R.id.reyclerview_message_list);
 
 
                 if (mColumnCount <= 1) {
@@ -200,11 +201,13 @@ public class ConversationFragment extends Fragment {
             e.printStackTrace();
         }
 
-        String sender = "<font color=#cc0029>" + mEmail +"</font>";
+        String sender = mEmail;
 
         conversation.addMessage(sender + ": " + msg);
 //        mMessageOutputTextView.append(System.lineSeparator());
 //        mMessageOutputTextView.append(System.lineSeparator());
+
+        recyclerView.getAdapter().notifyDataSetChanged();
 
         new SendPostAsyncTask.Builder(mSendUrl, messageJson)
                 .onPostExecute(this::endOfSendMsgTask)
@@ -240,9 +243,10 @@ public class ConversationFragment extends Fragment {
         public void onReceive(Context context, Intent intent) {
             if(intent.hasExtra("SENDER") && intent.hasExtra("MESSAGE")) {
                 if (!mEmail.equals(intent.getStringExtra("SENDER"))) {
-                    String sender = "<font color=#cc0029>" + intent.getStringExtra("SENDER") + "</font>";
+                    String sender = intent.getStringExtra("SENDER") ;
                     String messageText = intent.getStringExtra("MESSAGE");
                     conversation.addMessage(sender + ":" + messageText);
+                    recyclerView.getAdapter().notifyDataSetChanged();
 //                    mMessageOutputTextView.append(System.lineSeparator());
 //                    mMessageOutputTextView.append(System.lineSeparator());
 
