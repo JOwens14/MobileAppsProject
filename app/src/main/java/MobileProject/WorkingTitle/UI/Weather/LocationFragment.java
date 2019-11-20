@@ -89,6 +89,7 @@ public class LocationFragment extends Fragment {
         fab.setOnClickListener(this::showAddItemDialog);
 
 
+        //Log.d("location list: ", Locations.LOCATIONS.toString());
 
         // Set the adapter
         if (view.findViewById(R.id.list) != null) {

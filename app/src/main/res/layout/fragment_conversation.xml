@@ -18,7 +18,6 @@
         app:layout_constraintBottom_toTopOf="@+id/view"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-
         app:layout_constraintTop_toTopOf="parent"
         tools:listitem="@layout/fragment_conversation_message"></androidx.recyclerview.widget.RecyclerView>
 
