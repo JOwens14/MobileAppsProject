@@ -12,6 +12,7 @@
         android:layout_height="wrap_content"
         android:background="@color/colorPrimary"
         android:visibility="visible"
+        app:itemIconSize="32dp"
         app:itemIconTint="@drawable/notification_selector"
         app:itemTextColor="#FFFFFF"
         app:layout_constraintBottom_toBottomOf="parent"

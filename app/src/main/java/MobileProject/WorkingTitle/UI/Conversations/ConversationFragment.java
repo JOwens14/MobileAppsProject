@@ -37,6 +37,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 import MobileProject.WorkingTitle.R;
@@ -58,6 +59,8 @@ public class ConversationFragment extends Fragment {
     private String mEmail;
     private String mJwToken;
     private String mSendUrl;
+
+    private Conversation conversation;
 
     private int mColumnCount = 1;
 
@@ -106,14 +109,17 @@ public class ConversationFragment extends Fragment {
             view.findViewById(R.id.button_chatbox_send).setOnClickListener(this::handleSendClick);
 
             Serializable convo = getArguments().getSerializable("conversation");
-            Conversation conversation = (Conversation) convo;
+            conversation = (Conversation) convo;
 
-            List<String> mMessages = ((Conversation) convo).getMessages();
+            ArrayList mMessages = conversation.getMessages();
+
+            //Log.d("messages:", mMessages.toString());
 
 
-            if (view instanceof RecyclerView) {
+
+            if (view.findViewById(R.id.reyclerview_message_list) != null) {
                 Context context = view.getContext();
-                RecyclerView recyclerView = (RecyclerView) view;
+                RecyclerView recyclerView = view.findViewById(R.id.reyclerview_message_list);
 
 
                 if (mColumnCount <= 1) {
@@ -196,9 +202,9 @@ public class ConversationFragment extends Fragment {
 
         String sender = "<font color=#cc0029>" + mEmail +"</font>";
 
-        mMessageOutputTextView.append(Html.fromHtml(sender + ":" + msg));
-        mMessageOutputTextView.append(System.lineSeparator());
-        mMessageOutputTextView.append(System.lineSeparator());
+        conversation.addMessage(sender + ": " + msg);
+//        mMessageOutputTextView.append(System.lineSeparator());
+//        mMessageOutputTextView.append(System.lineSeparator());
 
         new SendPostAsyncTask.Builder(mSendUrl, messageJson)
                 .onPostExecute(this::endOfSendMsgTask)
@@ -236,9 +242,9 @@ public class ConversationFragment extends Fragment {
                 if (!mEmail.equals(intent.getStringExtra("SENDER"))) {
                     String sender = "<font color=#cc0029>" + intent.getStringExtra("SENDER") + "</font>";
                     String messageText = intent.getStringExtra("MESSAGE");
-                    mMessageOutputTextView.append(Html.fromHtml(sender + ":" + messageText));
-                    mMessageOutputTextView.append(System.lineSeparator());
-                    mMessageOutputTextView.append(System.lineSeparator());
+                    conversation.addMessage(sender + ":" + messageText);
+//                    mMessageOutputTextView.append(System.lineSeparator());
+//                    mMessageOutputTextView.append(System.lineSeparator());
 
                     //String text = "<font color=#cc0029>First Color</font> <font color=#ffcc00>Second Color</font>";
                     //mMessageOutputTextView.setText(Html.fromHtml(text));

@@ -1,6 +1,7 @@
 package MobileProject.WorkingTitle.UI.Conversations;
 
 import android.text.Html;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -25,14 +26,15 @@ public class ConversationRecyclerViewAdapter extends RecyclerView.Adapter<Conver
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.fragment_conversation, parent, false);
+                .inflate(R.layout.fragment_conversation_message, parent, false);
         return new ViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(final ViewHolder holder, int position) {
         holder.mItem = mValues.get(position);
-        holder.mMessage.setText(mValues.get(0));
+        holder.mMessage.setText(mValues.get(position));
+        Log.d("RecyclerView message IN: ", holder.mMessage.getText().toString());
 
 
 
@@ -56,13 +58,12 @@ public class ConversationRecyclerViewAdapter extends RecyclerView.Adapter<Conver
     public class ViewHolder extends RecyclerView.ViewHolder {
         public final View mView;
         public final TextView mMessage;
-
-
         public String mItem;
 
         public ViewHolder(View view) {
             super(view);
-            mView = view.findViewById(R.id.reyclerview_message_list);
+            //mView = view.findViewById(R.id.reyclerview_message_list);
+            mView = view;
             mMessage = view.findViewById(R.id.conversation_message);
 
         }

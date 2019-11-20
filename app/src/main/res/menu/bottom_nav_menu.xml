@@ -4,25 +4,25 @@
     <item
         android:id="@+id/nav_conversationList"
         android:icon="@drawable/duck_logo_blue"
-        android:title="@string/menu_home"
-        android:visible="true" />
+        android:visible="true"
+        android:title="Home"/>
 
     <item
         android:id="@+id/nav_connections"
         android:icon="@drawable/duck_logo_blue"
-        android:title="@string/menu_connections"
-        android:visible="true" />
+        android:visible="true"
+        android:title="Connections"/>
 
     <item
         android:id="@+id/nav_weather"
         android:icon="@drawable/duck_logo_blue"
-        android:title="@string/menu_weather"
-        android:visible="true" />
+        android:visible="true"
+        android:title="Weather"/>
     <item
         android:id="@+id/nav_notification"
         android:icon="@drawable/ic_chat_red_24dp"
-        android:title="Notification"
-        android:visible="false"/>
+        android:visible="false"
+        android:title="Alert"/>
 
 
 </menu>
