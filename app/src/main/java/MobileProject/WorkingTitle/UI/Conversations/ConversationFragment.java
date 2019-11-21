@@ -9,10 +9,13 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.text.Html;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.FrameLayout;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 
@@ -59,6 +62,7 @@ public class ConversationFragment extends Fragment {
     private String mEmail;
     private String mJwToken;
     private String mSendUrl;
+    private String mUser;
 
     private RecyclerView recyclerView;
     private Conversation conversation;
@@ -81,7 +85,8 @@ public class ConversationFragment extends Fragment {
             Credentials userCr = (Credentials)getActivity().getIntent().getExtras().get("userCr");
             mEmail = userCr.getEmail();
             mJwToken = userCr.getJwtToken();
-        //We will use this url every time the user hits send. Let's only build it once, ya?
+            mUser = userCr.getUsername();
+        //We will use this url every time the user hits send. Let's only build it once, ya? - yes please
         mSendUrl = new Uri.Builder()
                 .scheme("https")
                 .appendPath(getString(R.string.base_url))
@@ -107,6 +112,7 @@ public class ConversationFragment extends Fragment {
             // TODO: Get mEmail and jwtToken here
             mMessageOutputTextView = view.findViewById(R.id.conversation_message);
             mMessageInputEditText = view.findViewById(R.id.edittext_chatbox);
+
             view.findViewById(R.id.button_chatbox_send).setOnClickListener(this::handleSendClick);
 
             Serializable convo = getArguments().getSerializable("conversation");
@@ -115,7 +121,6 @@ public class ConversationFragment extends Fragment {
             ArrayList mMessages = conversation.getMessages();
 
             //Log.d("messages:", mMessages.toString());
-
 
 
             if (view.findViewById(R.id.reyclerview_message_list) != null) {
@@ -134,9 +139,6 @@ public class ConversationFragment extends Fragment {
 
 
 
-
-
-
             //sets the actionbar title to the contact name
             AppCompatActivity activity = (AppCompatActivity) getActivity();
             ActionBar actionBar = activity.getSupportActionBar();
@@ -146,6 +148,26 @@ public class ConversationFragment extends Fragment {
             //disables the bottom nav bar while in conversation
             BottomNavigationView navView = activity.findViewById(R.id.nav_view);
             navView.setVisibility(view.GONE);
+
+
+            //adjusts the recycler view when the layout size changes. IE: when the keyboard is opened
+            recyclerView.addOnLayoutChangeListener((v, left, top, right, bottom,
+                                                    oldLeft, oldTop, oldRight, oldBottom) -> {
+                if (bottom < oldBottom) {
+                    recyclerView.postDelayed(() -> {
+                        //if statement is to not crash when the conversation is empty
+                        if (recyclerView.getAdapter().getItemCount() > 1) {
+                            recyclerView.smoothScrollToPosition(
+                                    recyclerView.getAdapter().getItemCount() - 1);
+                        }
+                    }, 1);
+                }
+            });
+
+
+
+
+
         }
     }
 
@@ -189,8 +211,16 @@ public class ConversationFragment extends Fragment {
         }
     }
 
+
+
     private void handleSendClick(final View theButton) {
         String msg = mMessageInputEditText.getText().toString();
+
+        //handler for if sending empty message
+        if (msg.isEmpty()) {
+            //do not pass go, do not collect 200 dollars
+            return;
+        }
 
         JSONObject messageJson = new JSONObject();
         try {
@@ -201,13 +231,13 @@ public class ConversationFragment extends Fragment {
             e.printStackTrace();
         }
 
-        String sender = mEmail;
+        String sender = mUser;
 
         conversation.addMessage(sender + ": " + msg);
-//        mMessageOutputTextView.append(System.lineSeparator());
-//        mMessageOutputTextView.append(System.lineSeparator());
 
+        // notifies the list that there has been an update and scrolls to the bottom of the list
         recyclerView.getAdapter().notifyDataSetChanged();
+        recyclerView.scrollToPosition(conversation.getSize() - 1);
 
         new SendPostAsyncTask.Builder(mSendUrl, messageJson)
                 .onPostExecute(this::endOfSendMsgTask)
@@ -245,13 +275,13 @@ public class ConversationFragment extends Fragment {
                 if (!mEmail.equals(intent.getStringExtra("SENDER"))) {
                     String sender = intent.getStringExtra("SENDER") ;
                     String messageText = intent.getStringExtra("MESSAGE");
-                    conversation.addMessage(sender + ":" + messageText);
-                    recyclerView.getAdapter().notifyDataSetChanged();
-//                    mMessageOutputTextView.append(System.lineSeparator());
-//                    mMessageOutputTextView.append(System.lineSeparator());
+                    conversation.addMessage(sender + ": " + messageText);
 
-                    //String text = "<font color=#cc0029>First Color</font> <font color=#ffcc00>Second Color</font>";
-                    //mMessageOutputTextView.setText(Html.fromHtml(text));
+
+
+                    // notifies the list that there has been an update and scrolls to the bottom of the list
+                    recyclerView.getAdapter().notifyDataSetChanged();
+                    recyclerView.scrollToPosition(conversation.getSize() - 1);
                 }
             }
         }
