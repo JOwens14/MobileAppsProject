@@ -1,4 +1,6 @@
-package MobileProject.WorkingTitle.UI.dummy;
+package MobileProject.WorkingTitle.model;
+
+import android.os.Parcelable;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -12,19 +14,19 @@ import java.util.Map;
  * <p>
  * TODO: Replace all uses of this class before publishing your app.
  */
-public class DummyContent implements Serializable {
+public class Contacts implements Serializable {
 
     /**
      * An array of sample (dummy) items.
      */
-    public static final List<Contact> STUDENTS = new ArrayList<Contact>();
+    public static final List<Contact> FRIENDS = new ArrayList<Contact>();
 
     /**
      * A map of sample (dummy) items, by ID.
      */
     public static final Map<String, Contact> CONTACT_MAP = new HashMap<String, Contact>();
 
-    private static final int COUNT = 15;
+    private static final int COUNT = 1;
 
     static {
         // Add some sample items.
@@ -33,13 +35,13 @@ public class DummyContent implements Serializable {
         }
     }
 
-    private static void addItem(Contact item) {
-        STUDENTS.add(item);
+    public static void addItem(Contact item) {
+        FRIENDS.add(item);
         CONTACT_MAP.put(item.id, item);
     }
 
     private static Contact createContact(int position) {
-        return new Contact(String.valueOf(position), "Contact " + position, makeDetails(position));
+        return new Contact(String.valueOf(position), "Add new contact ", makeDetails(position));
     }
 
     private static String makeDetails(int position) {
@@ -54,15 +56,52 @@ public class DummyContent implements Serializable {
     /**
      * A dummy item representing a piece of content.
      */
-    public static class Contact {
+    public static class Contact implements Serializable {
         public final String id;
         public final String contact;
         public final String details;
+        private String token;
+        private String username;
+        private String email;
+        private String status;
 
         public Contact(String id, String contact, String details) {
             this.id = id;
             this.contact = contact;
             this.details = details;
+            this.token = "";
+            this.email = "";
+            this.username = "";
+            status = "";
+        }
+
+        public void setToken(String token) {
+            this.token = token;
+        }
+        public void setUsername(String username) {
+            this.username = username;
+        }
+        public void setEmail(String email) {
+            this.email = email;
+        }
+        public void setStatus(String status) {
+            this.status = status;
+        }
+
+        public String getEmail() {
+            return email;
+        }
+
+        public String getToken() {
+            return token;
+        }
+
+        public String getUsername() {
+            return username;
+        }
+
+        public String getStatus() {
+            return status;
         }
 
         @Override

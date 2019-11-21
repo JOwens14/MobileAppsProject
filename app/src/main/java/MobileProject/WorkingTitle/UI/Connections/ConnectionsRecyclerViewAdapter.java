@@ -5,11 +5,12 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import MobileProject.WorkingTitle.R;
 import MobileProject.WorkingTitle.UI.Connections.ConnectionsListFragment.OnListFragmentInteractionListener;
-import MobileProject.WorkingTitle.UI.dummy.DummyContent.Contact;
+import MobileProject.WorkingTitle.model.Contacts.Contact;
 
 import java.util.List;
 
@@ -21,9 +22,9 @@ import java.util.List;
 public class ConnectionsRecyclerViewAdapter extends RecyclerView.Adapter<ConnectionsRecyclerViewAdapter.ViewHolder> {
 
     private final List<Contact> mValues;
-    private final OnListFragmentInteractionListener mListener;
+    private final ConnectionsListFragment.OnListFragmentInteractionListener mListener;
 
-    public ConnectionsRecyclerViewAdapter(List<Contact> items, OnListFragmentInteractionListener listener) {
+    public ConnectionsRecyclerViewAdapter(List<Contact> items, ConnectionsListFragment.OnListFragmentInteractionListener listener) {
         mValues = items;
         mListener = listener;
     }
@@ -39,7 +40,8 @@ public class ConnectionsRecyclerViewAdapter extends RecyclerView.Adapter<Connect
     public void onBindViewHolder(final ViewHolder holder, int position) {
         holder.mItem = mValues.get(position);
         holder.mIdView.setText(mValues.get(position).id);
-        holder.mContentView.setText(mValues.get(position).contact);
+        holder.mContentView.setText(mValues.get(position).contact + "              "
+                +mValues.get(position).getStatus());
 
         holder.mView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -62,6 +64,8 @@ public class ConnectionsRecyclerViewAdapter extends RecyclerView.Adapter<Connect
         public final View mView;
         public final TextView mIdView;
         public final TextView mContentView;
+        public final TextView mStatus;
+//        public final Button mApprove;
         public Contact mItem;
 
         public ViewHolder(View view) {
@@ -69,6 +73,8 @@ public class ConnectionsRecyclerViewAdapter extends RecyclerView.Adapter<Connect
             mView = view;
             mIdView = (TextView) view.findViewById(R.id.item_location);
             mContentView = (TextView) view.findViewById(R.id.content);
+            mStatus = (TextView) view.findViewById(R.id.pendingStatus);
+//            mApprove = (Button) view.findViewById(R.id.ApproveRequest);
         }
 
         @Override

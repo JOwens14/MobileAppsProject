@@ -27,6 +27,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import MobileProject.WorkingTitle.R;
+import me.pushy.sdk.Pushy;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -97,6 +98,21 @@ public class RegisterFragment extends Fragment {
             return;
         }
 
+        //get pushy token
+        String deviceToken = "TokenDevice";
+
+
+        try {
+            // Assign a unique token to this device
+            deviceToken = Pushy.register(getActivity().getApplicationContext());
+
+            //subscribe to a topic (this is a Blocking call)
+            Pushy.subscribe("all", getActivity().getApplicationContext());
+        }
+        catch (Exception exc) {
+            Log.d("deviceToken","something wrong when retrive device token");
+        }
+
         // TODO: validations
 
         JSONObject msg = new JSONObject();
@@ -106,6 +122,7 @@ public class RegisterFragment extends Fragment {
             msg.put("username", userName);
             msg.put("email", email);
             msg.put("password", password);
+            msg.put("token", deviceToken);
         } catch (JSONException e) {
             //cancel will result in onCanceled not onPostExecute
 //            cancel(true);

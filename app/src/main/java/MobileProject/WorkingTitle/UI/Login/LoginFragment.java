@@ -277,7 +277,7 @@ public class LoginFragment extends Fragment {
                     Log.d("LOGIN_PUSHY", "Pushy Token: " + ob.getString("token"));
                     Log.d("LOGIN_PUSHY", "JWT Token: " + ob.getString("jwtToken"));
                     loginSuccessHelper(ob.getString("firstname"),ob.getString("lastname"),
-                            ob.getString("username"), ob.getString("jwtToken"));
+                            ob.getString("username"), ob.getString("jwtToken"), ob.getString("memberid"));
                 } else {
                     attamped++;
                     if (attamped <= 3)
@@ -300,7 +300,7 @@ public class LoginFragment extends Fragment {
     }
 
 
-    private void loginSuccessHelper (String firstname, String lastname, String username, String jwtToken) {
+    private void loginSuccessHelper (String firstname, String lastname, String username, String jwtToken, String memberid) {
         String email = ((EditText)getActivity().findViewById(R.id.editText_EmailLogin)).getText().toString();
         String password = ((EditText)getActivity().findViewById(R.id.editText_PasswordLogin)).getText().toString();
         Credentials cr = new Credentials.Builder(email, password)
@@ -308,6 +308,7 @@ public class LoginFragment extends Fragment {
                 .addLastName(lastname)
                 .addUsername(username)
                 .addJwtToken(jwtToken)
+                .addMemberid(memberid)
                 .build();
         if (((CheckBox)getActivity().findViewById(R.id.login_checkBox)).isChecked()) {
             saveCredentials(cr);
@@ -327,6 +328,18 @@ public class LoginFragment extends Fragment {
                     ChatMessageNotification chat =
                             new ChatMessageNotification.Builder(sender, msg).build();
                     mIntent.putExtra("chatMessage", chat);
+                }
+            }
+
+            // Friend request
+            if (getArguments().containsKey("type")) {
+                if (getArguments().getString("type").equals("friendRequest")) {
+                    String msg = getArguments().getString("message");
+                    String sender = getArguments().getString("sender");
+
+                    ChatMessageNotification friend =
+                            new ChatMessageNotification.Builder(sender, msg).build();
+                    mIntent.putExtra("friendRequest", friend);
                 }
             }
         }

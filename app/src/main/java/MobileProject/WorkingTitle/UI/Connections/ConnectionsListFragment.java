@@ -6,17 +6,22 @@ import android.os.Bundle;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import java.util.List;
+
 import MobileProject.WorkingTitle.R;
-import MobileProject.WorkingTitle.UI.dummy.DummyContent;
-import MobileProject.WorkingTitle.UI.dummy.DummyContent.Contact;
+import MobileProject.WorkingTitle.model.Contacts;
+import MobileProject.WorkingTitle.model.Contacts.Contact;
 
 /**
  * A fragment representing a list of Items.
@@ -30,7 +35,9 @@ public class ConnectionsListFragment extends Fragment {
     private static final String ARG_COLUMN_COUNT = "column-count";
     // TODO: Customize parameters
     private int mColumnCount = 1;
-    private OnListFragmentInteractionListener mListener;
+    private RecyclerView recyclerView;
+
+    private ConnectionFragment mListener;
 
     /**
      * Mandatory empty constructor for the fragment manager to instantiate the
@@ -63,22 +70,31 @@ public class ConnectionsListFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_contact_list, container, false);
 
-        // Set the adapter
-        if (view instanceof RecyclerView) {
-            Context context = view.getContext();
-            RecyclerView recyclerView = (RecyclerView) view;
-            if (mColumnCount <= 1) {
-                recyclerView.setLayoutManager(new LinearLayoutManager(context));
-            } else {
-                recyclerView.setLayoutManager(new GridLayoutManager(context, mColumnCount));
-            }
-            recyclerView.setAdapter(new ConnectionsRecyclerViewAdapter(DummyContent.STUDENTS, mListener));
-        }
-
-        AppCompatActivity activity = (AppCompatActivity) getActivity();
-        ActionBar actionBar = activity.getSupportActionBar();
-        actionBar.setTitle("Connections");
         return view;
+    }
+
+    @Override
+    public void onViewCreated(View view, Bundle args) {
+        if (getArguments() != null) {
+
+            // Set the adapter
+            if (view instanceof RecyclerView) {
+                Context context = view.getContext();
+                RecyclerView recyclerView = (RecyclerView) view;
+                if (mColumnCount <= 1) {
+                    recyclerView.setLayoutManager(new LinearLayoutManager(context));
+                } else {
+                    recyclerView.setLayoutManager(new GridLayoutManager(context, mColumnCount));
+                }
+                Contacts contacts = (Contacts) getActivity().getIntent().getExtras().get("contacts");
+                List<Contact> contact = contacts.FRIENDS;
+                recyclerView.setAdapter(new ConnectionsRecyclerViewAdapter(contact, this::contactClick));
+            }
+
+            AppCompatActivity activity = (AppCompatActivity) getActivity();
+            ActionBar actionBar = activity.getSupportActionBar();
+            actionBar.setTitle("Connections");
+        }
     }
 
 /*
@@ -99,6 +115,22 @@ public class ConnectionsListFragment extends Fragment {
         mListener = null;
     }
 */
+    public void contactClick(Contact contact) {
+        //todo maybe
+        Log.wtf("HOP:", contact.toString());
+        final Bundle args = new Bundle();
+        args.putSerializable("connection", contact);
+
+        NavController nc = Navigation.findNavController(getView());
+        //TODO : check to make sure this code is right.
+//        if (nc.getCurrentDestination().getId() != R.id.nav_home) {
+//            nc.navigateUp();
+//        }
+//        Log.d("current location" , String.valueOf(nc.getCurrentDestination().getLabel()));
+        if(contact.getEmail() != null) {
+            nc.navigate(R.id.action_nav_connections_to_connectionFragment, args);
+        }
+    }
 
     /**
      * This interface must be implemented by activities that contain this

@@ -14,6 +14,7 @@ import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 
+import MobileProject.WorkingTitle.model.Contacts;
 import MobileProject.WorkingTitle.model.Credentials;
 import MobileProject.WorkingTitle.utils.PushReceiver;
 import androidx.annotation.NonNull;
@@ -32,6 +33,21 @@ import com.google.android.material.navigation.NavigationView;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.TextView;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.BufferedReader;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.util.List;
+
 import androidx.appcompat.widget.Toolbar;
 
 import MobileProject.WorkingTitle.UI.Conversations.Conversation;
@@ -62,10 +78,24 @@ public class HomeActivity extends AppCompatActivity implements BottomNavigationV
             if (getIntent().getExtras().containsKey("userCr")) {
                 Credentials cr = (Credentials) getIntent().getExtras().get("userCr");
                 Log.d("LOGIN_USER", "JWT Token: " + cr.getJwtToken());
+                //Load contacts first time.
+                //TODO reload when new friend added.
+                if (!getIntent().getExtras().containsKey("contacts")) {
+                    loadContacts(cr.getMemberId());
+                }
             }
             if (getIntent().getExtras().containsKey("type")) {
                 Navigation.findNavController(this, R.id.nav_host_fragment)
                         .setGraph(R.navigation.mobile_navigation, getIntent().getExtras());
+            }
+
+            // Display friend request alert
+            if (getIntent().getExtras().containsKey("type")) {
+                if (getIntent().getExtras().getString("type").equals("friendRequest")) {
+                    BottomNavigationView navView = findViewById(R.id.nav_view);
+                    navView.getMenu().getItem(1).setIcon(R.drawable.ic_chat_red_24dp);
+                    navView.setItemIconTintList(null);
+                }
             }
 
 //            if(getIntent().getExtras().containsKey("chatMessage")) {
@@ -284,6 +314,22 @@ public class HomeActivity extends AppCompatActivity implements BottomNavigationV
         }
     }
 
+    private void loadContacts(String memberId) {
+        AsyncTask<String, Void, String> task = null;
+        JSONObject msg = new JSONObject();
+        try {
+            msg.put("memberid", memberId);
+        } catch (JSONException e) {
+            //cancel will result in onCanceled not onPostExecute
+//            cancel(true);
+            Log.wtf("Error with JSON creation:", e.getMessage());
+        }
+        task = new PostWebServiceTask();
+        task.execute(getString(R.string.base_url),
+                getString(R.string.contacts),
+                msg.toString());
+    }
+
     /**
      * A BroadcastReceiver that listens for messages sent from PushReceiver
      */
@@ -296,9 +342,19 @@ public class HomeActivity extends AppCompatActivity implements BottomNavigationV
                     Navigation.findNavController(HomeActivity.this, R.id.nav_host_fragment);
             NavDestination nd = nc.getCurrentDestination();
             if (nd.getId() != R.id.mobile_navigation) {
+                if (intent.getExtras().getString("type").equals("friendRequest")) {
+                    Contacts contacts = (Contacts)intent.getExtras().get("contacts");
+                    Contacts.Contact newContact = new Contacts.Contact("",intent.getStringExtra("SENDER"),intent.getStringExtra("MESSAGE"));
+                    newContact.setStatus(intent.getStringExtra("MESSAGE") + "                  Approve the request");
+                    contacts.addItem(newContact);
+                    getIntent().removeExtra("contacts");
+                    intent.putExtra("contacts",contacts);
+                    BottomNavigationView navView = findViewById(R.id.nav_view);
+                    navView.getMenu().getItem(1).setIcon(R.drawable.ic_chat_red_24dp);
+                    navView.setItemIconTintList(null);
+                }
 
-                if (intent.hasExtra("SENDER") && intent.hasExtra("MESSAGE")) {
-
+                if (intent.hasExtra("SENDER") && intent.hasExtra("MESSAGE") && intent.getExtras().getString("type").equals("msg")) {
 
                     String sender = intent.getStringExtra("SENDER");
                     String messageText = intent.getStringExtra("MESSAGE");
@@ -327,6 +383,119 @@ public class HomeActivity extends AppCompatActivity implements BottomNavigationV
                 }
             }
         }
+    }
+
+
+
+    private class PostWebServiceTask extends AsyncTask<String, Void, String> {
+
+        @Override
+        protected String doInBackground(String... strings) {
+            //get pushy token
+            String deviceToken;
+
+            if (strings.length != 3) {
+                throw new IllegalArgumentException("Three String arguments required.");
+            }
+            String response = "";
+            HttpURLConnection urlConnection = null;
+            String url = strings[0];
+            String endPoint = strings[1];
+            JSONObject ob = new JSONObject();
+            try {
+                JSONObject jsonObj = new JSONObject(strings[2]);
+                ob = jsonObj;
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+            //build the url
+            Uri uri = new Uri.Builder()
+                    .scheme("https")
+                    .appendPath(url)
+                    .appendPath(endPoint)
+                    .build();
+            try {
+                URL urlObject = new URL(uri.toString());
+                urlConnection = (HttpURLConnection) urlObject.openConnection();
+                urlConnection.setRequestMethod("POST");
+                urlConnection.setRequestProperty("Content-Type", "application/json");
+                urlConnection.setDoOutput(true);
+                OutputStreamWriter wr =
+                        new OutputStreamWriter(urlConnection.getOutputStream());
+
+                wr.write(ob.toString());
+                wr.flush();
+                wr.close();
+
+                InputStream content = urlConnection.getInputStream();
+                BufferedReader buffer = new BufferedReader(new InputStreamReader(content));
+                String s = "";
+                while ((s = buffer.readLine()) != null) {
+                    response += s;
+                }
+
+            } catch (Exception e) {
+                //cancel will result in onCanceled not onPostExecute
+                cancel(true);
+                return "Unable to connect, Reason: " + e.getMessage();
+            } finally {
+                if (urlConnection != null)
+                    urlConnection.disconnect();
+            }
+            return response;
+        }
+
+
+        @Override
+        protected void onCancelled(String result) {
+            super.onCancelled(result);
+            Log.w("GET_CONTACT_ERROR", "Failed to get contact");
+        }
+
+        @Override
+        protected void onPostExecute(String result) {
+            super.onPostExecute(result);
+            try {
+                JSONObject ob = new JSONObject(result);
+                if (ob.getBoolean("success")) {
+                    saveContacts(ob);
+                }
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
+
+
+    }
+
+    protected void saveContacts(JSONObject result) {
+        Contacts contacts = new Contacts();
+        //TODO should get contact then add to contacts
+        JSONArray arr = null;
+        try {
+            arr = result.getJSONArray("data");
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        for (int i = 0; i < arr.length(); i++)
+        {
+            try {
+                String memberId = arr.getJSONObject(i).getString("memberid");
+                String username = arr.getJSONObject(i).getString("username");
+                String email = arr.getJSONObject(i).getString("email");
+                String token = arr.getJSONObject(i).getString("token");
+                Contacts.Contact testing = new Contacts.Contact("", username,email);
+                testing.setEmail(email);
+                testing.setUsername(username);
+                testing.setToken(token);
+                contacts.addItem(testing);
+
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
+
+        getIntent().putExtra("contacts", contacts);
     }
 
 

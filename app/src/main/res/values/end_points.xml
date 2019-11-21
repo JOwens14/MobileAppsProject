@@ -6,5 +6,6 @@
     <string name="ep_pushy">pushy</string>
     <string name="ep_messaging_base">messaging</string>
     <string name="ep_messaging_send">send</string>
+    <string name="contacts">contacts</string>
 
 </resources>
