@@ -90,4 +90,8 @@ public class Conversation implements Serializable, Parcelable {
         mMessages.add(message);
     }
 
+    public int getSize() {
+        return mMessages.size();
+    }
+
 }
