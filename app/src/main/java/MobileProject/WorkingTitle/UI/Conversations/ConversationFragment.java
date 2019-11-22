@@ -62,7 +62,7 @@ public class ConversationFragment extends Fragment {
     private String mEmail;
     private String mJwToken;
     private String mSendUrl;
-    private String mUser;
+    private static String mUser;
 
     private RecyclerView recyclerView;
     private Conversation conversation;
@@ -85,7 +85,7 @@ public class ConversationFragment extends Fragment {
             Credentials userCr = (Credentials)getActivity().getIntent().getExtras().get("userCr");
             mEmail = userCr.getEmail();
             mJwToken = userCr.getJwtToken();
-            mUser = userCr.getUsername();
+            mUser = userCr.getUsername().replaceAll("\\s+","");
         //We will use this url every time the user hits send. Let's only build it once, ya? - yes please
         mSendUrl = new Uri.Builder()
                 .scheme("https")
@@ -110,6 +110,10 @@ public class ConversationFragment extends Fragment {
 
 
             // TODO: Get mEmail and jwtToken here
+
+            // TODO: get old messages
+
+
             mMessageOutputTextView = view.findViewById(R.id.conversation_message);
             mMessageInputEditText = view.findViewById(R.id.edittext_chatbox);
 
@@ -120,24 +124,16 @@ public class ConversationFragment extends Fragment {
 
             ArrayList mMessages = conversation.getMessages();
 
-            //Log.d("messages:", mMessages.toString());
-
-
             if (view.findViewById(R.id.reyclerview_message_list) != null) {
                 Context context = view.getContext();
                 recyclerView = view.findViewById(R.id.reyclerview_message_list);
-
-
                 if (mColumnCount <= 1) {
                     recyclerView.setLayoutManager(new LinearLayoutManager(context));
                 } else {
                     recyclerView.setLayoutManager(new GridLayoutManager(context, mColumnCount));
                 }
                 recyclerView.setAdapter(new ConversationRecyclerViewAdapter(mMessages, this::messageClicked));
-
             }
-
-
 
             //sets the actionbar title to the contact name
             AppCompatActivity activity = (AppCompatActivity) getActivity();
@@ -277,11 +273,10 @@ public class ConversationFragment extends Fragment {
                     String messageText = intent.getStringExtra("MESSAGE");
                     conversation.addMessage(sender + ": " + messageText);
 
-
-
                     // notifies the list that there has been an update and scrolls to the bottom of the list
                     recyclerView.getAdapter().notifyDataSetChanged();
                     recyclerView.scrollToPosition(conversation.getSize() - 1);
+
                 }
             }
         }
@@ -302,6 +297,10 @@ public class ConversationFragment extends Fragment {
     public interface OnListFragmentInteractionListener {
         // TODO: Update argument type and name
         void onListFragmentInteraction(String message);
+    }
+
+    public static String getUser() {
+        return mUser;
     }
 
 

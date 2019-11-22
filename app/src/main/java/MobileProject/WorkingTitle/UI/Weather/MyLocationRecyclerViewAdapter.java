@@ -35,6 +35,8 @@ public class MyLocationRecyclerViewAdapter extends RecyclerView.Adapter<MyLocati
         holder.mLocationView.setText(mValues.get(position).toString());
 
 
+
+
         holder.mView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
