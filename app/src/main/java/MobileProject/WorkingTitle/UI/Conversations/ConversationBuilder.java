@@ -18,11 +18,11 @@ public class ConversationBuilder {
 
     public static Conversation createConversation(String Contact, String lastMessage) {
         ArrayList<String> testMessages = new ArrayList<String>();
-        testMessages.add("Test Message 1 now the next");
-        testMessages.add("Test Message2     2");
-        testMessages.add("Test Message3    3");
-        testMessages.add("Test Message4     4");
-        testMessages.add("Test Message5    5");
+//        testMessages.add("Test Message 1 now the next");
+//        testMessages.add("Test Message2     2");
+//        testMessages.add("Test Message3    3");
+//        testMessages.add("Test Message4     4");
+//        testMessages.add("Test Message5    5");
         return new Conversation.Builder(Contact, lastMessage, testMessages).build();
     }
 

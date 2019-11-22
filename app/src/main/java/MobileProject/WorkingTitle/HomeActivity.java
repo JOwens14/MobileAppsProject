@@ -77,7 +77,8 @@ public class HomeActivity extends AppCompatActivity implements BottomNavigationV
         if (getIntent().getExtras() != null) {
             if (getIntent().getExtras().containsKey("userCr")) {
                 Credentials cr = (Credentials) getIntent().getExtras().get("userCr");
-                Log.d("LOGIN_USER", "JWT Token: " + cr.getJwtToken());
+                //Log.d("LOGIN_USER", "JWT Token: " + cr.getJwtToken());
+                //Log.d("LOGIN_USER", "JWT Token: " + cr.getJwtToken());
                 //Load contacts first time.
                 //TODO reload when new friend added.
                 if (!getIntent().getExtras().containsKey("contacts")) {
@@ -97,6 +98,7 @@ public class HomeActivity extends AppCompatActivity implements BottomNavigationV
                     navView.setItemIconTintList(null);
                 }
             }
+
 
 //            if(getIntent().getExtras().containsKey("chatMessage")) {
 //                Navigation.findNavController(this, R.id.nav_host_fragment)
@@ -362,7 +364,7 @@ public class HomeActivity extends AppCompatActivity implements BottomNavigationV
                     // TODO: Update/display notification icon when received messages.
                     BottomNavigationView navView = findViewById(R.id.nav_view);
                     navView.getMenu().getItem(3).setVisible(true);
-                    Log.d("HOME", sender + ": " + messageText);
+                    //Log.d("HOME", sender + ": " + messageText);
                     navView.setItemIconTintList(null);
                 }
             }

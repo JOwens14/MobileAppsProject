@@ -34,7 +34,7 @@ public class ConversationRecyclerViewAdapter extends RecyclerView.Adapter<Conver
     public void onBindViewHolder(final ViewHolder holder, int position) {
         holder.mItem = mValues.get(position);
         holder.mMessage.setText(mValues.get(position));
-        Log.d("RecyclerView message IN: ", holder.mMessage.getText().toString());
+        //Log.d("RecyclerView message IN: ", holder.mMessage.getText().toString());
 
 
 
