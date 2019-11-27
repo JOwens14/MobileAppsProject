@@ -11,37 +11,34 @@ public class ConversationBuilder {
     private static final Map<String, Conversation> CONVERSATIONS_MAP = new HashMap<String, Conversation>();
 
 
-    private static void addItem(Conversation item) {
+    public static void addItem(Conversation item) {
         CONVERSATIONS.add(item);
         CONVERSATIONS_MAP.put(item.getContact(), item);
     }
 
     public static Conversation createConversation(String Contact, String lastMessage) {
         ArrayList<String> testMessages = new ArrayList<String>();
-//        testMessages.add("Test Message 1 now the next");
-//        testMessages.add("Test Message2     2");
-//        testMessages.add("Test Message3    3");
-//        testMessages.add("Test Message4     4");
-//        testMessages.add("Test Message5    5");
+
         return new Conversation.Builder(Contact, lastMessage, testMessages).build();
     }
 
     public static List getConversations() {
-        //fake convos
-        String[] names = {"Luke", "Leia", "Han", "Chewy"};
-        // Add some sample items.
+        // code to create sample convos for testing
+        
+        Boolean sampleCreated = false;
 
-        //makes sure the list is clear
-        if (CONVERSATIONS != null) {
-            CONVERSATIONS.clear();
-        }
-        for (int i = 0; i < names.length; i++) {
-            //checks for duplicates
-            if (!CONVERSATIONS.contains(names[i])) {
-                addItem(createConversation(names[i], "This is a test message"));
+        //sample convo
+        Conversation sample = createConversation("Sample Convo", "This is a test message");
+
+        for (int i = 0; i < CONVERSATIONS.size(); i++) {
+            if (CONVERSATIONS.get(i).getContact() == sample.getContact()) {
+                sampleCreated = true;
             }
-
         }
+        if (!sampleCreated) {
+            addItem(sample);
+        }
+
         return CONVERSATIONS;
     }
 

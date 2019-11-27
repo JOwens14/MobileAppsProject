@@ -2,9 +2,11 @@ package MobileProject.WorkingTitle.UI.Conversations;
 
 import android.text.Html;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import androidx.recyclerview.widget.RecyclerView;
 import java.util.List;
@@ -16,6 +18,7 @@ public class ConversationRecyclerViewAdapter extends RecyclerView.Adapter<Conver
 
     private final List<String> mValues;
     private final ConversationFragment.OnListFragmentInteractionListener mListener;
+    private TextView message;
 
 
     public ConversationRecyclerViewAdapter(List<String> items, ConversationFragment.OnListFragmentInteractionListener listener) {
@@ -33,9 +36,11 @@ public class ConversationRecyclerViewAdapter extends RecyclerView.Adapter<Conver
     @Override
     public void onBindViewHolder(final ViewHolder holder, int position) {
         holder.mItem = mValues.get(position);
-        holder.mMessage.setText(mValues.get(position));
-        //Log.d("RecyclerView message IN: ", holder.mMessage.getText().toString());
 
+        message = holder.mView.findViewById(R.id.conversation_message);
+
+        //THIS METHOD RELIES ON THE MESSAGE BEING "USERNAME: MESSAGE"
+        setBubbleText(holder, mValues.get(position));
 
 
         holder.mView.setOnClickListener(new View.OnClickListener() {
@@ -62,7 +67,6 @@ public class ConversationRecyclerViewAdapter extends RecyclerView.Adapter<Conver
 
         public ViewHolder(View view) {
             super(view);
-            //mView = view.findViewById(R.id.reyclerview_message_list);
             mView = view;
             mMessage = view.findViewById(R.id.conversation_message);
 
@@ -70,6 +74,43 @@ public class ConversationRecyclerViewAdapter extends RecyclerView.Adapter<Conver
 
     }
 
+    //THIS METHOD RELIES ON THE MESSAGE BEING "USERNAME: MESSAGE"
+    public void setBubbleText(ViewHolder holder, String msg) {
+        //gets the username header
+        int splitter = msg.indexOf(":");
+        String username = msg.substring(0, splitter);
+
+        //Log.d("user get inside", username);
+        //Log.d("user getoutside", ConversationFragment.getUser());
+
+        //conversion of the layouts
+        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT,
+                LinearLayout.LayoutParams.MATCH_PARENT);
+        //margins set
+        params.leftMargin = 15;
+        params.rightMargin = 15;
+        params.topMargin = 15;
+
+
+        // if username in message matches our user name then the message appears right and blue, else grey and left
+        if (username.equals(ConversationFragment.getUser())) {
+            //Log.d("MATCH:", "CONFIRM");
+            message.setBackgroundResource(R.drawable.chatbubbleme);
+            params.gravity = Gravity.RIGHT;
+
+        } else {
+            message.setBackgroundResource(R.drawable.chatbubblethem);
+            params.gravity = Gravity.LEFT;
+        }
+
+        //set the new layout
+        message.setLayoutParams(params);
+
+
+        holder.mMessage.setText(msg.substring(splitter + 2));
+
+
+    }
 
 
 
