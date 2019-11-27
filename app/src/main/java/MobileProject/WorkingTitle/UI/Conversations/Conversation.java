@@ -41,7 +41,7 @@ public class Conversation implements Serializable, Parcelable {
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeString(mContact);
         dest.writeString(mlastMessage);
-        dest.writeBinderList(mMessages);
+        //dest.writeBinderList(mMessages);
     }
 
     /**

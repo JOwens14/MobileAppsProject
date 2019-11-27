@@ -28,7 +28,7 @@ public class ConversationBuilder {
         Boolean sampleCreated = false;
 
         //sample convo
-        Conversation sample = createConversation("sample convo", "This is a test message");
+        Conversation sample = createConversation("Sample Convo", "This is a test message");
 
         for (int i = 0; i < CONVERSATIONS.size(); i++) {
             if (CONVERSATIONS.get(i).getContact() == sample.getContact()) {

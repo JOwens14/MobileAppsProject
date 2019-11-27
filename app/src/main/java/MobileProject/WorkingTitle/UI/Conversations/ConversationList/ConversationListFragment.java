@@ -134,6 +134,7 @@ public class ConversationListFragment extends Fragment {
                         //  WITH THE NAME THAT MATCHES THE INPUT
 
                         //make the new conversation
+                        name = upperCaseFirst(name); //make the contact name uppercase if it is not.
                         Conversation newConvo = ConversationBuilder.createConversation(name, null);
                         ConversationBuilder.addItem(newConvo);
                     }
@@ -141,6 +142,10 @@ public class ConversationListFragment extends Fragment {
                 .setNegativeButton("Cancel", null)
                 .create();
         dialog.show();
+    }
+
+    public String upperCaseFirst(String line) {
+        return line.substring(0, 1).toUpperCase() + line.substring(1);
     }
 
 

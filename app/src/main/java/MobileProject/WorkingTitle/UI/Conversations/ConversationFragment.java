@@ -108,9 +108,6 @@ public class ConversationFragment extends Fragment {
     public void onViewCreated(View view, Bundle args) {
         if (getArguments() != null) {
 
-
-            // TODO: Get mEmail and jwtToken here
-
             // TODO: get old messages
 
 
@@ -159,11 +156,6 @@ public class ConversationFragment extends Fragment {
                     }, 1);
                 }
             });
-
-
-
-
-
         }
     }
 
