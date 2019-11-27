@@ -10,7 +10,7 @@ import java.util.ArrayList;
 public class Conversation implements Serializable, Parcelable {
 
     private final String mContact;
-    private final String mlastMessage;
+    private String mlastMessage;
     private final ArrayList mMessages;
 
 
@@ -88,10 +88,16 @@ public class Conversation implements Serializable, Parcelable {
 
     public void addMessage(String message) {
         mMessages.add(message);
+        mlastMessage = stripUserName(message);
     }
 
     public int getSize() {
         return mMessages.size();
+    }
+
+    private String stripUserName(String message) {
+        int splitter = message.indexOf(":");
+        return message.substring(splitter + 2);
     }
 
 }
