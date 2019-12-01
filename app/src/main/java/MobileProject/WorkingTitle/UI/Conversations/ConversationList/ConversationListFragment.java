@@ -34,9 +34,7 @@ import MobileProject.WorkingTitle.UI.Weather.Locations;
  */
 public class ConversationListFragment extends Fragment {
 
-    // TODO: Customize parameter argument names
     private static final String ARG_COLUMN_COUNT = "column-count";
-    // TODO: Customize parameters
     private int mColumnCount = 1;
 
     private List<Conversation> mConversations;
@@ -63,11 +61,7 @@ public class ConversationListFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-//        ConversationFragment args = ConversationFragment.fromBundle(getArguments());
-//        mConversations = new ArrayList<>(Arrays.asList(args.getConversations()));
         mConversations = ConversationBuilder.getConversations();
-
-
     }
 
 
