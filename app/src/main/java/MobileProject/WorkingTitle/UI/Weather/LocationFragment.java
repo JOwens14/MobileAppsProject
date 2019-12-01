@@ -19,6 +19,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -118,18 +119,30 @@ public class LocationFragment extends Fragment {
 
     private void showAddItemDialog(View view) {
         Context c = view.getContext();
-        final EditText taskEditText = new EditText(c);
+        final EditText cityEditText = new EditText(c);
+        cityEditText.setHint("City");
+        final EditText stateEditText = new EditText(c);
+        stateEditText.setHint("State");
+
+        LinearLayout layout = new LinearLayout(c);
+        layout.setOrientation(LinearLayout.VERTICAL);
+
+        layout.addView(cityEditText);
+        layout.addView(stateEditText);
+
+
         AlertDialog dialog = new AlertDialog.Builder(c, R.style.AlertDialog)
                 .setTitle("New Location")
-                .setView(taskEditText)
+                .setView(layout)
                 .setPositiveButton("Add", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        String task = String.valueOf(taskEditText.getText());
+                        String city = String.valueOf(cityEditText.getText());
+                        String state = String.valueOf(stateEditText.getText());
 
                         //adds item to the location list.
                         //ONLY WORKS FOR WA CITIES SO FAR
-                        Locations.addLocation(new Locations.Location(task + ",WA,US"));
+                        Locations.addLocation(new Locations.Location(city + ","+ state +",US"));
 
                     }
                 })

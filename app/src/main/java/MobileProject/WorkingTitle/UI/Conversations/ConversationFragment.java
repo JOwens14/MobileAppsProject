@@ -94,7 +94,10 @@ public class ConversationFragment extends Fragment {
                 .appendPath(getString(R.string.ep_messaging_send))
                 .build()
                 .toString();
+        //Log.d("SEND URL", mSendUrl);
     }
+
+
 
 
     @Override
