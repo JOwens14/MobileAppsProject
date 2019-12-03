@@ -15,6 +15,7 @@ import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -89,6 +90,29 @@ public class ConversationListFragment extends Fragment {
                 ConvolistRecyclerView.setLayoutManager(new GridLayoutManager(context, mColumnCount));
             }
             ConvolistRecyclerView.setAdapter(new ConversationsListRecyclerViewAdapter(mConversations, this::onClick));
+
+
+            ItemTouchHelper.SimpleCallback itemTouchHelperCallback =
+                    new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.RIGHT) {
+                        @Override
+                        public boolean onMove(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder, RecyclerView.ViewHolder target) {
+                            return false;
+                        }
+
+                        @Override
+                        public void onSwiped(RecyclerView.ViewHolder viewHolder, int direction) {
+                            if(direction == 8) {
+                                int index = viewHolder.getLayoutPosition();
+                                mConversations.remove(index);
+                                ConvolistRecyclerView.getAdapter().notifyDataSetChanged();
+                            }
+                        }
+                    };
+
+            // attaching the touch helper to recycler view
+            new ItemTouchHelper(itemTouchHelperCallback).attachToRecyclerView(ConvolistRecyclerView);
+
+
 
         }
         return view;
