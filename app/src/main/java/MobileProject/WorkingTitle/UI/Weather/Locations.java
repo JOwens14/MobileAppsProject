@@ -28,6 +28,17 @@ public class Locations {
         return new Location(location);
     }
 
+    public static void deleteLocation(int index) {
+        if (LOCATIONS.size() > 1 ) {
+            LOCATIONS.remove(index);
+        }
+
+    }
+
+    public static int getLocationSize(){
+        return LOCATIONS.size();
+    }
+
 
     public static class Location {
         public final String location;

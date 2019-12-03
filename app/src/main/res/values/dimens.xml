@@ -8,4 +8,6 @@
     <dimen name="login_button_width">256dp</dimen>
     <dimen name="long_text_width">256dp</dimen>
     <dimen name="text_margin">16dp</dimen>
+
+
 </resources>
