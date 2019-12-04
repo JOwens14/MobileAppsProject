@@ -277,7 +277,7 @@ public class NewPasswordFragment extends Fragment {
         @Override
         protected void onCancelled(String result) {
             super.onCancelled(result);
-            ((TextView) getActivity().findViewById(R.id.error_newPW_password)).setError(result);
+            return;
         }
 
         @Override
