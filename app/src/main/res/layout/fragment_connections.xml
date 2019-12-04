@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
     <TextView
         android:id="@+id/text_share"
-        android:layout_width="400dp"
-        android:layout_height="79dp"
+        android:layout_width="398dp"
+        android:layout_height="157dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
@@ -16,4 +17,107 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/sendMessageTo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="@string/send_message_to_contact"
+        android:textColor="@color/colorPrimaryDark"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/text_share" />
+
+    <Button
+        android:id="@+id/AcceptFriendRequest"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="@string/accept"
+        android:textColor="@color/colorBRIGHTBLUE"
+        android:textColorLink="@color/colorAccent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/sendMessageTo"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <Button
+        android:id="@+id/DenyFriendRequest"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="@string/deny"
+        android:textColor="@color/colorAccent"
+        app:layout_constraintEnd_toStartOf="@+id/AcceptFriendRequest"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/sendMessageTo" />
+
+    <Button
+        android:id="@+id/BlockUser"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="@string/BlockUser"
+        android:textColor="@color/colorAccent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/AcceptFriendRequest"
+        app:layout_constraintTop_toBottomOf="@+id/sendMessageTo"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <Button
+        android:id="@+id/remove_request"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:text="@string/RemoveRequest"
+        app:layout_constraintEnd_toStartOf="@+id/re_send_friend_request"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/text_share" />
+
+    <Button
+        android:id="@+id/re_send_friend_request"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:text="@string/ReSendFriendRequest"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/remove_request"
+        app:layout_constraintTop_toBottomOf="@+id/text_share" />
+
+    <Button
+        android:id="@+id/friend_request"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="@string/SendFriendRequest"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/text_share" />
+
+    <TextView
+        android:id="@+id/actionResult"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="23dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/AcceptFriendRequest" />
+
+    <EditText
+        android:id="@+id/email_nickname_target"
+        android:layout_width="290dp"
+        android:layout_height="51dp"
+        android:ems="10"
+        android:hint="@string/email_nickname"
+        android:inputType="textPersonName"
+        app:layout_constraintBottom_toBottomOf="@+id/text_share"
+        app:layout_constraintEnd_toEndOf="@+id/text_share"
+        app:layout_constraintStart_toStartOf="@+id/text_share"
+        app:layout_constraintTop_toTopOf="parent" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
