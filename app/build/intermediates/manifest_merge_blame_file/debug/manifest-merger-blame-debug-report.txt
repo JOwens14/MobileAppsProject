@@ -6,71 +6,144 @@
 6
 7    <uses-sdk
 8        android:minSdkVersion="24"
-8-->I:\AndroidStudioProjects\MobileAppsProject\app\src\main\AndroidManifest.xml
+8-->C:\Users\Paul Park\AndroidStudioProjects\MobileAppsProject\app\src\main\AndroidManifest.xml
 9        android:targetSdkVersion="29" />
-9-->I:\AndroidStudioProjects\MobileAppsProject\app\src\main\AndroidManifest.xml
+9-->C:\Users\Paul Park\AndroidStudioProjects\MobileAppsProject\app\src\main\AndroidManifest.xml
 10
-11    <uses-permission android:name="android.permission.INTERNET" />
-11-->I:\AndroidStudioProjects\MobileAppsProject\app\src\main\AndroidManifest.xml:36:5-83
-11-->I:\AndroidStudioProjects\MobileAppsProject\app\src\main\AndroidManifest.xml:36:22-64
-12
-13    <application
-13-->I:\AndroidStudioProjects\MobileAppsProject\app\src\main\AndroidManifest.xml:6:5-35:19
-14        android:allowBackup="true"
-14-->I:\AndroidStudioProjects\MobileAppsProject\app\src\main\AndroidManifest.xml:7:9-35
-15        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
-15-->[androidx.core:core:1.1.0] C:\Users\abcjk\.gradle\caches\transforms-2\files-2.1\7fcbd487418f54d1aaab6d8567c92640\core-1.1.0\AndroidManifest.xml:24:18-86
-16        android:debuggable="true"
-17        android:icon="@mipmap/ic_launcher"
-17-->I:\AndroidStudioProjects\MobileAppsProject\app\src\main\AndroidManifest.xml:8:9-43
-18        android:label="@string/app_name"
-18-->I:\AndroidStudioProjects\MobileAppsProject\app\src\main\AndroidManifest.xml:9:9-41
-19        android:roundIcon="@mipmap/ic_launcher_round"
-19-->I:\AndroidStudioProjects\MobileAppsProject\app\src\main\AndroidManifest.xml:10:9-54
-20        android:supportsRtl="true"
-20-->I:\AndroidStudioProjects\MobileAppsProject\app\src\main\AndroidManifest.xml:11:9-35
-21        android:testOnly="true"
-22        android:theme="@style/AppTheme" >
-22-->I:\AndroidStudioProjects\MobileAppsProject\app\src\main\AndroidManifest.xml:12:9-40
-23        <activity android:name="MobileProject.WorkingTitle.UI.Register.RegisterActivity" />
-23-->I:\AndroidStudioProjects\MobileAppsProject\app\src\main\AndroidManifest.xml:13:9-75
-23-->I:\AndroidStudioProjects\MobileAppsProject\app\src\main\AndroidManifest.xml:13:19-63
-24        <activity
-24-->I:\AndroidStudioProjects\MobileAppsProject\app\src\main\AndroidManifest.xml:14:9-18:16
-25            android:name="MobileProject.WorkingTitle.HomeActivity"
-25-->I:\AndroidStudioProjects\MobileAppsProject\app\src\main\AndroidManifest.xml:15:13-41
-26            android:label="@string/title_activity_home"
-26-->I:\AndroidStudioProjects\MobileAppsProject\app\src\main\AndroidManifest.xml:16:13-56
-27            android:theme="@style/AppTheme" />
-27-->I:\AndroidStudioProjects\MobileAppsProject\app\src\main\AndroidManifest.xml:17:13-44
-28        <activity
-28-->I:\AndroidStudioProjects\MobileAppsProject\app\src\main\AndroidManifest.xml:19:9-27:20
-29            android:name="MobileProject.WorkingTitle.UI.Login.LoginActivity"
-29-->I:\AndroidStudioProjects\MobileAppsProject\app\src\main\AndroidManifest.xml:20:13-51
-30            android:theme="@style/AppTheme.NoActionBar" >
-30-->I:\AndroidStudioProjects\MobileAppsProject\app\src\main\AndroidManifest.xml:21:13-56
-31            <intent-filter>
-31-->I:\AndroidStudioProjects\MobileAppsProject\app\src\main\AndroidManifest.xml:22:13-26:29
-32                <action android:name="android.intent.action.MAIN" />
-32-->I:\AndroidStudioProjects\MobileAppsProject\app\src\main\AndroidManifest.xml:23:17-69
-32-->I:\AndroidStudioProjects\MobileAppsProject\app\src\main\AndroidManifest.xml:23:25-66
-33
-34                <category android:name="android.intent.category.LAUNCHER" />
-34-->I:\AndroidStudioProjects\MobileAppsProject\app\src\main\AndroidManifest.xml:25:17-77
-34-->I:\AndroidStudioProjects\MobileAppsProject\app\src\main\AndroidManifest.xml:25:27-74
-35            </intent-filter>
-36        </activity>
-37
-38        <provider
-38-->I:\AndroidStudioProjects\MobileAppsProject\app\src\main\AndroidManifest.xml:29:9-33:43
-39            android:name="androidx.lifecycle.ProcessLifecycleOwnerInitializer"
-39-->I:\AndroidStudioProjects\MobileAppsProject\app\src\main\AndroidManifest.xml:30:13-79
-40            android:authorities="MobileProject.WorkingTitle.lifecycle-process"
-40-->I:\AndroidStudioProjects\MobileAppsProject\app\src\main\AndroidManifest.xml:31:13-79
-41            android:exported="false"
-41-->I:\AndroidStudioProjects\MobileAppsProject\app\src\main\AndroidManifest.xml:32:13-37
-42            android:multiprocess="true" />
-42-->I:\AndroidStudioProjects\MobileAppsProject\app\src\main\AndroidManifest.xml:33:13-40
-43    </application>
-44
-45</manifest>
+11    <uses-permission android:name="android.permission.INTERNET" /> <!-- Pushy Permissions -->
+11-->C:\Users\Paul Park\AndroidStudioProjects\MobileAppsProject\app\src\main\AndroidManifest.xml:5:5-67
+11-->C:\Users\Paul Park\AndroidStudioProjects\MobileAppsProject\app\src\main\AndroidManifest.xml:5:22-64
+12    <uses-permission android:name="android.permission.WAKE_LOCK" />
+12-->C:\Users\Paul Park\AndroidStudioProjects\MobileAppsProject\app\src\main\AndroidManifest.xml:6:5-68
+12-->C:\Users\Paul Park\AndroidStudioProjects\MobileAppsProject\app\src\main\AndroidManifest.xml:6:22-65
+13    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+13-->C:\Users\Paul Park\AndroidStudioProjects\MobileAppsProject\app\src\main\AndroidManifest.xml:7:5-79
+13-->C:\Users\Paul Park\AndroidStudioProjects\MobileAppsProject\app\src\main\AndroidManifest.xml:7:22-76
+14    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+14-->C:\Users\Paul Park\AndroidStudioProjects\MobileAppsProject\app\src\main\AndroidManifest.xml:8:5-81
+14-->C:\Users\Paul Park\AndroidStudioProjects\MobileAppsProject\app\src\main\AndroidManifest.xml:8:22-78
+15    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+15-->C:\Users\Paul Park\AndroidStudioProjects\MobileAppsProject\app\src\main\AndroidManifest.xml:9:5-81
+15-->C:\Users\Paul Park\AndroidStudioProjects\MobileAppsProject\app\src\main\AndroidManifest.xml:9:22-78
+16
+17    <application
+17-->C:\Users\Paul Park\AndroidStudioProjects\MobileAppsProject\app\src\main\AndroidManifest.xml:11:5-73:19
+18        android:allowBackup="true"
+18-->C:\Users\Paul Park\AndroidStudioProjects\MobileAppsProject\app\src\main\AndroidManifest.xml:12:9-35
+19        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
+19-->[androidx.core:core:1.1.0] C:\Users\Paul Park\.gradle\caches\transforms-2\files-2.1\7fcbd487418f54d1aaab6d8567c92640\core-1.1.0\AndroidManifest.xml:24:18-86
+20        android:debuggable="true"
+21        android:icon="@mipmap/ic_launcher"
+21-->C:\Users\Paul Park\AndroidStudioProjects\MobileAppsProject\app\src\main\AndroidManifest.xml:13:9-43
+22        android:label="@string/app_name"
+22-->C:\Users\Paul Park\AndroidStudioProjects\MobileAppsProject\app\src\main\AndroidManifest.xml:14:9-41
+23        android:roundIcon="@mipmap/ic_launcher_round"
+23-->C:\Users\Paul Park\AndroidStudioProjects\MobileAppsProject\app\src\main\AndroidManifest.xml:15:9-54
+24        android:supportsRtl="true"
+24-->C:\Users\Paul Park\AndroidStudioProjects\MobileAppsProject\app\src\main\AndroidManifest.xml:16:9-35
+25        android:testOnly="true"
+26        android:theme="@style/AppTheme" >
+26-->C:\Users\Paul Park\AndroidStudioProjects\MobileAppsProject\app\src\main\AndroidManifest.xml:17:9-40
+27        <activity android:name="MobileProject.WorkingTitle.UI.NewPassword.NewPasswordActivity" />
+27-->C:\Users\Paul Park\AndroidStudioProjects\MobileAppsProject\app\src\main\AndroidManifest.xml:18:9-81
+27-->C:\Users\Paul Park\AndroidStudioProjects\MobileAppsProject\app\src\main\AndroidManifest.xml:18:19-69
+28        <activity android:name="MobileProject.WorkingTitle.UI.Register.RegisterActivity" />
+28-->C:\Users\Paul Park\AndroidStudioProjects\MobileAppsProject\app\src\main\AndroidManifest.xml:19:9-66
+28-->C:\Users\Paul Park\AndroidStudioProjects\MobileAppsProject\app\src\main\AndroidManifest.xml:19:19-63
+29        <activity
+29-->C:\Users\Paul Park\AndroidStudioProjects\MobileAppsProject\app\src\main\AndroidManifest.xml:20:9-23:47
+30            android:name="MobileProject.WorkingTitle.HomeActivity"
+30-->C:\Users\Paul Park\AndroidStudioProjects\MobileAppsProject\app\src\main\AndroidManifest.xml:21:13-41
+31            android:label="@string/title_activity_home"
+31-->C:\Users\Paul Park\AndroidStudioProjects\MobileAppsProject\app\src\main\AndroidManifest.xml:22:13-56
+32            android:theme="@style/AppTheme" />
+32-->C:\Users\Paul Park\AndroidStudioProjects\MobileAppsProject\app\src\main\AndroidManifest.xml:23:13-44
+33        <activity
+33-->C:\Users\Paul Park\AndroidStudioProjects\MobileAppsProject\app\src\main\AndroidManifest.xml:24:9-32:20
+34            android:name="MobileProject.WorkingTitle.UI.Login.LoginActivity"
+34-->C:\Users\Paul Park\AndroidStudioProjects\MobileAppsProject\app\src\main\AndroidManifest.xml:25:13-51
+35            android:theme="@style/AppTheme.NoActionBar" >
+35-->C:\Users\Paul Park\AndroidStudioProjects\MobileAppsProject\app\src\main\AndroidManifest.xml:26:13-56
+36            <intent-filter>
+36-->C:\Users\Paul Park\AndroidStudioProjects\MobileAppsProject\app\src\main\AndroidManifest.xml:27:13-31:29
+37                <action android:name="android.intent.action.MAIN" />
+37-->C:\Users\Paul Park\AndroidStudioProjects\MobileAppsProject\app\src\main\AndroidManifest.xml:28:17-69
+37-->C:\Users\Paul Park\AndroidStudioProjects\MobileAppsProject\app\src\main\AndroidManifest.xml:28:25-66
+38
+39                <category android:name="android.intent.category.LAUNCHER" />
+39-->C:\Users\Paul Park\AndroidStudioProjects\MobileAppsProject\app\src\main\AndroidManifest.xml:30:17-77
+39-->C:\Users\Paul Park\AndroidStudioProjects\MobileAppsProject\app\src\main\AndroidManifest.xml:30:27-74
+40            </intent-filter>
+41        </activity>
+42
+43        <provider
+43-->C:\Users\Paul Park\AndroidStudioProjects\MobileAppsProject\app\src\main\AndroidManifest.xml:34:9-38:43
+44            android:name="androidx.lifecycle.ProcessLifecycleOwnerInitializer"
+44-->C:\Users\Paul Park\AndroidStudioProjects\MobileAppsProject\app\src\main\AndroidManifest.xml:35:13-79
+45            android:authorities="MobileProject.WorkingTitle.lifecycle-process"
+45-->C:\Users\Paul Park\AndroidStudioProjects\MobileAppsProject\app\src\main\AndroidManifest.xml:36:13-79
+46            android:exported="false"
+46-->C:\Users\Paul Park\AndroidStudioProjects\MobileAppsProject\app\src\main\AndroidManifest.xml:37:13-37
+47            android:multiprocess="true" /> <!-- Pushy Declarations -->
+47-->C:\Users\Paul Park\AndroidStudioProjects\MobileAppsProject\app\src\main\AndroidManifest.xml:38:13-40
+48        <!-- Pushy Notification Receiver -->
+49        <!-- Incoming push notifications will invoke the following BroadcastReceiver -->
+50        <receiver
+50-->C:\Users\Paul Park\AndroidStudioProjects\MobileAppsProject\app\src\main\AndroidManifest.xml:41:9-49:20
+51            android:name="MobileProject.WorkingTitle.utils.PushReceiver"
+51-->C:\Users\Paul Park\AndroidStudioProjects\MobileAppsProject\app\src\main\AndroidManifest.xml:42:13-47
+52            android:exported="false" >
+52-->C:\Users\Paul Park\AndroidStudioProjects\MobileAppsProject\app\src\main\AndroidManifest.xml:43:13-37
+53            <intent-filter>
+53-->C:\Users\Paul Park\AndroidStudioProjects\MobileAppsProject\app\src\main\AndroidManifest.xml:44:13-48:29
+54
+55                <!-- Do not modify this -->
+56                <action android:name="pushy.me" />
+56-->C:\Users\Paul Park\AndroidStudioProjects\MobileAppsProject\app\src\main\AndroidManifest.xml:47:17-51
+56-->C:\Users\Paul Park\AndroidStudioProjects\MobileAppsProject\app\src\main\AndroidManifest.xml:47:25-48
+57            </intent-filter>
+58        </receiver> <!-- Pushy Update Receiver -->
+59        <!-- Do not modify - internal BroadcastReceiver that restarts the listener service -->
+60        <receiver
+60-->C:\Users\Paul Park\AndroidStudioProjects\MobileAppsProject\app\src\main\AndroidManifest.xml:51:9-57:20
+61            android:name="me.pushy.sdk.receivers.PushyUpdateReceiver"
+61-->C:\Users\Paul Park\AndroidStudioProjects\MobileAppsProject\app\src\main\AndroidManifest.xml:52:13-70
+62            android:exported="false" >
+62-->C:\Users\Paul Park\AndroidStudioProjects\MobileAppsProject\app\src\main\AndroidManifest.xml:53:13-37
+63            <intent-filter>
+63-->C:\Users\Paul Park\AndroidStudioProjects\MobileAppsProject\app\src\main\AndroidManifest.xml:54:13-56:29
+64                <action android:name="android.intent.action.MY_PACKAGE_REPLACED" />
+64-->C:\Users\Paul Park\AndroidStudioProjects\MobileAppsProject\app\src\main\AndroidManifest.xml:55:17-84
+64-->C:\Users\Paul Park\AndroidStudioProjects\MobileAppsProject\app\src\main\AndroidManifest.xml:55:25-81
+65            </intent-filter>
+66        </receiver> <!-- Pushy Boot Receiver -->
+67        <!-- Do not modify - internal BroadcastReceiver that restarts the listener service -->
+68        <receiver
+68-->C:\Users\Paul Park\AndroidStudioProjects\MobileAppsProject\app\src\main\AndroidManifest.xml:59:9-65:20
+69            android:name="me.pushy.sdk.receivers.PushyBootReceiver"
+69-->C:\Users\Paul Park\AndroidStudioProjects\MobileAppsProject\app\src\main\AndroidManifest.xml:60:13-68
+70            android:exported="false" >
+70-->C:\Users\Paul Park\AndroidStudioProjects\MobileAppsProject\app\src\main\AndroidManifest.xml:61:13-37
+71            <intent-filter>
+71-->C:\Users\Paul Park\AndroidStudioProjects\MobileAppsProject\app\src\main\AndroidManifest.xml:62:13-64:29
+72                <action android:name="android.intent.action.BOOT_COMPLETED" />
+72-->C:\Users\Paul Park\AndroidStudioProjects\MobileAppsProject\app\src\main\AndroidManifest.xml:63:17-79
+72-->C:\Users\Paul Park\AndroidStudioProjects\MobileAppsProject\app\src\main\AndroidManifest.xml:63:25-76
+73            </intent-filter>
+74        </receiver> <!-- Pushy Socket Service -->
+75        <!-- Do not modify - internal service -->
+76        <service android:name="me.pushy.sdk.services.PushySocketService" /> <!-- Pushy Job Service (added in Pushy SDK 1.0.35) -->
+76-->C:\Users\Paul Park\AndroidStudioProjects\MobileAppsProject\app\src\main\AndroidManifest.xml:67:9-76
+76-->C:\Users\Paul Park\AndroidStudioProjects\MobileAppsProject\app\src\main\AndroidManifest.xml:67:18-73
+77        <!-- Do not modify - internal service -->
+78        <service
+78-->C:\Users\Paul Park\AndroidStudioProjects\MobileAppsProject\app\src\main\AndroidManifest.xml:69:9-72:72
+79            android:name="me.pushy.sdk.services.PushyJobService"
+79-->C:\Users\Paul Park\AndroidStudioProjects\MobileAppsProject\app\src\main\AndroidManifest.xml:70:13-65
+80            android:exported="true"
+80-->C:\Users\Paul Park\AndroidStudioProjects\MobileAppsProject\app\src\main\AndroidManifest.xml:71:13-36
+81            android:permission="android.permission.BIND_JOB_SERVICE" />
+81-->C:\Users\Paul Park\AndroidStudioProjects\MobileAppsProject\app\src\main\AndroidManifest.xml:72:13-69
+82    </application>
+83
+84</manifest>
