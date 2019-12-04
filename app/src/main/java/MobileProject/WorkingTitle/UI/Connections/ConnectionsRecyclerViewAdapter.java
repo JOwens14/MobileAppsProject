@@ -2,6 +2,7 @@ package MobileProject.WorkingTitle.UI.Connections;
 
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -36,13 +37,27 @@ public class ConnectionsRecyclerViewAdapter extends RecyclerView.Adapter<Connect
         return new ViewHolder(view);
     }
 
+
     @Override
     public void onBindViewHolder(final ViewHolder holder, int position) {
+        String status = "";
+
         holder.mItem = mValues.get(position);
         holder.mIdView.setText(mValues.get(position).id);
-        holder.mContentView.setText(mValues.get(position).contact + "              "
-                +mValues.get(position).getStatus());
 
+        switch (mValues.get(position).getStatus()) {
+            case FriendRequestFrom:
+                status = " is requesting connection";
+                break;
+            case FriendRequestTo:
+                status = "     Accept Pending";
+                break;
+            case NewConnection:
+                status = "";
+                break;
+                default: break;
+        }
+        holder.mContentView.setText(mValues.get(position).contact + status);
         holder.mView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -64,8 +79,6 @@ public class ConnectionsRecyclerViewAdapter extends RecyclerView.Adapter<Connect
         public final View mView;
         public final TextView mIdView;
         public final TextView mContentView;
-        public final TextView mStatus;
-//        public final Button mApprove;
         public Contact mItem;
 
         public ViewHolder(View view) {
@@ -73,8 +86,6 @@ public class ConnectionsRecyclerViewAdapter extends RecyclerView.Adapter<Connect
             mView = view;
             mIdView = (TextView) view.findViewById(R.id.item_location);
             mContentView = (TextView) view.findViewById(R.id.content);
-            mStatus = (TextView) view.findViewById(R.id.pendingStatus);
-//            mApprove = (Button) view.findViewById(R.id.ApproveRequest);
         }
 
         @Override

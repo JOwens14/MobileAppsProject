@@ -274,10 +274,10 @@ public class LoginFragment extends Fragment {
                 if (ob.getBoolean("success")) {
                     resultShow.setText("");
                     //feel free to remove later.
-                    Log.d("LOGIN_PUSHY", "Pushy Token: " + ob.getString("token"));
-                    Log.d("LOGIN_PUSHY", "JWT Token: " + ob.getString("jwtToken"));
+//                    Log.d("LOGIN_PUSHY", "Pushy Token: " + ob.getString("token"));
+//                    Log.d("LOGIN_PUSHY", "JWT Token: " + ob.getString("jwtToken"));
                     loginSuccessHelper(ob.getString("firstname"),ob.getString("lastname"),
-                            ob.getString("username"), ob.getString("jwtToken"), ob.getString("memberid"));
+                            ob.getString("username"), ob.getString("jwtToken"), ob.getString("memberid"), ob.getString("token"));
                 } else {
                     attamped++;
                     if (attamped <= 3)
@@ -300,7 +300,7 @@ public class LoginFragment extends Fragment {
     }
 
 
-    private void loginSuccessHelper (String firstname, String lastname, String username, String jwtToken, String memberid) {
+    private void loginSuccessHelper (String firstname, String lastname, String username, String jwtToken, String memberid, String token) {
         String email = ((EditText)getActivity().findViewById(R.id.editText_EmailLogin)).getText().toString();
         String password = ((EditText)getActivity().findViewById(R.id.editText_PasswordLogin)).getText().toString();
         Credentials cr = new Credentials.Builder(email, password)
@@ -309,6 +309,7 @@ public class LoginFragment extends Fragment {
                 .addUsername(username)
                 .addJwtToken(jwtToken)
                 .addMemberid(memberid)
+                .addDeviceToken(token)
                 .build();
         if (((CheckBox)getActivity().findViewById(R.id.login_checkBox)).isChecked()) {
             saveCredentials(cr);

@@ -1,12 +1,16 @@
 package MobileProject.WorkingTitle.model;
 
+import android.content.Context;
 import android.os.Parcelable;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import MobileProject.WorkingTitle.R;
 
 /**
  * Helper class for providing sample content for user interfaces created by
@@ -34,6 +38,9 @@ public class Contacts implements Serializable {
             addItem(createContact(i));
         }
     }
+    public void sortFriend() {
+        Collections.sort(FRIENDS);
+    }
 
     public static void addItem(Contact item) {
         FRIENDS.add(item);
@@ -56,23 +63,25 @@ public class Contacts implements Serializable {
     /**
      * A dummy item representing a piece of content.
      */
-    public static class Contact implements Serializable {
+    public static class Contact implements Serializable, Comparable<Contact> {
         public final String id;
         public final String contact;
         public final String details;
         private String token;
         private String username;
         private String email;
-        private String status;
+        private String memberid;
+        private EnumsDefine.Status status;  // "friend_request_from" , "friend_request_to", "new_connection"
 
         public Contact(String id, String contact, String details) {
             this.id = id;
             this.contact = contact;
             this.details = details;
+            this.memberid = "";
             this.token = "";
             this.email = "";
             this.username = "";
-            status = "";
+            this.status = EnumsDefine.Status.NewConnection;
         }
 
         public void setToken(String token) {
@@ -84,7 +93,7 @@ public class Contacts implements Serializable {
         public void setEmail(String email) {
             this.email = email;
         }
-        public void setStatus(String status) {
+        public void setStatus(EnumsDefine.Status status) {
             this.status = status;
         }
 
@@ -100,13 +109,34 @@ public class Contacts implements Serializable {
             return username;
         }
 
-        public String getStatus() {
+        public String getMemberid() {
+            return memberid;
+        }
+
+        public void setMemberid(String memberid) {
+            this.memberid = memberid;
+        }
+
+        public EnumsDefine.Status getStatus() {
             return status;
         }
 
         @Override
         public String toString() {
             return contact;
+        }
+
+        /*
+         *Compare a given Contact with current(this) object.
+         *If current Contact id is greater than the received object,
+         *then current object is greater than the other.
+         */
+        public int compareTo(Contact otherContact) {
+            // return this.id - otherStudent.id ; //result of this operation can overflow
+            int a = (otherContact.getStatus().equals(EnumsDefine.Status.Connected))?1:0;
+            int b = (this.getStatus().equals(EnumsDefine.Status.Connected))?1:0;
+
+            return b - a;
         }
     }
 }
