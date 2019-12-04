@@ -1,11 +1,17 @@
 package MobileProject.WorkingTitle.UI.Conversations;
 
 
+import android.app.Notification;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.graphics.Color;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.text.Html;
 import android.util.Log;
@@ -19,6 +25,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 
+import MobileProject.WorkingTitle.HomeActivity;
 import MobileProject.WorkingTitle.model.Credentials;
 
 import MobileProject.WorkingTitle.UI.Conversations.ConversationList.ConversationsListRecyclerViewAdapter;
@@ -27,6 +34,9 @@ import MobileProject.WorkingTitle.utils.PushReceiver;
 import MobileProject.WorkingTitle.utils.SendPostAsyncTask;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.NotificationCompat;
+import androidx.core.app.NotificationManagerCompat;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
@@ -45,6 +55,9 @@ import java.util.List;
 
 import MobileProject.WorkingTitle.R;
 
+import static android.content.Context.NOTIFICATION_SERVICE;
+import static me.pushy.sdk.config.PushyNotificationChannel.CHANNEL_ID;
+
 /**
  * A simple {@link Fragment} subclass.
  */
@@ -53,6 +66,8 @@ public class ConversationFragment extends Fragment {
     private static final String TAG = "CHAT_FRAG";
 
     private static final String CHAT_ID = "1";
+    private int notificationId = 1;
+
 
     private PushMessageReceiver mPushMessageReciever;
 
@@ -264,13 +279,14 @@ public class ConversationFragment extends Fragment {
         public void onReceive(Context context, Intent intent) {
             if(intent.hasExtra("SENDER") && intent.hasExtra("MESSAGE")) {
                 if (!mEmail.equals(intent.getStringExtra("SENDER"))) {
-                    String sender = intent.getStringExtra("SENDER") ;
+                    String sender = intent.getStringExtra("SENDER");
                     String messageText = intent.getStringExtra("MESSAGE");
                     conversation.addMessage(sender + ": " + messageText);
 
                     // notifies the list that there has been an update and scrolls to the bottom of the list
                     recyclerView.getAdapter().notifyDataSetChanged();
                     recyclerView.scrollToPosition(conversation.getSize() - 1);
+
 
                 }
             }

@@ -41,12 +41,10 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
-import java.sql.Time;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
-import java.util.Timer;
 
 
 
@@ -66,6 +64,7 @@ public class WeatherFragment extends Fragment {
 
 
     static String CITY = "Default";
+    //yeah, this is bad, ya it calls the api locally, yup, yup, yup
     String API = "9898def6c58ff9d8ce98771cd6ef8065";
     String UNITS = "imperial";
     String UNIT = "°F";
@@ -126,7 +125,7 @@ public class WeatherFragment extends Fragment {
         }
 
 
-
+        //ugly stack of code
         addressTxt = view.findViewById(R.id.address);
         updated_atTxt = view.findViewById(R.id.updated_at);
         statusTxt = view.findViewById(R.id.status);
@@ -473,6 +472,11 @@ public class WeatherFragment extends Fragment {
 
             } catch (IOException e) {
                 //oopsie daisies
+                Log.d("ERROR", e.toString());
+                //GPS not working, appearently common error for emulators
+                //incoming b.s. solution
+                CITY = "Tacoma,WA,US";
+
             }
         }
     }
