@@ -21,6 +21,7 @@ import android.os.Bundle;
 
 import MobileProject.WorkingTitle.model.Contacts;
 import MobileProject.WorkingTitle.model.Credentials;
+import MobileProject.WorkingTitle.model.EnumsDefine;
 import MobileProject.WorkingTitle.utils.PushReceiver;
 import androidx.annotation.NonNull;
 import androidx.core.app.ActivityCompat;
@@ -66,6 +67,7 @@ import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.HashMap;
 import java.util.List;
 
 import androidx.appcompat.widget.Toolbar;
@@ -403,7 +405,7 @@ public class HomeActivity extends AppCompatActivity implements BottomNavigationV
                 if (intent.getExtras().getString("type").equals("friendRequest")) {
                     Contacts contacts = (Contacts)intent.getExtras().get("contacts");
                     Contacts.Contact newContact = new Contacts.Contact("",intent.getStringExtra("SENDER"),intent.getStringExtra("MESSAGE"));
-                    newContact.setStatus(intent.getStringExtra("MESSAGE") + "                  Approve the request");
+                    newContact.setStatus(EnumsDefine.Status.FriendRequestFrom);
                     contacts.addItem(newContact);
                     getIntent().removeExtra("contacts");
                     intent.putExtra("contacts",contacts);
@@ -530,14 +532,37 @@ public class HomeActivity extends AppCompatActivity implements BottomNavigationV
         Contacts contacts = new Contacts();
         //TODO should get contact then add to contacts
         JSONArray arr = null;
+        JSONArray contactDetail = null;
         try {
             arr = result.getJSONArray("data");
+            contactDetail = result.getJSONArray("contactsDetail");
         } catch (JSONException e) {
             e.printStackTrace();
+        }
+
+        HashMap<String,String> requestA_To_B = new HashMap<>();
+        HashMap<String,String> requestB_To_A = new HashMap<>();
+        HashMap<String,String> contactsStatus = new HashMap<>();
+        Credentials cr = (Credentials) getIntent().getExtras().get("userCr");
+        for (int j = 0; j < contactDetail.length(); j++) {
+            try {
+                String memberId_A = contactDetail.getJSONObject(j).getString("memberid_a");
+                String memberId_B = contactDetail.getJSONObject(j).getString("memberid_b");
+                String verified = contactDetail.getJSONObject(j).getString("verified");
+                String status = contactDetail.getJSONObject(j).getString("status");
+
+
+            if (memberId_A.equals(cr.getMemberId())) {
+                requestA_To_B.put(memberId_B,verified);
+            } else {
+                requestB_To_A.put(memberId_A,verified);
+            }
+            } catch (JSONException es) {}
         }
         for (int i = 0; i < arr.length(); i++)
         {
             try {
+                EnumsDefine.Status friend = EnumsDefine.Status.Connected;
                 String memberId = arr.getJSONObject(i).getString("memberid");
                 String username = arr.getJSONObject(i).getString("username");
                 String email = arr.getJSONObject(i).getString("email");
@@ -546,6 +571,14 @@ public class HomeActivity extends AppCompatActivity implements BottomNavigationV
                 testing.setEmail(email);
                 testing.setUsername(username);
                 testing.setToken(token);
+                testing.setMemberid(memberId);
+                if(requestA_To_B.containsKey(memberId)){
+                    friend = requestA_To_B.get(memberId).equals("1")?EnumsDefine.Status.Connected: EnumsDefine.Status.FriendRequestTo;
+                } else {
+                    friend = requestB_To_A.get(memberId).equals("1")?EnumsDefine.Status.Connected: EnumsDefine.Status.FriendRequestFrom;
+                }
+                testing.setStatus(friend);
+                contacts.sortFriend();
                 contacts.addItem(testing);
 
             } catch (JSONException e) {

@@ -281,14 +281,14 @@ public class ConnectionFragment extends Fragment {
             super.onPostExecute(result);
             try {
                 JSONObject ob = new JSONObject(result);
-                if (ob.getBoolean("success")) {
+                if (ob.getBoolean("success") && ob.getBoolean("result")) {
                     TextView textResult = (TextView)getActivity().findViewById(R.id.actionResult);
-                    textResult.setText(ob.getString("result"));
+                    textResult.setText(ob.getString("message"));
                     sendMessageActionVisibility(getView(), true);
                     friendRequestActionVisibility(getView(), false);
                     sendNewConnectionRequest(getView(), false);
                     friendRequestToActionVisibility(getView(), false);
-                    addFriendSuccess();
+//                    addFriendSuccess();
                 } else {
                     TextView textResult = (TextView)getActivity().findViewById(R.id.actionResult);
                     textResult.setText(ob.getString("message"));
@@ -301,11 +301,11 @@ public class ConnectionFragment extends Fragment {
 
     }
 
-    private void addFriendSuccess() {
-        String newValue = "I like sheep.";
-        int updateIndex = 3;
-        //(ConnectionsRecyclerViewAdapter.ViewHolder)getActivity().f(R.layout.fragment_contact);
-    }
+//    private void addFriendSuccess() {
+//        String newValue = "I like sheep.";
+//        int updateIndex = 3;
+//        //(ConnectionsRecyclerViewAdapter.ViewHolder)getActivity().f(R.layout.fragment_contact);
+//    }
 
     private void doAction() {
         task = new PostWebServiceTask();

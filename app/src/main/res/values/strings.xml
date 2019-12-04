@@ -33,5 +33,12 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="passwordMatch">* Not Match</string>
     <string name="send_message_to_contact">Send Message</string>
+    <string name="accept">Accept</string>
+    <string name="deny">Deny</string>
+    <string name="BlockUser">Block User</string>
+    <string name="RemoveRequest">Remove Request</string>
+    <string name="ReSendFriendRequest">Re-Send Request</string>
+    <string name="SendFriendRequest">Friend Request</string>
+    <string name="email_nickname">Enter your friends email/nickname</string>
 
 </resources>
