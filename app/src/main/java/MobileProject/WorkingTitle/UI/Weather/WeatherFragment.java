@@ -1,28 +1,55 @@
 package MobileProject.WorkingTitle.UI.Weather;
 
+import android.Manifest;
+import android.annotation.SuppressLint;
+import android.content.Context;
+import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.location.Address;
+import android.location.Geocoder;
+import android.location.Location;
+import android.location.LocationManager;
 import android.os.Bundle;
+
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatImageView;
+import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
+
+import android.os.Looper;
+import android.provider.Settings;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+
+import MobileProject.WorkingTitle.HomeActivity;
 import MobileProject.WorkingTitle.R;
 import android.os.AsyncTask;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import com.androdocs.httprequest.HttpRequest;
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.io.IOException;
+import java.sql.Time;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 import java.util.Locale;
+import java.util.Timer;
+
+
+
 
 
 public class WeatherFragment extends Fragment {
@@ -31,16 +58,21 @@ public class WeatherFragment extends Fragment {
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
+
+
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
 
 
-    static String CITY = "TACOMA,WA,US";
+    static String CITY = "Default";
     String API = "9898def6c58ff9d8ce98771cd6ef8065";
     String UNITS = "imperial";
     String UNIT = "°F";
     String NUMBER_OF_DAYS = "5";
+
+    String localSTATE;
+    String localCOUNTRY;
 
     TextView addressTxt, updated_atTxt, statusTxt, tempTxt, temp_minTxt, temp_maxTxt, sunriseTxt,
             sunsetTxt, windTxt, pressureTxt, humidityTxt;
@@ -71,13 +103,29 @@ public class WeatherFragment extends Fragment {
         if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
+
         }
     }
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_weather, container, false);
+
+        view.findViewById(R.id.errorText).setVisibility(View.GONE);
+
+
+        if(CITY.equals("Default")) {
+            setCurrentLocation();
+        }
+
+        if (!CITY.equals("Default")) {
+            setState(CITY);
+            setCountry(CITY);
+        }
+
+
 
         addressTxt = view.findViewById(R.id.address);
         updated_atTxt = view.findViewById(R.id.updated_at);
@@ -356,7 +404,8 @@ public class WeatherFragment extends Fragment {
                 String windSpeed = wind.getString("speed") + "mph";
                 String weatherDescription = weather.getString("description");
 
-                String address = jsonObj.getString("name") + ", " + sys.getString("country");
+                String address = jsonObj.getString("name") + ", " + localSTATE + ", " + sys.getString("country");
+                Log.d("SYS JSON", jsonObj.toString());
 
 
                 /* Populating extracted data into our views */
@@ -381,12 +430,64 @@ public class WeatherFragment extends Fragment {
                 Log.d("ERROR: ", e.toString());
                 mView.findViewById(R.id.loader).setVisibility(View.GONE);
                 mView.findViewById(R.id.errorText).setVisibility(View.VISIBLE);
+                setCurrentLocation();
             }
 
         }
     }
 
 
+
+
+    public void setCurrentLocation() {
+        String locationName = "";
+        if (HomeActivity.getLAT() != 0 && HomeActivity.getLONG() != 0) {
+            double mLong = HomeActivity.getLONG();
+            double mLat = HomeActivity.getLAT();
+
+            Geocoder geocoder = new Geocoder(getContext(), Locale.getDefault());
+            try {
+                //get address location
+                List<Address> addresses = geocoder.getFromLocation(mLat, mLong, 1);
+                locationName = addresses.get(0).getAddressLine(0);
+                Log.d("LOCATION", locationName);
+
+                int addressSplitter = locationName.indexOf(',');
+                int stateSplitter = locationName.indexOf(',', addressSplitter + 1);
+                int countrySplitter = locationName.indexOf(',', stateSplitter + 1);
+
+                //get city name, state name, country name
+                String cityName = locationName.substring(addressSplitter + 2, stateSplitter);
+                String stateName = locationName.substring(stateSplitter + 2, stateSplitter + 4);
+                String countryName = locationName.substring(countrySplitter + 2);
+
+                Log.d("LOCATION CITY", cityName);
+                Log.d("LOCATION STATE", stateName);
+                Log.d("LOCATION COUNTRY", countryName);
+
+                //set location
+                CITY = cityName + "," + stateName + "," + countryName;
+
+                localSTATE = stateName;
+                localCOUNTRY = countryName;
+
+            } catch (IOException e) {
+                //oopsie daisies
+            }
+        }
+    }
+
+    public void setState(String location) {
+        int citySplitter = location.indexOf(',');
+        int stateSplitter = location.indexOf(',', citySplitter + 1);
+        localSTATE = location.substring(citySplitter + 1, stateSplitter);
+    }
+
+    public void setCountry(String location) {
+        int citySplitter = location.indexOf(',');
+        int stateSplitter = location.indexOf(',', citySplitter + 1);
+        localCOUNTRY = location.substring(stateSplitter + 1);
+    }
 
 
 

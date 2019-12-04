@@ -10,7 +10,7 @@ public class Locations {
     public static final List<Location> LOCATIONS = new ArrayList<Location>();
     public static final Map<String, Location> LOCATIONS_MAP = new HashMap<String, Location>();
 
-    private static String[] locos = {"TACOMA,WA,US", "SEATTLE,WA,US","LAKEWOOD,WA,US"};
+    private static String[] locos = {"TACOMA,WA,US", "SEATTLE,WA,US"};
 
     static {
         // Add some sample items.
@@ -28,6 +28,17 @@ public class Locations {
         return new Location(location);
     }
 
+    public static void deleteLocation(int index) {
+        if (LOCATIONS.size() > 1 ) {
+            LOCATIONS.remove(index);
+        }
+
+    }
+
+    public static int getLocationSize(){
+        return LOCATIONS.size();
+    }
+
 
     public static class Location {
         public final String location;
@@ -39,7 +50,7 @@ public class Locations {
 
         @Override
         public String toString() {
-            return location;
+            return location.substring(0, location.length() - 3);
         }
     }
 }

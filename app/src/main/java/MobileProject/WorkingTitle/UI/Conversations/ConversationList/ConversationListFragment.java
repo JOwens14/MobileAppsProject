@@ -1,24 +1,32 @@
 package MobileProject.WorkingTitle.UI.Conversations.ConversationList;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 
 import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
 import java.util.List;
 
 import MobileProject.WorkingTitle.R;
 import MobileProject.WorkingTitle.UI.Conversations.Conversation;
 import MobileProject.WorkingTitle.UI.Conversations.ConversationBuilder;
+import MobileProject.WorkingTitle.UI.Weather.Locations;
 
 /**
  * A fragment representing a list of Items.
@@ -27,12 +35,12 @@ import MobileProject.WorkingTitle.UI.Conversations.ConversationBuilder;
  */
 public class ConversationListFragment extends Fragment {
 
-    // TODO: Customize parameter argument names
     private static final String ARG_COLUMN_COUNT = "column-count";
-    // TODO: Customize parameters
     private int mColumnCount = 1;
 
     private List<Conversation> mConversations;
+
+    private RecyclerView ConvolistRecyclerView;
 
     /**
      * Mandatory empty constructor for the fragment manager to instantiate the
@@ -54,11 +62,7 @@ public class ConversationListFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-//        ConversationFragment args = ConversationFragment.fromBundle(getArguments());
-//        mConversations = new ArrayList<>(Arrays.asList(args.getConversations()));
         mConversations = ConversationBuilder.getConversations();
-
-
     }
 
 
@@ -72,19 +76,43 @@ public class ConversationListFragment extends Fragment {
 
         View view = inflater.inflate(R.layout.fragment_conversations_list, container, false);
 
-        //Log.d("ARRIVAL", String.valueOf(mConversations.size()));
-        // Set the adapter
-        if (view instanceof RecyclerView) {
-            Context context = view.getContext();
-            RecyclerView recyclerView = (RecyclerView) view;
+        FloatingActionButton fab = view.findViewById(R.id.conversations_frag_fab);
+        fab.setOnClickListener(this::createNewConversation);
 
+        // Set the adapter
+        if (view.findViewById(R.id.conversation_list) != null) {
+            Context context = view.getContext();
+            ConvolistRecyclerView = view.findViewById(R.id.conversation_list);
 
             if (mColumnCount <= 1) {
-                recyclerView.setLayoutManager(new LinearLayoutManager(context));
+                ConvolistRecyclerView.setLayoutManager(new LinearLayoutManager(context));
             } else {
-                recyclerView.setLayoutManager(new GridLayoutManager(context, mColumnCount));
+                ConvolistRecyclerView.setLayoutManager(new GridLayoutManager(context, mColumnCount));
             }
-            recyclerView.setAdapter(new ConversationsListRecyclerViewAdapter(mConversations, this::onClick));
+            ConvolistRecyclerView.setAdapter(new ConversationsListRecyclerViewAdapter(mConversations, this::onClick));
+
+
+            ItemTouchHelper.SimpleCallback itemTouchHelperCallback =
+                    new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.RIGHT) {
+                        @Override
+                        public boolean onMove(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder, RecyclerView.ViewHolder target) {
+                            return false;
+                        }
+
+                        @Override
+                        public void onSwiped(RecyclerView.ViewHolder viewHolder, int direction) {
+                            if(direction == 8) {
+                                int index = viewHolder.getLayoutPosition();
+                                mConversations.remove(index);
+                                ConvolistRecyclerView.getAdapter().notifyDataSetChanged();
+                            }
+                        }
+                    };
+
+            // attaching the touch helper to recycler view
+            new ItemTouchHelper(itemTouchHelperCallback).attachToRecyclerView(ConvolistRecyclerView);
+
+
 
         }
         return view;
@@ -106,6 +134,36 @@ public class ConversationListFragment extends Fragment {
 
     public void clearData() {
         mConversations.clear(); // clear list
+    }
+
+
+    private void createNewConversation(View view) {
+        Context c = view.getContext();
+        final EditText taskEditText = new EditText(c);
+        AlertDialog dialog = new AlertDialog.Builder(c, R.style.AlertDialog)
+                .setTitle("Contact Name")
+                .setView(taskEditText)
+                .setPositiveButton("Start Conversation", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        String name = String.valueOf(taskEditText.getText());
+
+                        // TODO CHECK IF THERE IS A CONTACT
+                        //  WITH THE NAME THAT MATCHES THE INPUT
+
+                        //make the new conversation
+                        name = upperCaseFirst(name); //make the contact name uppercase if it is not.
+                        Conversation newConvo = ConversationBuilder.createConversation(name, null);
+                        ConversationBuilder.addItem(newConvo);
+                    }
+                })
+                .setNegativeButton("Cancel", null)
+                .create();
+        dialog.show();
+    }
+
+    public String upperCaseFirst(String line) {
+        return line.substring(0, 1).toUpperCase() + line.substring(1);
     }
 
 

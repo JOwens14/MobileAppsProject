@@ -2,6 +2,7 @@ package MobileProject.WorkingTitle.UI.Weather;
 
 import android.content.Context;
 import android.content.DialogInterface;
+import android.graphics.Canvas;
 import android.os.Bundle;
 
 import androidx.appcompat.app.ActionBar;
@@ -11,6 +12,7 @@ import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -19,6 +21,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -101,7 +104,47 @@ public class LocationFragment extends Fragment {
                 recyclerView.setLayoutManager(new GridLayoutManager(context, mColumnCount));
             }
             recyclerView.setAdapter(new MyLocationRecyclerViewAdapter(Locations.LOCATIONS, this::onClick));
+
+
+            ItemTouchHelper.SimpleCallback itemTouchHelperCallback =
+                    new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.RIGHT) {
+                @Override
+                public boolean onMove(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder, RecyclerView.ViewHolder target) {
+                    return false;
+                }
+
+                @Override
+                public void onSwiped(RecyclerView.ViewHolder viewHolder, int direction) {
+                    if(direction == 8) {
+                        int index = viewHolder.getLayoutPosition();
+                        Locations.deleteLocation(index);
+                        recyclerView.getAdapter().notifyDataSetChanged();
+
+                    }
+                }
+
+                @Override
+                public int getSwipeDirs(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder) {
+                    if (Locations.getLocationSize() == 1) {
+                        return 0;
+                    }
+                    return super.getSwipeDirs(recyclerView, viewHolder);
+                }
+
+
+            };
+
+            // attaching the touch helper to recycler view
+            new ItemTouchHelper(itemTouchHelperCallback).attachToRecyclerView(recyclerView);
+
+
+
+
         }
+
+
+
+
         return view;
     }
 
@@ -118,18 +161,30 @@ public class LocationFragment extends Fragment {
 
     private void showAddItemDialog(View view) {
         Context c = view.getContext();
-        final EditText taskEditText = new EditText(c);
+        final EditText cityEditText = new EditText(c);
+        cityEditText.setHint("City");
+        final EditText stateEditText = new EditText(c);
+        stateEditText.setHint("State");
+
+        LinearLayout layout = new LinearLayout(c);
+        layout.setOrientation(LinearLayout.VERTICAL);
+
+        layout.addView(cityEditText);
+        layout.addView(stateEditText);
+
+
         AlertDialog dialog = new AlertDialog.Builder(c, R.style.AlertDialog)
                 .setTitle("New Location")
-                .setView(taskEditText)
+                .setView(layout)
                 .setPositiveButton("Add", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        String task = String.valueOf(taskEditText.getText());
+                        String city = String.valueOf(cityEditText.getText());
+                        String state = String.valueOf(stateEditText.getText());
 
                         //adds item to the location list.
                         //ONLY WORKS FOR WA CITIES SO FAR
-                        Locations.addLocation(new Locations.Location(task + ",WA,US"));
+                        Locations.addLocation(new Locations.Location(city + ","+ state +",US"));
 
                     }
                 })
