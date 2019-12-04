@@ -288,7 +288,7 @@ public class ConnectionFragment extends Fragment {
                     friendRequestActionVisibility(getView(), false);
                     sendNewConnectionRequest(getView(), false);
                     friendRequestToActionVisibility(getView(), false);
-//                    addFriendSuccess();
+                    jobSuccess(true);
                 } else {
                     TextView textResult = (TextView)getActivity().findViewById(R.id.actionResult);
                     textResult.setText(ob.getString("message"));
@@ -297,15 +297,16 @@ public class ConnectionFragment extends Fragment {
                 e.printStackTrace();
             }
         }
-
-
     }
 
-//    private void addFriendSuccess() {
-//        String newValue = "I like sheep.";
-//        int updateIndex = 3;
-//        //(ConnectionsRecyclerViewAdapter.ViewHolder)getActivity().f(R.layout.fragment_contact);
-//    }
+    private void jobSuccess(Boolean updateAction) {
+        Contacts.Contact contact = (Contacts.Contact) getArguments().get("connection");
+        Contacts contacts = (Contacts) getActivity().getIntent().getExtras().get("contacts");
+        contacts.updateContact(contact, EnumsDefine.Status.Connected);
+        getActivity().getIntent().removeExtra("contacts");
+//        contacts.FRIENDS.add(new Contacts.Contact("","hoppppp","phammmm"));
+        getActivity().getIntent().putExtra("contacts",contacts);
+    }
 
     private void doAction() {
         task = new PostWebServiceTask();

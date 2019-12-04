@@ -44,7 +44,6 @@ public class ConnectionsRecyclerViewAdapter extends RecyclerView.Adapter<Connect
 
         holder.mItem = mValues.get(position);
         holder.mIdView.setText(mValues.get(position).id);
-
         switch (mValues.get(position).getStatus()) {
             case FriendRequestFrom:
                 status = " is requesting connection";

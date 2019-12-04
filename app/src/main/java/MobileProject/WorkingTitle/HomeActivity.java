@@ -327,6 +327,7 @@ public class HomeActivity extends AppCompatActivity implements BottomNavigationV
         finishAndRemoveTask();
 
         Intent intent = new Intent(this, LoginActivity.class);
+        intent.removeExtra("contacts");
         startActivity(intent);
         //might need to null future credentials for security purposes
         return 1;
