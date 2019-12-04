@@ -3,7 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimary">
 
     <TextView
         android:id="@+id/text_share"
@@ -13,6 +14,7 @@
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:textAlignment="center"
+        android:textColor="#FFFFFF"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -27,21 +29,19 @@
         android:textColor="@color/colorPrimaryDark"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/text_share" />
+        app:layout_constraintTop_toBottomOf="@+id/email_nickname_target" />
 
     <Button
         android:id="@+id/AcceptFriendRequest"
-        android:layout_width="wrap_content"
+        android:layout_width="88dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:text="@string/accept"
         android:textColor="@color/colorBRIGHTBLUE"
         android:textColorLink="@color/colorAccent"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/sendMessageTo"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toBottomOf="@+id/sendMessageTo" />
 
     <Button
         android:id="@+id/DenyFriendRequest"
@@ -50,9 +50,10 @@
         android:layout_marginTop="16dp"
         android:text="@string/deny"
         android:textColor="@color/colorAccent"
-        app:layout_constraintEnd_toStartOf="@+id/AcceptFriendRequest"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/sendMessageTo" />
+        app:layout_constraintTop_toBottomOf="@+id/AcceptFriendRequest" />
 
     <Button
         android:id="@+id/BlockUser"
@@ -61,43 +62,43 @@
         android:layout_marginTop="16dp"
         android:text="@string/BlockUser"
         android:textColor="@color/colorAccent"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/AcceptFriendRequest"
-        app:layout_constraintTop_toBottomOf="@+id/sendMessageTo"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/DenyFriendRequest" />
 
     <Button
         android:id="@+id/remove_request"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
         android:text="@string/RemoveRequest"
-        app:layout_constraintEnd_toStartOf="@+id/re_send_friend_request"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.535"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/text_share" />
+        app:layout_constraintTop_toBottomOf="@+id/re_send_friend_request" />
 
     <Button
         android:id="@+id/re_send_friend_request"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:text="@string/ReSendFriendRequest"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/remove_request"
-        app:layout_constraintTop_toBottomOf="@+id/text_share" />
+        app:layout_constraintHorizontal_bias="0.533"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/friend_request" />
 
     <Button
         android:id="@+id/friend_request"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="24dp"
         android:text="@string/SendFriendRequest"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.516"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/text_share" />
+        app:layout_constraintTop_toBottomOf="@+id/BlockUser" />
 
     <TextView
         android:id="@+id/actionResult"
@@ -115,6 +116,8 @@
         android:ems="10"
         android:hint="@string/email_nickname"
         android:inputType="textPersonName"
+        android:textColor="#FFFFFF"
+        android:textColorHint="#FFFFFF"
         app:layout_constraintBottom_toBottomOf="@+id/text_share"
         app:layout_constraintEnd_toEndOf="@+id/text_share"
         app:layout_constraintStart_toStartOf="@+id/text_share"

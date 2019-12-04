@@ -473,7 +473,7 @@ public class WeatherFragment extends Fragment {
             } catch (IOException e) {
                 //oopsie daisies
                 Log.d("ERROR", e.toString());
-                //GPS not working, appearently common error for emulators
+                //GPS not working, apparently common error for emulators
                 //incoming b.s. solution
                 CITY = "Tacoma,WA,US";
 

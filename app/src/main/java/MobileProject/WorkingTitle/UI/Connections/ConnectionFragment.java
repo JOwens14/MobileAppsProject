@@ -58,8 +58,11 @@ public class ConnectionFragment extends Fragment {
         if (getArguments() != null) {
             Contacts.Contact contact = (Contacts.Contact) getArguments().get("connection");
             TextView detail = (TextView) view.findViewById(R.id.text_share);
-            String detailBuild  = contact.getUsername() + ": " + contact.getEmail();
-            detail.setText(detailBuild);
+
+            if (!contact.getUsername().equals("")) {
+                String detailBuild  = contact.getUsername() + ": " + contact.getEmail();
+                detail.setText(detailBuild);
+            }
             //sets the actionbar title to the contact name
             AppCompatActivity activity = (AppCompatActivity) getActivity();
             ActionBar actionBar = activity.getSupportActionBar();
