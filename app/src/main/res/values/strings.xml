@@ -1,5 +1,7 @@
 <resources>
     <string name="app_name">Working Title</string>
+    <string name="app_desc">Chat and Weather</string>
+
 
     <string name="email">Email</string>
     <string name="password">Password</string>

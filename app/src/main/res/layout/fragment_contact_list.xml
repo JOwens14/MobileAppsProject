@@ -6,8 +6,7 @@
     android:name="MobileProject.WorkingTitle.ui.ContactFragment"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_marginLeft="16dp"
-    android:layout_marginRight="16dp"
+    android:background="@color/colorPrimary"
     app:layoutManager="LinearLayoutManager"
     tools:context=".UI.Connections.ConnectionsListFragment"
     tools:listitem="@layout/fragment_contact" />

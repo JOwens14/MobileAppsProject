@@ -3,6 +3,9 @@ package MobileProject.WorkingTitle;
 import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.Fragment;
+import android.app.Notification;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -17,6 +20,7 @@ import android.location.Location;
 import android.location.LocationManager;
 import android.net.Uri;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Bundle;
 
 import MobileProject.WorkingTitle.model.Contacts;
@@ -25,6 +29,8 @@ import MobileProject.WorkingTitle.model.EnumsDefine;
 import MobileProject.WorkingTitle.utils.PushReceiver;
 import androidx.annotation.NonNull;
 import androidx.core.app.ActivityCompat;
+import androidx.core.app.NotificationCompat;
+import androidx.core.app.NotificationManagerCompat;
 import androidx.core.content.ContextCompat;
 import androidx.navigation.NavController;
 import androidx.navigation.NavDestination;
@@ -77,8 +83,7 @@ import MobileProject.WorkingTitle.UI.Conversations.ConversationFragment;
 import MobileProject.WorkingTitle.UI.Login.LoginActivity;
 import me.pushy.sdk.Pushy;
 
-
-
+import static me.pushy.sdk.config.PushyNotificationChannel.CHANNEL_ID;
 
 
 public class HomeActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener {
@@ -87,11 +92,14 @@ public class HomeActivity extends AppCompatActivity implements BottomNavigationV
     private ColorFilter mDefault;
     private HomePushMessageReceiver mPushMessageReciever;
 
+    String USER_EMAIL;
     int PERMISSION_ID = 44;
     FusedLocationProviderClient mFusedLocationClient;
 
     public static double LAT = 0;
     public static double LONG = 0;
+    int notificationId = 1;
+
 
 
     @Override
@@ -101,6 +109,8 @@ public class HomeActivity extends AppCompatActivity implements BottomNavigationV
         Pushy.listen(this);
         //Log.d("start home", " you started the home activity");
         setContentView(R.layout.activity_home);
+
+
 
         //Hide the notification icon whenever home activity loaded..
         //((BottomNavigationView)findViewById(R.id.nav_view)).getMenu().getItem(3).setVisible(false);
@@ -115,6 +125,7 @@ public class HomeActivity extends AppCompatActivity implements BottomNavigationV
                 if (!getIntent().getExtras().containsKey("contacts")) {
                     loadContacts(cr.getMemberId());
                 }
+                USER_EMAIL = cr.getEmail();
             }
             if (getIntent().getExtras().containsKey("type")) {
                 Navigation.findNavController(this, R.id.nav_host_fragment)
@@ -171,6 +182,7 @@ public class HomeActivity extends AppCompatActivity implements BottomNavigationV
 
         mFusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
 
+        //sets gps location
         getLastLocation();
 
 
@@ -194,8 +206,59 @@ public class HomeActivity extends AppCompatActivity implements BottomNavigationV
             iconView.setLayoutParams(layoutParams);
         }
 
+        //opens the channel for android notifications
+        createNotificationChannel();
+
 
     }
+
+
+    private void createNotificationChannel() {
+        // Create the NotificationChannel, but only on API 26+ because
+        // the NotificationChannel class is new and not in the support library
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            CharSequence name = getString(R.string.app_name);
+            String description = getString(R.string.app_desc);
+            int importance = NotificationManager.IMPORTANCE_DEFAULT;
+            NotificationChannel channel = new NotificationChannel(CHANNEL_ID, name, importance);
+            channel.setDescription(description);
+            // Register the channel with the system; you can't change the importance
+            // or other notification behaviors after this
+            NotificationManager notificationManager = getSystemService(NotificationManager.class);
+            notificationManager.createNotificationChannel(channel);
+        }
+    }
+
+    public void createNotification(String sender, String message) {
+
+        sender = sender.substring(0, sender.indexOf("@"));
+
+        NotificationCompat.Builder builder =
+                new NotificationCompat.Builder(getBaseContext(), CHANNEL_ID);
+
+        //set small icon and content title
+        builder
+                .setSmallIcon(R.drawable.duck_logo)
+                .setContentTitle(sender)
+                .setContentText(message);
+
+        Notification notification = builder.build();
+
+        //send notification
+        NotificationManagerCompat.from(this)
+                .notify(notificationId++, notification);
+    }
+
+
+
+
+
+
+
+
+
+
+
 
     @Override
     public void onResume() {
@@ -373,6 +436,9 @@ public class HomeActivity extends AppCompatActivity implements BottomNavigationV
 //            //Ends this Activity and removes it from the Activity back stack.
 //            finish();
         }
+
+
+
     }
 
     private void loadContacts(String memberId) {
@@ -395,6 +461,7 @@ public class HomeActivity extends AppCompatActivity implements BottomNavigationV
      * A BroadcastReceiver that listens for messages sent from PushReceiver
      */
     private class HomePushMessageReceiver extends BroadcastReceiver {
+
 
         @Override
         public void onReceive(Context context, Intent intent) {
@@ -425,6 +492,11 @@ public class HomeActivity extends AppCompatActivity implements BottomNavigationV
                     navView.getMenu().getItem(3).setVisible(true);
                     //Log.d("HOME", sender + ": " + messageText);
                     navView.setItemIconTintList(null);
+
+                    //ANDROID NOTIFICATION
+                    if (!USER_EMAIL.equals(sender)) { //if the notification isn't coming from self.
+                        createNotification(sender, messageText);
+                    }
                 }
             }
         }
@@ -444,6 +516,8 @@ public class HomeActivity extends AppCompatActivity implements BottomNavigationV
                 }
             }
         }
+
+
     }
 
 
@@ -687,5 +761,10 @@ public class HomeActivity extends AppCompatActivity implements BottomNavigationV
     public static double getLONG() {
         return LONG;
     }
+
+
+
+
+
 
 }
