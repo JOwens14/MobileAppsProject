@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/new_pw_navigation"
+    app:startDestination="@id/nav_newPassword">
+
+    <fragment
+        android:id="@+id/nav_newPassword"
+        android:name="MobileProject.WorkingTitle.UI.NewPassword.NewPasswordFragment"
+        android:label="fragment_new_password"
+        tools:layout="@layout/fragment_new_password" >
+        <action
+            android:id="@+id/action_nav_newPassword_to_passwordChangedFragment"
+            app:destination="@id/passwordChangedFragment" />
+    </fragment>
+    <activity
+        android:id="@+id/loginActivity"
+        android:name="MobileProject.WorkingTitle.UI.Login.LoginActivity"
+        android:label="fragment_login"
+        tools:layout="@layout/fragment_login" />
+    <fragment
+        android:id="@+id/passwordChangedFragment"
+        android:name="MobileProject.WorkingTitle.UI.NewPassword.PasswordChangedFragment"
+        android:label="fragment_password_changed"
+        tools:layout="@layout/fragment_password_changed" >
+        <action
+            android:id="@+id/action_passwordChangedFragment_to_loginActivity"
+            app:destination="@id/loginActivity" />
+    </fragment>
+</navigation>

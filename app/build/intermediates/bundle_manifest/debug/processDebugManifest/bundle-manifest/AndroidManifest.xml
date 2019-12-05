@@ -28,6 +28,7 @@
         android:testOnly="true"
         android:theme="@style/AppTheme" >
         <activity android:name="MobileProject.WorkingTitle.UI.Register.RegisterActivity" />
+        <activity android:name="MobileProject.WorkingTitle.UI.NewPassword.NewPasswordActivity" />
         <activity
             android:name="MobileProject.WorkingTitle.HomeActivity"
             android:label="@string/title_activity_home"

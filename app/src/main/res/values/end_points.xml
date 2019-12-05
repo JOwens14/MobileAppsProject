@@ -11,4 +11,7 @@
     <string name="contacts">contacts</string>
     <string name="friendConnect">friendConnect</string>
 
+    <string name="ep_code_to_email">code_to_email</string>
+    <string name="ep_update_pw">update_password</string>
+
 </resources>
