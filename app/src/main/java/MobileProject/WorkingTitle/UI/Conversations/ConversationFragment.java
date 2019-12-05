@@ -233,7 +233,7 @@ public class ConversationFragment extends Fragment {
 
                 //Log.d("text:", messages.get(0).toString());
                 //ADDS all the messages from the database to the view
-                for (int i = 0; i < messages.length(); i++) {
+                for (int i = messages.length() - 1; i > 0; i--) {
                     JSONObject message = new JSONObject(messages.get(i).toString());
                     //Log.d("text:", message.get("message").toString());
                     String user = message.get("email").toString();
