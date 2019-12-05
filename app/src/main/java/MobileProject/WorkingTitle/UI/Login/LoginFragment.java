@@ -141,13 +141,11 @@ public class LoginFragment extends Fragment {
     private void register(View view) {
         Intent intent = new Intent(this.getContext(), RegisterActivity.class);
         startActivity(intent);
-
     }
 
     private void forgotPassword(View view) {
         Intent intent = new Intent(this.getContext(), NewPasswordActivity.class);
         startActivity(intent);
-
     }
 
     // TODO: must implement login which uses 	Credentials when implement stay login option
