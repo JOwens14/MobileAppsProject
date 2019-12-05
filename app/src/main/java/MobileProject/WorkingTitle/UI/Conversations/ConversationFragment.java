@@ -46,6 +46,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -77,10 +78,12 @@ public class ConversationFragment extends Fragment {
     private String mEmail;
     private String mJwToken;
     private String mSendUrl;
+    private String mGetAllUrl;
     private static String mUser;
 
     private RecyclerView recyclerView;
     private Conversation conversation;
+    private ArrayList mMessages;
 
     private int mColumnCount = 1;
 
@@ -110,7 +113,16 @@ public class ConversationFragment extends Fragment {
                 .build()
                 .toString();
         //Log.d("SEND URL", mSendUrl);
+
+        populateMessages(CHAT_ID);
+
+        if (conversation.getSize() > 0){
+            recyclerView.scrollToPosition(conversation.getSize() - 1);
+        }
+
     }
+
+
 
 
 
@@ -124,6 +136,7 @@ public class ConversationFragment extends Fragment {
 
     @Override
     public void onViewCreated(View view, Bundle args) {
+
         if (getArguments() != null) {
 
             // TODO: get old messages
@@ -137,7 +150,7 @@ public class ConversationFragment extends Fragment {
             Serializable convo = getArguments().getSerializable("conversation");
             conversation = (Conversation) convo;
 
-            ArrayList mMessages = conversation.getMessages();
+            mMessages = conversation.getMessages();
 
             if (view.findViewById(R.id.reyclerview_message_list) != null) {
                 Context context = view.getContext();
@@ -174,9 +187,69 @@ public class ConversationFragment extends Fragment {
                     }, 1);
                 }
             });
+
         }
     }
 
+    private void populateMessages(String chatId) {
+        //dont double populate
+        if (!mMessages.isEmpty()){
+            return;
+        }
+        //post to get messages
+        JSONObject mJson = new JSONObject();
+        try {
+            mJson.put("chatId", chatId);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        mGetAllUrl = new Uri.Builder()
+                .scheme("https")
+                .appendPath(getString(R.string.base_url))
+                .appendPath(getString(R.string.ep_messaging_base))
+                .appendPath(getString(R.string.ep_messaging_getAll))
+                .build()
+                .toString();
+
+        new SendPostAsyncTask.Builder(mGetAllUrl, mJson)
+                .onPostExecute(this::popMessPost)
+                .onCancelled(error -> Log.e(TAG, error))
+                .addHeaderField("authorization", mJwToken)
+                .build().execute();
+
+    }
+
+    private void popMessPost(final String result) {
+        try {
+            //This is the result from the web service
+            JSONObject res = new JSONObject(result);
+            //Log.d("HERE COME THE MESSAGES" , result);
+
+            if(res.has("messages")) {
+                //response has field "messages"
+                //lets populate the messages field for this conversation
+                JSONArray messages = res.getJSONArray("messages");
+
+                //Log.d("text:", messages.get(0).toString());
+                //ADDS all the messages from the database to the view
+                for (int i = 0; i < messages.length(); i++) {
+                    JSONObject message = new JSONObject(messages.get(i).toString());
+                    //Log.d("text:", message.get("message").toString());
+                    String user = message.get("email").toString();
+                    String msg = message.get("message").toString();
+                    mMessages.add(user + ":" + msg);
+                }
+
+                // notifies the list that there has been an update and scrolls to the bottom of the list
+                recyclerView.getAdapter().notifyDataSetChanged();
+                recyclerView.scrollToPosition(conversation.getSize() - 1);
+
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+    }
 
 
     public void messageClicked(String message) {
