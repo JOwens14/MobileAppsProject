@@ -76,7 +76,7 @@ public class RegisterFragment extends Fragment {
         }
 
         if (!isNameValid(firstName) || !isNameValid(lastName)) {
-            errorText.setText("First name and Last name invalid!");
+            errorText.setText("First name or Last name invalid!");
             errorText.setVisibility(View.VISIBLE);
             return;
         }

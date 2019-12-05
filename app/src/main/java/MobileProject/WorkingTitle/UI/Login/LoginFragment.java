@@ -132,8 +132,8 @@ public class LoginFragment extends Fragment {
         TextView login = view.findViewById(R.id.editText_EmailLogin);
         TextView password = view.findViewById(R.id.editText_PasswordLogin);
 
-//        login.setText("fakeemail@gmail.com");
-//        password.setText("logintest123");
+        login.setText("jowens@uw.edu");
+        password.setText("testtest1");
 
         return view;
     }

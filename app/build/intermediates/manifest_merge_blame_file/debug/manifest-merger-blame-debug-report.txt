@@ -16,25 +16,25 @@
 11-->I:\AndroidStudioProjects\MobileAppsProject\app\src\main\AndroidManifest.xml:6:5-78
 11-->I:\AndroidStudioProjects\MobileAppsProject\app\src\main\AndroidManifest.xml:6:22-76
 12    <uses-permission android:name="android.permission.INTERNET" />
-12-->I:\AndroidStudioProjects\MobileAppsProject\app\src\main\AndroidManifest.xml:79:5-83
-12-->I:\AndroidStudioProjects\MobileAppsProject\app\src\main\AndroidManifest.xml:79:22-64
+12-->I:\AndroidStudioProjects\MobileAppsProject\app\src\main\AndroidManifest.xml:80:5-83
+12-->I:\AndroidStudioProjects\MobileAppsProject\app\src\main\AndroidManifest.xml:80:22-64
 13    <!-- Pushy Permissions -->
 14
 15    <uses-permission android:name="android.permission.WAKE_LOCK" />
-15-->I:\AndroidStudioProjects\MobileAppsProject\app\src\main\AndroidManifest.xml:82:5-68
-15-->I:\AndroidStudioProjects\MobileAppsProject\app\src\main\AndroidManifest.xml:82:22-65
+15-->I:\AndroidStudioProjects\MobileAppsProject\app\src\main\AndroidManifest.xml:83:5-68
+15-->I:\AndroidStudioProjects\MobileAppsProject\app\src\main\AndroidManifest.xml:83:22-65
 16    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-16-->I:\AndroidStudioProjects\MobileAppsProject\app\src\main\AndroidManifest.xml:83:5-79
-16-->I:\AndroidStudioProjects\MobileAppsProject\app\src\main\AndroidManifest.xml:83:22-76
+16-->I:\AndroidStudioProjects\MobileAppsProject\app\src\main\AndroidManifest.xml:84:5-79
+16-->I:\AndroidStudioProjects\MobileAppsProject\app\src\main\AndroidManifest.xml:84:22-76
 17    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
-17-->I:\AndroidStudioProjects\MobileAppsProject\app\src\main\AndroidManifest.xml:84:5-81
-17-->I:\AndroidStudioProjects\MobileAppsProject\app\src\main\AndroidManifest.xml:84:22-78
+17-->I:\AndroidStudioProjects\MobileAppsProject\app\src\main\AndroidManifest.xml:85:5-81
+17-->I:\AndroidStudioProjects\MobileAppsProject\app\src\main\AndroidManifest.xml:85:22-78
 18    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-18-->I:\AndroidStudioProjects\MobileAppsProject\app\src\main\AndroidManifest.xml:85:5-80
-18-->I:\AndroidStudioProjects\MobileAppsProject\app\src\main\AndroidManifest.xml:85:22-78
+18-->I:\AndroidStudioProjects\MobileAppsProject\app\src\main\AndroidManifest.xml:86:5-80
+18-->I:\AndroidStudioProjects\MobileAppsProject\app\src\main\AndroidManifest.xml:86:22-78
 19
 20    <application
-20-->I:\AndroidStudioProjects\MobileAppsProject\app\src\main\AndroidManifest.xml:8:5-78:19
+20-->I:\AndroidStudioProjects\MobileAppsProject\app\src\main\AndroidManifest.xml:8:5-79:19
 21        android:allowBackup="true"
 21-->I:\AndroidStudioProjects\MobileAppsProject\app\src\main\AndroidManifest.xml:9:9-35
 22        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
@@ -54,130 +54,133 @@
 30        <activity android:name="MobileProject.WorkingTitle.UI.Register.RegisterActivity" />
 30-->I:\AndroidStudioProjects\MobileAppsProject\app\src\main\AndroidManifest.xml:16:9-75
 30-->I:\AndroidStudioProjects\MobileAppsProject\app\src\main\AndroidManifest.xml:16:19-63
-31        <activity
-31-->I:\AndroidStudioProjects\MobileAppsProject\app\src\main\AndroidManifest.xml:17:9-21:16
-32            android:name="MobileProject.WorkingTitle.HomeActivity"
-32-->I:\AndroidStudioProjects\MobileAppsProject\app\src\main\AndroidManifest.xml:18:13-41
-33            android:label="@string/title_activity_home"
-33-->I:\AndroidStudioProjects\MobileAppsProject\app\src\main\AndroidManifest.xml:19:13-56
-34            android:theme="@style/AppTheme" />
-34-->I:\AndroidStudioProjects\MobileAppsProject\app\src\main\AndroidManifest.xml:20:13-44
-35        <activity
-35-->I:\AndroidStudioProjects\MobileAppsProject\app\src\main\AndroidManifest.xml:22:9-30:20
-36            android:name="MobileProject.WorkingTitle.UI.Login.LoginActivity"
-36-->I:\AndroidStudioProjects\MobileAppsProject\app\src\main\AndroidManifest.xml:23:13-51
-37            android:theme="@style/AppTheme.NoActionBar" >
-37-->I:\AndroidStudioProjects\MobileAppsProject\app\src\main\AndroidManifest.xml:24:13-56
-38            <intent-filter>
-38-->I:\AndroidStudioProjects\MobileAppsProject\app\src\main\AndroidManifest.xml:25:13-29:29
-39                <action android:name="android.intent.action.MAIN" />
-39-->I:\AndroidStudioProjects\MobileAppsProject\app\src\main\AndroidManifest.xml:26:17-69
-39-->I:\AndroidStudioProjects\MobileAppsProject\app\src\main\AndroidManifest.xml:26:25-66
-40
-41                <category android:name="android.intent.category.LAUNCHER" />
-41-->I:\AndroidStudioProjects\MobileAppsProject\app\src\main\AndroidManifest.xml:28:17-77
-41-->I:\AndroidStudioProjects\MobileAppsProject\app\src\main\AndroidManifest.xml:28:27-74
-42            </intent-filter>
-43        </activity>
-44
-45        <provider
-45-->I:\AndroidStudioProjects\MobileAppsProject\app\src\main\AndroidManifest.xml:32:9-36:43
-46            android:name="androidx.lifecycle.ProcessLifecycleOwnerInitializer"
-46-->I:\AndroidStudioProjects\MobileAppsProject\app\src\main\AndroidManifest.xml:33:13-79
-47            android:authorities="MobileProject.WorkingTitle.lifecycle-process"
+31        <activity android:name="MobileProject.WorkingTitle.UI.NewPassword.NewPasswordActivity" />
+31-->I:\AndroidStudioProjects\MobileAppsProject\app\src\main\AndroidManifest.xml:17:9-81
+31-->I:\AndroidStudioProjects\MobileAppsProject\app\src\main\AndroidManifest.xml:17:19-69
+32        <activity
+32-->I:\AndroidStudioProjects\MobileAppsProject\app\src\main\AndroidManifest.xml:18:9-22:16
+33            android:name="MobileProject.WorkingTitle.HomeActivity"
+33-->I:\AndroidStudioProjects\MobileAppsProject\app\src\main\AndroidManifest.xml:19:13-41
+34            android:label="@string/title_activity_home"
+34-->I:\AndroidStudioProjects\MobileAppsProject\app\src\main\AndroidManifest.xml:20:13-56
+35            android:theme="@style/AppTheme" />
+35-->I:\AndroidStudioProjects\MobileAppsProject\app\src\main\AndroidManifest.xml:21:13-44
+36        <activity
+36-->I:\AndroidStudioProjects\MobileAppsProject\app\src\main\AndroidManifest.xml:23:9-31:20
+37            android:name="MobileProject.WorkingTitle.UI.Login.LoginActivity"
+37-->I:\AndroidStudioProjects\MobileAppsProject\app\src\main\AndroidManifest.xml:24:13-51
+38            android:theme="@style/AppTheme.NoActionBar" >
+38-->I:\AndroidStudioProjects\MobileAppsProject\app\src\main\AndroidManifest.xml:25:13-56
+39            <intent-filter>
+39-->I:\AndroidStudioProjects\MobileAppsProject\app\src\main\AndroidManifest.xml:26:13-30:29
+40                <action android:name="android.intent.action.MAIN" />
+40-->I:\AndroidStudioProjects\MobileAppsProject\app\src\main\AndroidManifest.xml:27:17-69
+40-->I:\AndroidStudioProjects\MobileAppsProject\app\src\main\AndroidManifest.xml:27:25-66
+41
+42                <category android:name="android.intent.category.LAUNCHER" />
+42-->I:\AndroidStudioProjects\MobileAppsProject\app\src\main\AndroidManifest.xml:29:17-77
+42-->I:\AndroidStudioProjects\MobileAppsProject\app\src\main\AndroidManifest.xml:29:27-74
+43            </intent-filter>
+44        </activity>
+45
+46        <provider
+46-->I:\AndroidStudioProjects\MobileAppsProject\app\src\main\AndroidManifest.xml:33:9-37:43
+47            android:name="androidx.lifecycle.ProcessLifecycleOwnerInitializer"
 47-->I:\AndroidStudioProjects\MobileAppsProject\app\src\main\AndroidManifest.xml:34:13-79
-48            android:exported="false"
-48-->I:\AndroidStudioProjects\MobileAppsProject\app\src\main\AndroidManifest.xml:35:13-37
-49            android:multiprocess="true" />
-49-->I:\AndroidStudioProjects\MobileAppsProject\app\src\main\AndroidManifest.xml:36:13-40
-50
-51        <!-- Pushy Declarations -->
-52
+48            android:authorities="MobileProject.WorkingTitle.lifecycle-process"
+48-->I:\AndroidStudioProjects\MobileAppsProject\app\src\main\AndroidManifest.xml:35:13-79
+49            android:exported="false"
+49-->I:\AndroidStudioProjects\MobileAppsProject\app\src\main\AndroidManifest.xml:36:13-37
+50            android:multiprocess="true" />
+50-->I:\AndroidStudioProjects\MobileAppsProject\app\src\main\AndroidManifest.xml:37:13-40
+51
+52        <!-- Pushy Declarations -->
 53
-54        <!-- Pushy Notification Receiver -->
-55        <!-- Incoming push notifications will invoke the following BroadcastReceiver -->
-56        <receiver
-56-->I:\AndroidStudioProjects\MobileAppsProject\app\src\main\AndroidManifest.xml:42:9-47:20
-57            android:name="MobileProject.WorkingTitle.utils.PushReceiver"
-57-->I:\AndroidStudioProjects\MobileAppsProject\app\src\main\AndroidManifest.xml:42:19-53
-58            android:exported="false" >
-58-->I:\AndroidStudioProjects\MobileAppsProject\app\src\main\AndroidManifest.xml:42:54-78
-59            <intent-filter>
-59-->I:\AndroidStudioProjects\MobileAppsProject\app\src\main\AndroidManifest.xml:43:13-46:29
-60
-61                <!-- Do not modify this -->
-62                <action android:name="pushy.me" />
-62-->I:\AndroidStudioProjects\MobileAppsProject\app\src\main\AndroidManifest.xml:45:17-51
-62-->I:\AndroidStudioProjects\MobileAppsProject\app\src\main\AndroidManifest.xml:45:25-48
-63            </intent-filter>
-64        </receiver>
-65
-66        <!-- Pushy Update Receiver -->
-67        <!-- Do not modify - internal BroadcastReceiver that restarts the listener service -->
-68        <receiver
-68-->I:\AndroidStudioProjects\MobileAppsProject\app\src\main\AndroidManifest.xml:51:9-55:20
-69            android:name="me.pushy.sdk.receivers.PushyUpdateReceiver"
-69-->I:\AndroidStudioProjects\MobileAppsProject\app\src\main\AndroidManifest.xml:51:19-76
-70            android:exported="false" >
-70-->I:\AndroidStudioProjects\MobileAppsProject\app\src\main\AndroidManifest.xml:51:77-101
-71            <intent-filter>
-71-->I:\AndroidStudioProjects\MobileAppsProject\app\src\main\AndroidManifest.xml:52:13-54:29
-72                <action android:name="android.intent.action.MY_PACKAGE_REPLACED" />
-72-->I:\AndroidStudioProjects\MobileAppsProject\app\src\main\AndroidManifest.xml:53:17-84
-72-->I:\AndroidStudioProjects\MobileAppsProject\app\src\main\AndroidManifest.xml:53:25-81
-73            </intent-filter>
-74        </receiver>
-75
-76        <!-- Pushy Boot Receiver -->
-77        <!-- Do not modify - internal BroadcastReceiver that restarts the listener service -->
-78        <receiver
-78-->I:\AndroidStudioProjects\MobileAppsProject\app\src\main\AndroidManifest.xml:59:9-63:20
-79            android:name="me.pushy.sdk.receivers.PushyBootReceiver"
-79-->I:\AndroidStudioProjects\MobileAppsProject\app\src\main\AndroidManifest.xml:59:19-74
-80            android:exported="false" >
-80-->I:\AndroidStudioProjects\MobileAppsProject\app\src\main\AndroidManifest.xml:59:75-99
-81            <intent-filter>
-81-->I:\AndroidStudioProjects\MobileAppsProject\app\src\main\AndroidManifest.xml:60:13-62:29
-82                <action android:name="android.intent.action.BOOT_COMPLETED" />
-82-->I:\AndroidStudioProjects\MobileAppsProject\app\src\main\AndroidManifest.xml:61:17-78
-82-->I:\AndroidStudioProjects\MobileAppsProject\app\src\main\AndroidManifest.xml:61:25-76
-83            </intent-filter>
-84        </receiver>
-85
-86        <!-- Pushy Socket Service -->
-87        <!-- Do not modify - internal service -->
-88        <service android:name="me.pushy.sdk.services.PushySocketService" />
-88-->I:\AndroidStudioProjects\MobileAppsProject\app\src\main\AndroidManifest.xml:67:9-75
-88-->I:\AndroidStudioProjects\MobileAppsProject\app\src\main\AndroidManifest.xml:67:18-73
-89
-90        <!-- Pushy Job Service (added in Pushy SDK 1.0.35) -->
-91        <!-- Do not modify - internal service -->
-92        <service
-92-->I:\AndroidStudioProjects\MobileAppsProject\app\src\main\AndroidManifest.xml:71:9-73:39
-93            android:name="me.pushy.sdk.services.PushyJobService"
-93-->I:\AndroidStudioProjects\MobileAppsProject\app\src\main\AndroidManifest.xml:71:18-70
-94            android:exported="true"
-94-->I:\AndroidStudioProjects\MobileAppsProject\app\src\main\AndroidManifest.xml:73:13-36
-95            android:permission="android.permission.BIND_JOB_SERVICE" />
-95-->I:\AndroidStudioProjects\MobileAppsProject\app\src\main\AndroidManifest.xml:72:13-69
-96
-97        <!-- End Pushy Declarations -->
-98
-99        <activity
-99-->[com.google.android.gms:play-services-base:17.0.0] C:\Users\abcjk\.gradle\caches\transforms-2\files-2.1\30db490c1cd2c42580395161eca63821\play-services-base-17.0.0\AndroidManifest.xml:23:9-26:75
-100            android:name="com.google.android.gms.common.api.GoogleApiActivity"
-100-->[com.google.android.gms:play-services-base:17.0.0] C:\Users\abcjk\.gradle\caches\transforms-2\files-2.1\30db490c1cd2c42580395161eca63821\play-services-base-17.0.0\AndroidManifest.xml:24:13-79
-101            android:exported="false"
-101-->[com.google.android.gms:play-services-base:17.0.0] C:\Users\abcjk\.gradle\caches\transforms-2\files-2.1\30db490c1cd2c42580395161eca63821\play-services-base-17.0.0\AndroidManifest.xml:25:13-37
-102            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
-102-->[com.google.android.gms:play-services-base:17.0.0] C:\Users\abcjk\.gradle\caches\transforms-2\files-2.1\30db490c1cd2c42580395161eca63821\play-services-base-17.0.0\AndroidManifest.xml:26:13-72
-103
-104        <meta-data
-104-->[com.google.android.gms:play-services-basement:17.0.0] C:\Users\abcjk\.gradle\caches\transforms-2\files-2.1\135c2e3efd3945b4a2f03a6b98e16d62\jetified-play-services-basement-17.0.0\AndroidManifest.xml:23:9-25:69
-105            android:name="com.google.android.gms.version"
-105-->[com.google.android.gms:play-services-basement:17.0.0] C:\Users\abcjk\.gradle\caches\transforms-2\files-2.1\135c2e3efd3945b4a2f03a6b98e16d62\jetified-play-services-basement-17.0.0\AndroidManifest.xml:24:13-58
-106            android:value="@integer/google_play_services_version" />
-106-->[com.google.android.gms:play-services-basement:17.0.0] C:\Users\abcjk\.gradle\caches\transforms-2\files-2.1\135c2e3efd3945b4a2f03a6b98e16d62\jetified-play-services-basement-17.0.0\AndroidManifest.xml:25:13-66
-107    </application>
-108
-109</manifest>
+54
+55        <!-- Pushy Notification Receiver -->
+56        <!-- Incoming push notifications will invoke the following BroadcastReceiver -->
+57        <receiver
+57-->I:\AndroidStudioProjects\MobileAppsProject\app\src\main\AndroidManifest.xml:43:9-48:20
+58            android:name="MobileProject.WorkingTitle.utils.PushReceiver"
+58-->I:\AndroidStudioProjects\MobileAppsProject\app\src\main\AndroidManifest.xml:43:19-53
+59            android:exported="false" >
+59-->I:\AndroidStudioProjects\MobileAppsProject\app\src\main\AndroidManifest.xml:43:54-78
+60            <intent-filter>
+60-->I:\AndroidStudioProjects\MobileAppsProject\app\src\main\AndroidManifest.xml:44:13-47:29
+61
+62                <!-- Do not modify this -->
+63                <action android:name="pushy.me" />
+63-->I:\AndroidStudioProjects\MobileAppsProject\app\src\main\AndroidManifest.xml:46:17-51
+63-->I:\AndroidStudioProjects\MobileAppsProject\app\src\main\AndroidManifest.xml:46:25-48
+64            </intent-filter>
+65        </receiver>
+66
+67        <!-- Pushy Update Receiver -->
+68        <!-- Do not modify - internal BroadcastReceiver that restarts the listener service -->
+69        <receiver
+69-->I:\AndroidStudioProjects\MobileAppsProject\app\src\main\AndroidManifest.xml:52:9-56:20
+70            android:name="me.pushy.sdk.receivers.PushyUpdateReceiver"
+70-->I:\AndroidStudioProjects\MobileAppsProject\app\src\main\AndroidManifest.xml:52:19-76
+71            android:exported="false" >
+71-->I:\AndroidStudioProjects\MobileAppsProject\app\src\main\AndroidManifest.xml:52:77-101
+72            <intent-filter>
+72-->I:\AndroidStudioProjects\MobileAppsProject\app\src\main\AndroidManifest.xml:53:13-55:29
+73                <action android:name="android.intent.action.MY_PACKAGE_REPLACED" />
+73-->I:\AndroidStudioProjects\MobileAppsProject\app\src\main\AndroidManifest.xml:54:17-84
+73-->I:\AndroidStudioProjects\MobileAppsProject\app\src\main\AndroidManifest.xml:54:25-81
+74            </intent-filter>
+75        </receiver>
+76
+77        <!-- Pushy Boot Receiver -->
+78        <!-- Do not modify - internal BroadcastReceiver that restarts the listener service -->
+79        <receiver
+79-->I:\AndroidStudioProjects\MobileAppsProject\app\src\main\AndroidManifest.xml:60:9-64:20
+80            android:name="me.pushy.sdk.receivers.PushyBootReceiver"
+80-->I:\AndroidStudioProjects\MobileAppsProject\app\src\main\AndroidManifest.xml:60:19-74
+81            android:exported="false" >
+81-->I:\AndroidStudioProjects\MobileAppsProject\app\src\main\AndroidManifest.xml:60:75-99
+82            <intent-filter>
+82-->I:\AndroidStudioProjects\MobileAppsProject\app\src\main\AndroidManifest.xml:61:13-63:29
+83                <action android:name="android.intent.action.BOOT_COMPLETED" />
+83-->I:\AndroidStudioProjects\MobileAppsProject\app\src\main\AndroidManifest.xml:62:17-78
+83-->I:\AndroidStudioProjects\MobileAppsProject\app\src\main\AndroidManifest.xml:62:25-76
+84            </intent-filter>
+85        </receiver>
+86
+87        <!-- Pushy Socket Service -->
+88        <!-- Do not modify - internal service -->
+89        <service android:name="me.pushy.sdk.services.PushySocketService" />
+89-->I:\AndroidStudioProjects\MobileAppsProject\app\src\main\AndroidManifest.xml:68:9-75
+89-->I:\AndroidStudioProjects\MobileAppsProject\app\src\main\AndroidManifest.xml:68:18-73
+90
+91        <!-- Pushy Job Service (added in Pushy SDK 1.0.35) -->
+92        <!-- Do not modify - internal service -->
+93        <service
+93-->I:\AndroidStudioProjects\MobileAppsProject\app\src\main\AndroidManifest.xml:72:9-74:39
+94            android:name="me.pushy.sdk.services.PushyJobService"
+94-->I:\AndroidStudioProjects\MobileAppsProject\app\src\main\AndroidManifest.xml:72:18-70
+95            android:exported="true"
+95-->I:\AndroidStudioProjects\MobileAppsProject\app\src\main\AndroidManifest.xml:74:13-36
+96            android:permission="android.permission.BIND_JOB_SERVICE" />
+96-->I:\AndroidStudioProjects\MobileAppsProject\app\src\main\AndroidManifest.xml:73:13-69
+97
+98        <!-- End Pushy Declarations -->
+99
+100        <activity
+100-->[com.google.android.gms:play-services-base:17.0.0] C:\Users\abcjk\.gradle\caches\transforms-2\files-2.1\30db490c1cd2c42580395161eca63821\play-services-base-17.0.0\AndroidManifest.xml:23:9-26:75
+101            android:name="com.google.android.gms.common.api.GoogleApiActivity"
+101-->[com.google.android.gms:play-services-base:17.0.0] C:\Users\abcjk\.gradle\caches\transforms-2\files-2.1\30db490c1cd2c42580395161eca63821\play-services-base-17.0.0\AndroidManifest.xml:24:13-79
+102            android:exported="false"
+102-->[com.google.android.gms:play-services-base:17.0.0] C:\Users\abcjk\.gradle\caches\transforms-2\files-2.1\30db490c1cd2c42580395161eca63821\play-services-base-17.0.0\AndroidManifest.xml:25:13-37
+103            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+103-->[com.google.android.gms:play-services-base:17.0.0] C:\Users\abcjk\.gradle\caches\transforms-2\files-2.1\30db490c1cd2c42580395161eca63821\play-services-base-17.0.0\AndroidManifest.xml:26:13-72
+104
+105        <meta-data
+105-->[com.google.android.gms:play-services-basement:17.0.0] C:\Users\abcjk\.gradle\caches\transforms-2\files-2.1\135c2e3efd3945b4a2f03a6b98e16d62\jetified-play-services-basement-17.0.0\AndroidManifest.xml:23:9-25:69
+106            android:name="com.google.android.gms.version"
+106-->[com.google.android.gms:play-services-basement:17.0.0] C:\Users\abcjk\.gradle\caches\transforms-2\files-2.1\135c2e3efd3945b4a2f03a6b98e16d62\jetified-play-services-basement-17.0.0\AndroidManifest.xml:24:13-58
+107            android:value="@integer/google_play_services_version" />
+107-->[com.google.android.gms:play-services-basement:17.0.0] C:\Users\abcjk\.gradle\caches\transforms-2\files-2.1\135c2e3efd3945b4a2f03a6b98e16d62\jetified-play-services-basement-17.0.0\AndroidManifest.xml:25:13-66
+108    </application>
+109
+110</manifest>

@@ -238,7 +238,7 @@ public class ConversationFragment extends Fragment {
                     //Log.d("text:", message.get("message").toString());
                     String user = message.get("email").toString();
                     String msg = message.get("message").toString();
-                    mMessages.add(user + ":" + msg);
+                    mMessages.add(user + ": " + msg);
                 }
 
                 // notifies the list that there has been an update and scrolls to the bottom of the list
