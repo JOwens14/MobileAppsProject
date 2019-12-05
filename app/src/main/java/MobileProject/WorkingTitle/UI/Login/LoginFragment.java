@@ -6,13 +6,6 @@ import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
-
-import MobileProject.WorkingTitle.UI.Register.RegisterActivity;
-
-import MobileProject.WorkingTitle.model.ChatMessageNotification;
-import MobileProject.WorkingTitle.model.Credentials;
-import androidx.fragment.app.Fragment;
-
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -21,6 +14,8 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
+
+import androidx.fragment.app.Fragment;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -36,6 +31,10 @@ import java.util.regex.Pattern;
 
 import MobileProject.WorkingTitle.HomeActivity;
 import MobileProject.WorkingTitle.R;
+import MobileProject.WorkingTitle.UI.NewPassword.NewPasswordActivity;
+import MobileProject.WorkingTitle.UI.Register.RegisterActivity;
+import MobileProject.WorkingTitle.model.ChatMessageNotification;
+import MobileProject.WorkingTitle.model.Credentials;
 import me.pushy.sdk.Pushy;
 
 /**
@@ -123,21 +122,30 @@ public class LoginFragment extends Fragment {
 
         Button loginButton = view.findViewById(R.id.login_login_button);
         Button registerButton = view.findViewById(R.id.login_register_button);
+        Button newPWButton = view.findViewById(R.id.login_forgot_pw_button);
 
         loginButton.setOnClickListener(this::login);
         registerButton.setOnClickListener(this::register);
+        newPWButton.setOnClickListener(this::forgotPassword);
+
 
         TextView login = view.findViewById(R.id.editText_EmailLogin);
         TextView password = view.findViewById(R.id.editText_PasswordLogin);
 
-        login.setText("fakeemail@gmail.com");
-        password.setText("logintest123");
+//        login.setText("fakeemail@gmail.com");
+//        password.setText("logintest123");
 
         return view;
     }
 
     private void register(View view) {
         Intent intent = new Intent(this.getContext(), RegisterActivity.class);
+        startActivity(intent);
+
+    }
+
+    private void forgotPassword(View view) {
+        Intent intent = new Intent(this.getContext(), NewPasswordActivity.class);
         startActivity(intent);
 
     }
