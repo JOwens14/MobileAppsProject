@@ -38,6 +38,14 @@ public class Contacts implements Serializable {
             addItem(createContact(i));
         }
     }
+    public void updateContact(Contact theContact, EnumsDefine.Status status) {
+        FRIENDS.forEach((item) -> {
+            if (theContact.equals(item)) {
+                item.setStatus(status);
+            }
+        });
+    }
+
     public void sortFriend() {
         Collections.sort(FRIENDS);
     }
