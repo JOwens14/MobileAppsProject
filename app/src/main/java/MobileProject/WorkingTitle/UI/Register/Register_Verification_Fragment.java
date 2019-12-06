@@ -29,7 +29,7 @@ public class Register_Verification_Fragment extends Fragment {
         if (getArguments() != null) {
             String email = getArguments().getString("email");
             TextView tv = (TextView) getActivity().findViewById(R.id.registerSuccessText);
-            String result = "You have successfully registered! Please check your email: " + email + "to verify your account.";
+            String result = "You have successfully registered! Please check your email: " + email + " to verify your account.";
             tv.setText(result);
         } else {
             String email = "";
